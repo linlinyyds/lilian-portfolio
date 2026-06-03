@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="周琳 Lin Zhou 的交互设计与用户体验作品集，包含 HMI、服务设计、移动端 UX、VR 与多媒体互动案例。"
+    >
+    <title>Lin Zhou | UX & Interaction Designer</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="cursor-light" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="返回首页">
+        <span class="brand-mark">LZ</span>
+        <span>Lin Zhou</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#profile">Profile</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="icon-button menu-toggle" type="button" aria-label="打开导航" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">UX / Interaction / Service Experience</p>
+          <h1>Designing intelligent, emotional and service-ready experiences.</h1>
+          <p>
+            我是周琳，一名关注交互设计、用户体验与多媒体体验的设计师。
+            我的作品横跨智能座舱 HMI、医疗服务系统、移动端产品、VR 游戏与数字疗愈互动。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#work">Explore Work</a>
+            <button class="button secondary" type="button" data-open-case="aurora">Featured Case</button>
+          </div>
+        </div>
+
+        <div class="hero-stage reveal" aria-label="作品集视觉预览">
+          <img src="assets/portfolio/aurora-hero.png" alt="极光心境 HMI 项目的深色光感视觉">
+          <div class="hero-card card-a">
+            <span>Current focus</span>
+            <strong>Human-centered AI interaction</strong>
+          </div>
+          <div class="hero-card card-b">
+            <span>Portfolio</span>
+            <strong>8 projects / 4 domains</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-panel" aria-label="核心能力">
+        <article class="reveal">
+          <span>01</span>
+          <h2>Research to strategy</h2>
+          <p>用户研究、服务蓝图、用户旅程、产品分析，把复杂场景转化为明确设计机会。</p>
+        </article>
+        <article class="reveal">
+          <span>02</span>
+          <h2>Interaction to system</h2>
+          <p>信息架构、任务流、原型设计、HMI 多屏协同，让体验逻辑可以被测试和落地。</p>
+        </article>
+        <article class="reveal">
+          <span>03</span>
+          <h2>Visual to immersion</h2>
+          <p>UI 视觉、3D、VR、TouchDesigner 与 AIGC，把概念做成具有情绪和场景感的表达。</p>
+        </article>
+      </section>
+
+      <section class="work" id="work">
+        <div class="section-top reveal">
+          <p class="eyebrow">Selected work</p>
+          <h2>Case studies with context, process and design decisions.</h2>
+          <p>
+            这里按照“项目类型”筛选。每个卡片都可以点开查看更完整的案例摘要，
+            后续可以继续扩展成独立详情页。
+          </p>
+        </div>
+
+        <div class="filter-bar reveal" aria-label="项目筛选">
+          <button class="filter-button is-active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="hmi">HMI</button>
+          <button class="filter-button" type="button" data-filter="service">Service</button>
+          <button class="filter-button" type="button" data-filter="app">App UX</button>
+          <button class="filter-button" type="button" data-filter="immersive">Immersive</button>
+        </div>
+
+        <div class="case-grid" id="caseGrid" aria-live="polite"></div>
+      </section>
+
+      <section class="process" id="process">
+        <div class="section-top reveal">
+          <p class="eyebrow">Design process</p>
+          <h2>A repeatable workflow for ambiguous problems.</h2>
+        </div>
+
+        <div class="timeline reveal" aria-label="设计流程">
+          <button class="timeline-step is-active" type="button" data-step="0">
+            <span>Discover</span>
+            <strong>识别问题</strong>
+          </button>
+          <button class="timeline-step" type="button" data-step="1">
+            <span>Define</span>
+            <strong>建立结构</strong>
+          </button>
+          <button class="timeline-step" type="button" data-step="2">
+            <span>Design</span>
+            <strong>形成方案</strong>
+          </button>
+          <button class="timeline-step" type="button" data-step="3">
+            <span>Validate</span>
+            <strong>验证迭代</strong>
+          </button>
+        </div>
+
+        <div class="process-detail reveal" id="processDetail"></div>
+      </section>
+
+      <section class="gallery" aria-label="作品视觉画廊">
+        <div class="section-top reveal">
+          <p class="eyebrow">Visual archive</p>
+          <h2>Fragments from product, service and immersive experiments.</h2>
+        </div>
+        <div class="gallery-track reveal">
+          <figure>
+            <img src="assets/portfolio/hmi-insight.png" alt="HMI 用户洞察与设计概念页面">
+            <figcaption>HMI Concept</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/portfolio/tripal-ui.png" alt="TRIPAL 旅游体验 App UI 展示">
+            <figcaption>TRIPAL UI</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/portfolio/equiflow-vr.png" alt="Equiflow VR 绘画体验现场">
+            <figcaption>Equiflow VR</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/portfolio/nature-meditation.png" alt="自然冥想媒体互动现场">
+            <figcaption>Nature Meditation</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="profile" id="profile">
+        <div class="profile-copy reveal">
+          <p class="eyebrow">Profile</p>
+          <h2>从服务体验到数字互动，我习惯把体验放回真实情境里思考。</h2>
+          <p>
+            我曾在蔚来汽车参与服务流程设计，在淘米网络参与平面与 UI 视觉设计。
+            我的工具栈覆盖 Figma、Sketch、Adobe Creative Suite、Blender、Unity、TouchDesigner、
+            Arduino、p5.js、Processing 与 AIGC 创作工具。
+          </p>
+        </div>
+        <div class="profile-panel reveal">
+          <div>
+            <span>Experience</span>
+            <strong>NIO Service Designer / Taomee Visual Designer</strong>
+          </div>
+          <div>
+            <span>Strength</span>
+            <strong>User research, service blueprint, prototype, UI, immersive interaction</strong>
+          </div>
+          <div>
+            <span>Language</span>
+            <strong>Mandarin native / English proficient</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="contact-inner reveal">
+          <p class="eyebrow">Contact</p>
+          <h2>Let’s talk about UX, interaction systems and future services.</h2>
+          <div class="contact-actions">
+            <a class="button primary light" href="mailto:zhoulin1712@gmail.com">zhoulin1712@gmail.com</a>
+            <a class="button secondary light-outline" href="https://github.com/linlinyyds" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="case-drawer" id="caseDrawer" aria-hidden="true" aria-label="项目详情">
+      <div class="drawer-backdrop" data-close-drawer></div>
+      <article class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+        <button class="icon-button drawer-close" type="button" aria-label="关闭项目详情" data-close-drawer>
+          <span></span>
+          <span></span>
+        </button>
+        <div id="drawerContent"></div>
+      </article>
+    </aside>
+
+    <footer class="site-footer">
+      <span>© <span id="year"></span> Lin Zhou</span>
+      <a href="#home">Back to top</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
