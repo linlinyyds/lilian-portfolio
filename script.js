@@ -22,6 +22,52 @@ const cases = [
       "形成“一眼专注，一触沉浸”的多屏交互原则，并围绕舒压模式、手势音量控制和情绪光效完成原型表达。"
   },
   {
+    id: "fivestars",
+    title: "Five Stars Education Website",
+    type: "Web UX / Online Education Platform",
+    category: "web",
+    image: "assets/portfolio/fivestars-web.jpg",
+    year: "Recent web case",
+    role: "Web UX audit, information structure, responsive experience review",
+    tools: "Responsive web, education service UX, conversion flow analysis",
+    link: "https://fivestarsedu.com",
+    summary:
+      "在线教育平台案例，围绕教师发现、学科筛选、预约转化与学生/家长信任建立，呈现清晰的服务型 Web 体验。",
+    tags: ["Web UX", "Education", "Service Platform", "Responsive"],
+    challenge:
+      "教育平台需要同时服务学生、家长和教师，首页必须快速建立信任，并把复杂的课程、老师和预约信息转化为明确行动。",
+    decisions: [
+      "用强对比首屏表达核心价值：找到适合的私人导师，并直接引导浏览老师与教师入驻。",
+      "将教师、学科、价格、评分和预约入口组织成可扫描的信息结构，降低选择成本。",
+      "保留移动端导航与搜索入口，让用户在不同设备上都能快速进入关键任务。"
+    ],
+    outcome:
+      "形成一个适合作为近期 Web 体验案例展示的教育平台样本，重点体现服务转化、信息层级和多角色体验设计。"
+  },
+  {
+    id: "rako",
+    title: "Rako Rako Ramen Website",
+    type: "Web UX / Food E-commerce",
+    category: "web",
+    image: "assets/portfolio/rako-web.jpg",
+    year: "Recent web case",
+    role: "Brand website review, product storytelling, e-commerce UX analysis",
+    tools: "Wix, e-commerce flow, visual merchandising, responsive review",
+    link: "https://www.rakorakoramen.co.uk/",
+    summary:
+      "英国拉面品牌官网案例，通过强烈的食物视觉、品牌氛围和商品购买路径，连接品牌故事与电商转化。",
+    tags: ["Web UX", "E-commerce", "Food Brand", "Visual Storytelling"],
+    challenge:
+      "食品品牌官网既要让用户感到“好吃可信”，也要让购买路径清晰顺畅，避免视觉氛围压过商品信息。",
+    decisions: [
+      "将高质感拉面视觉作为第一识别点，强化品牌记忆和食欲联想。",
+      "围绕产品卡片、套餐、价格和库存状态组织电商信息，让用户可以快速比较。",
+      "用日英混合命名和品牌元素保留文化语境，同时让英国用户能理解购买内容。"
+    ],
+    outcome:
+      "补充了一个更商业化的近期 Web 案例，用于展示品牌视觉、商品陈列和转化路径之间的设计判断。"
+  },
+  {
     id: "clink",
     title: "CLINK 医疗服务系统",
     type: "Service Design / Medical UX",
@@ -159,6 +205,7 @@ function renderCases(filter = "all") {
             <div class="case-tags">${item.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
             <div class="case-footer">
               <button type="button" data-open-case="${item.id}">Open case</button>
+              ${item.link ? `<a href="${item.link}" target="_blank" rel="noreferrer">Live site</a>` : ""}
               <span>${item.year}</span>
             </div>
           </div>
@@ -195,6 +242,7 @@ function openCase(id) {
         <div><span>Role</span><strong>${item.role}</strong></div>
         <div><span>Tools</span><strong>${item.tools}</strong></div>
       </div>
+      ${item.link ? `<a class="drawer-link" href="${item.link}" target="_blank" rel="noreferrer">View live website</a>` : ""}
       <h3>Challenge</h3>
       <p>${item.challenge}</p>
       <h3>Design decisions</h3>

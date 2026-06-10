@@ -475,18 +475,27 @@ section:not(.hero) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 12px 16px;
   margin-top: 28px;
 }
 
-.case-footer button {
+.case-footer button,
+.case-footer a,
+.drawer-link {
   border: 0;
   background: transparent;
   color: var(--cyan);
   font-weight: 900;
 }
 
+.case-footer a {
+  color: var(--ink);
+  opacity: 0.82;
+}
+
 .case-footer span {
+  margin-left: auto;
   color: var(--muted);
   font-size: 13px;
 }
@@ -707,6 +716,11 @@ section:not(.hero) {
 .drawer-meta strong {
   display: block;
   margin-top: 8px;
+}
+
+.drawer-link {
+  display: inline-flex;
+  margin: 0 0 6px;
 }
 
 .drawer-body h3 {
