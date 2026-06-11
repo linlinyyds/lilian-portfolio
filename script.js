@@ -187,6 +187,9 @@ const processDetail = document.querySelector("#processDetail");
 const nav = document.querySelector(".nav");
 const menuToggle = document.querySelector(".menu-toggle");
 const cursorLight = document.querySelector(".cursor-light");
+const activeSectionLabel = document.querySelector("#activeSection");
+const navLinks = Array.from(document.querySelectorAll(".nav a"));
+const trackedSections = Array.from(document.querySelectorAll("main section[id]"));
 
 function renderCases(filter = "all") {
   const visibleCases = filter === "all" ? cases : cases.filter((item) => item.category === filter);
@@ -194,7 +197,7 @@ function renderCases(filter = "all") {
     .map((item, index) => {
       const featuredClass = index === 0 && filter === "all" ? " is-featured" : "";
       return `
-        <article class="case-card reveal${featuredClass}" data-category="${item.category}">
+        <article class="case-card reveal${featuredClass}" data-category="${item.category}" data-index="${String(index + 1).padStart(2, "0")}">
           <div class="case-image">
             <img src="${item.image}" alt="${item.title} 项目封面">
           </div>
@@ -262,32 +265,63 @@ function closeDrawer() {
   document.body.classList.remove("drawer-open");
 }
 
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.12 }
+);
+
 function observeReveals() {
   const reveals = document.querySelectorAll(".reveal:not(.is-visible)");
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
-  reveals.forEach((element) => observer.observe(element));
+  reveals.forEach((element) => revealObserver.observe(element));
+}
+
+function updateScrollState() {
+  const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+  document.documentElement.style.setProperty("--scroll-progress", `${Math.min(progress, 100)}%`);
+
+  document.querySelectorAll("[data-parallax]").forEach((element) => {
+    const speed = Number(element.dataset.parallax);
+    element.style.transform = `translateY(${window.scrollY * speed}px)`;
+  });
+
+  let activeId = trackedSections[0]?.id || "home";
+  trackedSections.forEach((section) => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= 160 && rect.bottom >= 160) {
+      activeId = section.id;
+    }
+  });
+
+  navLinks.forEach((link) => {
+    const isActive = link.getAttribute("href") === `#${activeId}`;
+    link.classList.toggle("is-active", isActive);
+  });
+
+  if (activeSectionLabel) {
+    activeSectionLabel.textContent = activeId.charAt(0).toUpperCase() + activeId.slice(1);
+  }
 }
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 renderCases();
 renderProcess();
 observeReveals();
+updateScrollState();
 
 document.addEventListener("click", (event) => {
   const openButton = event.target.closest("[data-open-case]");
   const closeButton = event.target.closest("[data-close-drawer]");
   const filterButton = event.target.closest("[data-filter]");
   const stepButton = event.target.closest("[data-step]");
+  const navLink = event.target.closest(".nav a");
 
   if (openButton) openCase(openButton.dataset.openCase);
   if (closeButton) closeDrawer();
@@ -303,15 +337,27 @@ document.addEventListener("click", (event) => {
     stepButton.classList.add("is-active");
     renderProcess(Number(stepButton.dataset.step));
   }
+
+  if (navLink && nav.classList.contains("is-open")) {
+    nav.classList.remove("is-open");
+    document.body.classList.remove("nav-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  }
 });
 
 menuToggle.addEventListener("click", () => {
   const isOpen = nav.classList.toggle("is-open");
+  document.body.classList.toggle("nav-open", isOpen);
   menuToggle.setAttribute("aria-expanded", String(isOpen));
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeDrawer();
+  if (event.key === "Escape") {
+    closeDrawer();
+    nav.classList.remove("is-open");
+    document.body.classList.remove("nav-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  }
 });
 
 window.addEventListener(
@@ -322,3 +368,6 @@ window.addEventListener(
   },
   { passive: true }
 );
+
+window.addEventListener("scroll", updateScrollState, { passive: true });
+window.addEventListener("resize", updateScrollState);

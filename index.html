@@ -11,15 +11,20 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <div class="cursor-light" aria-hidden="true"></div>
 
     <header class="site-header">
       <a class="brand" href="#home" aria-label="返回首页">
         <span class="brand-mark">LZ</span>
-        <span>Lin Zhou</span>
+        <span class="brand-copy">
+          <strong>Lin Zhou</strong>
+          <small>UX Designer</small>
+        </span>
       </a>
       <nav class="nav" aria-label="主导航">
         <a href="#work">Work</a>
+        <a href="#approach">Approach</a>
         <a href="#process">Process</a>
         <a href="#profile">Profile</a>
         <a href="#contact">Contact</a>
@@ -32,21 +37,37 @@
 
     <main>
       <section class="hero" id="home">
-        <div class="hero-copy reveal">
+        <div class="hero-copy reveal" data-parallax="0.06">
           <p class="eyebrow">UX / Interaction / Service Experience</p>
-          <h1>Designing intelligent, emotional and service-ready experiences.</h1>
+          <h1>Designing usable systems with a little pulse.</h1>
           <p>
-            我是周琳，一名关注交互设计、用户体验与多媒体体验的设计师。
-            我的作品横跨智能座舱 HMI、医疗服务系统、移动端产品、VR 游戏与数字疗愈互动。
+            我是周琳，一名 UX 与交互设计师。我的作品横跨智能座舱 HMI、服务系统、Web 体验、
+            移动端产品与沉浸式互动，把概念拆成可以被理解、测试和落地的体验。
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#work">Explore Work</a>
             <button class="button secondary" type="button" data-open-case="aurora">Featured Case</button>
           </div>
+          <div class="hero-proof" aria-label="核心能力摘要">
+            <span>Research</span>
+            <span>Interaction</span>
+            <span>Prototype</span>
+            <span>Visual system</span>
+          </div>
         </div>
 
-        <div class="hero-stage reveal" aria-label="作品集视觉预览">
+        <div class="hero-stage reveal" aria-label="作品集视觉预览" data-parallax="-0.04">
           <img src="assets/portfolio/aurora-hero.png" alt="极光心境 HMI 项目的深色光感视觉">
+          <div class="orbit orbit-a" aria-hidden="true"></div>
+          <div class="orbit orbit-b" aria-hidden="true"></div>
+          <svg class="hero-illustration" viewBox="0 0 320 260" role="img" aria-label="交互体验插画">
+            <path d="M55 172c32-71 111-128 181-94 50 25 46 100-4 124-65 30-208 41-177-30Z" fill="#d9ff69"/>
+            <path d="M82 142c29-33 60-56 96-45 35 11 53 45 41 75-16 39-84 56-124 38-30-13-34-43-13-68Z" fill="#0b1119"/>
+            <path d="M106 145h85M91 172h118M116 198h57" stroke="#f5f8ec" stroke-width="10" stroke-linecap="round"/>
+            <circle cx="230" cy="75" r="18" fill="#ff6b5f"/>
+            <circle cx="70" cy="72" r="10" fill="#13ffff"/>
+            <path d="M238 114c23 6 41 21 45 43M48 125c-17 14-25 31-24 52" fill="none" stroke="#f5f8ec" stroke-width="7" stroke-linecap="round"/>
+          </svg>
           <div class="hero-card card-a">
             <span>Current focus</span>
             <strong>Human-centered AI interaction</strong>
@@ -57,6 +78,12 @@
           </div>
         </div>
       </section>
+
+      <aside class="active-dock" aria-label="当前浏览状态">
+        <span class="dock-dot"></span>
+        <strong>MUDA is active</strong>
+        <small id="activeSection">Home</small>
+      </aside>
 
       <section class="quick-panel" aria-label="核心能力">
         <article class="reveal">
@@ -76,13 +103,41 @@
         </article>
       </section>
 
+      <section class="approach" id="approach">
+        <div class="section-top reveal">
+          <p class="eyebrow">Approach</p>
+          <h2>Make ambiguity visible, then make it usable.</h2>
+          <p>
+            我把每个项目拆成三个层次：用户为什么需要、产品如何运作、界面如何引导。
+            这样其他人一眼能看懂每个位置的任务，而不是只看到一组好看的画面。
+          </p>
+        </div>
+        <div class="approach-board reveal">
+          <article>
+            <span>Signal</span>
+            <h3>看见问题</h3>
+            <p>从人群、场景、情绪和业务限制中找出真正影响体验的关键点。</p>
+          </article>
+          <article>
+            <span>Structure</span>
+            <h3>组织路径</h3>
+            <p>把页面、任务、状态和反馈整理成清楚的流程，减少理解成本。</p>
+          </article>
+          <article>
+            <span>Pulse</span>
+            <h3>赋予反馈</h3>
+            <p>用轻量动效、状态提示和视觉节奏，让浏览过程更有趣也更有方向。</p>
+          </article>
+        </div>
+      </section>
+
       <section class="work" id="work">
         <div class="section-top reveal">
           <p class="eyebrow">Selected work</p>
-          <h2>Case studies with context, process and design decisions.</h2>
+          <h2>Case studies that explain what changed and why.</h2>
           <p>
-            这里按照“项目类型”筛选。每个卡片都可以点开查看更完整的案例摘要，
-            后续可以继续扩展成独立详情页。
+            每个案例都标注了项目类型、角色、关键判断和结果。你可以按领域筛选，
+            也可以打开抽屉查看更完整的设计过程。
           </p>
         </div>
 
@@ -102,6 +157,9 @@
         <div class="section-top reveal">
           <p class="eyebrow">Design process</p>
           <h2>A repeatable workflow for ambiguous problems.</h2>
+          <p>
+            这个流程不是装饰，而是用来说明我如何从洞察走到可执行的交互方案。
+          </p>
         </div>
 
         <div class="timeline reveal" aria-label="设计流程">
@@ -130,6 +188,7 @@
         <div class="section-top reveal">
           <p class="eyebrow">Visual archive</p>
           <h2>Fragments from product, service and immersive experiments.</h2>
+          <p>视觉片段用来快速建立作品气质：车载、服务、App、VR 与媒体互动各自有清楚入口。</p>
         </div>
         <div class="gallery-track reveal">
           <figure>
