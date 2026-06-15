@@ -142,20 +142,15 @@ h3 {
 
 .brand-mark {
   display: block;
-  width: 48px;
-  height: 48px;
+  width: 54px;
+  height: 42px;
   place-items: center;
-  overflow: hidden;
-  border: 1px solid rgba(245, 248, 236, 0.22);
-  border-radius: 8px;
-  background: #f7f1e6;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
 }
 
 .brand-mark img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .brand-copy {
@@ -458,6 +453,240 @@ h3 {
   bottom: 24px;
 }
 
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  align-items: center;
+  min-height: calc(100vh - 72px);
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(86px, 10vw, 132px) var(--gutter) clamp(72px, 9vw, 118px);
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.86), rgba(246, 243, 232, 0.76)),
+    radial-gradient(circle at 14% 22%, rgba(255, 219, 112, 0.28), transparent 22rem),
+    radial-gradient(circle at 80% 18%, rgba(102, 211, 255, 0.2), transparent 24rem),
+    #f8f5ee;
+  color: #101318;
+  isolation: isolate;
+}
+
+.hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(16, 19, 24, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(16, 19, 24, 0.035) 1px, transparent 1px);
+  background-size: 84px 84px;
+  mask-image: radial-gradient(circle at 50% 42%, transparent 0 18%, #000 62%);
+  opacity: 0.42;
+}
+
+.hero::after {
+  position: absolute;
+  inset: auto auto 32px 50%;
+  z-index: 3;
+  width: 1px;
+  height: 58px;
+  content: "";
+  background: linear-gradient(180deg, rgba(16, 19, 24, 0), rgba(16, 19, 24, 0.42));
+  transform: translateX(-50%);
+}
+
+.dream-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.dream-stage::before,
+.dream-stage::after {
+  position: absolute;
+  inset: -12%;
+  content: "";
+  pointer-events: none;
+}
+
+.dream-stage::before {
+  background-image:
+    radial-gradient(circle at 14% 20%, rgba(255, 141, 56, 0.34), transparent 19rem),
+    radial-gradient(circle at 67% 30%, rgba(91, 182, 255, 0.25), transparent 20rem),
+    radial-gradient(circle at 50% 76%, rgba(255, 83, 92, 0.18), transparent 22rem);
+  filter: blur(16px);
+  opacity: 0.92;
+}
+
+.dream-stage::after {
+  background:
+    repeating-radial-gradient(circle at 48% 40%, rgba(17, 20, 25, 0.055) 0 1px, transparent 1px 5px);
+  mix-blend-mode: soft-light;
+  opacity: 0.52;
+}
+
+.dream-cover-copy {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  justify-items: center;
+  max-width: min(980px, 92vw);
+  text-align: center;
+}
+
+.dream-cover-copy h1 {
+  max-width: none;
+  color: #111418;
+  font-size: clamp(42px, 10vw, 128px);
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: 0.88;
+  white-space: nowrap;
+  text-shadow:
+    0 20px 54px rgba(112, 104, 94, 0.16),
+    0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.dream-cover-copy p {
+  max-width: min(760px, 86vw);
+  margin: clamp(18px, 3vw, 30px) 0 0;
+  color: rgba(16, 19, 24, 0.68);
+  font-size: clamp(15px, 2vw, 24px);
+  font-weight: 760;
+  line-height: 1.55;
+}
+
+.dream-blob {
+  position: absolute;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background:
+    radial-gradient(circle at 22% 24%, rgba(255, 255, 255, 0.9), transparent 26%),
+    radial-gradient(circle at 75% 72%, rgba(16, 19, 24, 0.24), transparent 44%),
+    linear-gradient(130deg, rgba(255, 192, 76, 0.82), rgba(255, 91, 113, 0.58) 46%, rgba(71, 197, 255, 0.62));
+  box-shadow:
+    inset -28px -32px 50px rgba(16, 19, 24, 0.16),
+    inset 28px 22px 50px rgba(255, 255, 255, 0.48),
+    0 40px 96px rgba(72, 75, 83, 0.14);
+  filter: saturate(1.05);
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  animation: dream-float 10s ease-in-out infinite;
+}
+
+.dream-blob-a {
+  top: 13%;
+  left: 8%;
+  width: min(42vw, 520px);
+  aspect-ratio: 1.42;
+  border-radius: 56% 44% 51% 49% / 62% 42% 58% 38%;
+  transform: rotate(-10deg);
+}
+
+.dream-blob-b {
+  top: 42%;
+  right: 6%;
+  width: min(46vw, 570px);
+  aspect-ratio: 1.5;
+  border-radius: 62% 38% 58% 42% / 46% 58% 42% 54%;
+  background:
+    radial-gradient(circle at 25% 26%, rgba(255, 255, 255, 0.95), transparent 28%),
+    radial-gradient(circle at 58% 70%, rgba(255, 80, 92, 0.62), transparent 32%),
+    linear-gradient(135deg, rgba(200, 255, 232, 0.7), rgba(118, 201, 255, 0.56), rgba(255, 184, 191, 0.54));
+  animation-delay: -3.4s;
+}
+
+.dream-blob-c {
+  left: 14%;
+  bottom: 8%;
+  width: min(30vw, 330px);
+  aspect-ratio: 1.2;
+  border-radius: 52% 48% 44% 56% / 62% 36% 64% 38%;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.9), transparent 25%),
+    linear-gradient(140deg, rgba(215, 255, 238, 0.72), rgba(120, 186, 255, 0.48), rgba(255, 142, 109, 0.4));
+  animation-delay: -6s;
+}
+
+.dream-blob-d {
+  top: 8%;
+  right: 16%;
+  width: min(22vw, 260px);
+  aspect-ratio: 1.1;
+  border-radius: 46% 54% 60% 40% / 42% 58% 40% 60%;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.95), transparent 30%),
+    linear-gradient(140deg, rgba(255, 236, 151, 0.8), rgba(255, 111, 105, 0.42), rgba(115, 216, 255, 0.45));
+  opacity: 0.72;
+  animation-delay: -1.6s;
+}
+
+.dream-orbit {
+  position: absolute;
+  display: block;
+  border: 1px solid rgba(16, 19, 24, 0.12);
+  border-radius: 50%;
+  opacity: 0.58;
+}
+
+.dream-orbit-a {
+  top: 18%;
+  left: 50%;
+  width: min(58vw, 760px);
+  aspect-ratio: 1;
+  transform: translateX(-50%) rotate(-12deg);
+}
+
+.dream-orbit-b {
+  right: -8vw;
+  bottom: -14vw;
+  width: min(54vw, 680px);
+  aspect-ratio: 1;
+}
+
+.dream-spark {
+  position: absolute;
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(16, 19, 24, 0.5);
+  transform: rotate(45deg);
+}
+
+.dream-spark::after {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: rgba(16, 19, 24, 0.58);
+  content: "";
+}
+
+.dream-spark-a {
+  left: 22%;
+  top: 30%;
+}
+
+.dream-spark-b {
+  right: 24%;
+  bottom: 28%;
+  width: 12px;
+  height: 12px;
+  opacity: 0.52;
+}
+
+@keyframes dream-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-7deg) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -20px, 0) rotate(4deg) scale(1.035);
+  }
+}
+
 .active-dock {
   position: fixed;
   z-index: 60;
@@ -473,6 +702,16 @@ h3 {
   padding: 12px 14px;
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.active-dock.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .dock-dot {

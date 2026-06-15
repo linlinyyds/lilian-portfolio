@@ -187,6 +187,7 @@ const nav = document.querySelector(".nav");
 const menuToggle = document.querySelector(".menu-toggle");
 const cursorLight = document.querySelector(".cursor-light");
 const activeSectionLabel = document.querySelector("#activeSection");
+const activeDock = document.querySelector(".active-dock");
 const navLinks = Array.from(document.querySelectorAll(".nav a"));
 const trackedSections = Array.from(document.querySelectorAll("main section[id]"));
 
@@ -355,6 +356,10 @@ function updateScrollState() {
 
   if (activeSectionLabel) {
     activeSectionLabel.textContent = activeId.charAt(0).toUpperCase() + activeId.slice(1);
+  }
+
+  if (activeDock) {
+    activeDock.classList.toggle("is-visible", activeId !== "home");
   }
 }
 
