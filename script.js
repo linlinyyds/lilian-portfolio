@@ -186,10 +186,41 @@ const drawerContent = document.querySelector("#drawerContent");
 const nav = document.querySelector(".nav");
 const menuToggle = document.querySelector(".menu-toggle");
 const cursorLight = document.querySelector(".cursor-light");
+const introScreen = document.querySelector("#introScreen");
+const brand = document.querySelector(".brand");
 const activeSectionLabel = document.querySelector("#activeSection");
 const activeDock = document.querySelector(".active-dock");
 const navLinks = Array.from(document.querySelectorAll(".nav a"));
 const trackedSections = Array.from(document.querySelectorAll("main section[id]"));
+const forceIntro = new URLSearchParams(window.location.search).get("intro") === "1";
+
+function completeIntro(delay = 1750) {
+  if (!introScreen) return;
+  window.setTimeout(() => {
+    document.body.classList.add("intro-leaving");
+    window.setTimeout(() => {
+      document.body.classList.remove("intro-active", "intro-leaving");
+      introScreen.setAttribute("aria-hidden", "true");
+    }, 900);
+  }, delay);
+}
+
+function setupIntro() {
+  if (!introScreen) {
+    document.body.classList.remove("intro-active");
+    return;
+  }
+
+  const hasSeenIntro = window.sessionStorage.getItem("lilianIntroSeen") === "true";
+  if (hasSeenIntro && !forceIntro) {
+    document.body.classList.remove("intro-active");
+    introScreen.setAttribute("aria-hidden", "true");
+    return;
+  }
+
+  window.sessionStorage.setItem("lilianIntroSeen", "true");
+  completeIntro();
+}
 
 function renderCases(filter = "all") {
   const visibleCases = filter === "all" ? cases : cases.filter((item) => item.category === filter);
@@ -363,6 +394,7 @@ function updateScrollState() {
   }
 }
 
+setupIntro();
 document.querySelector("#year").textContent = new Date().getFullYear();
 renderCases();
 observeReveals();
@@ -377,6 +409,11 @@ document.addEventListener("click", (event) => {
   if (openButton) openCase(openButton.dataset.openCase);
   if (closeButton) closeDrawer();
 
+  if (event.target.closest(".brand-mark")) {
+    brand?.classList.remove("is-pouncing");
+    window.requestAnimationFrame(() => brand?.classList.add("is-pouncing"));
+  }
+
   if (filterButton) {
     document.querySelectorAll(".filter-button").forEach((button) => button.classList.remove("is-active"));
     filterButton.classList.add("is-active");
@@ -387,6 +424,12 @@ document.addEventListener("click", (event) => {
     nav.classList.remove("is-open");
     document.body.classList.remove("nav-open");
     menuToggle.setAttribute("aria-expanded", "false");
+  }
+});
+
+brand?.addEventListener("animationend", (event) => {
+  if (event.animationName === "cat-pounce") {
+    brand.classList.remove("is-pouncing");
   }
 });
 

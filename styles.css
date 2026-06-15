@@ -45,6 +45,10 @@ body.nav-open {
   overflow: hidden;
 }
 
+body.intro-active {
+  overflow: hidden;
+}
+
 a,
 button {
   color: inherit;
@@ -115,6 +119,107 @@ h3 {
   pointer-events: none;
 }
 
+.intro-screen {
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 52% 52%, rgba(255, 255, 255, 0.24), transparent 20rem),
+    linear-gradient(135deg, #90cff3, #87c8ee);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 850ms ease, visibility 850ms ease;
+}
+
+body.intro-active .intro-screen {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+body.intro-leaving .intro-screen {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.intro-screen::before,
+.intro-screen::after {
+  position: absolute;
+  width: 48vmin;
+  height: 48vmin;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 50%;
+  content: "";
+  filter: blur(0.2px);
+}
+
+.intro-screen::before {
+  left: 11%;
+  top: 14%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 58%);
+}
+
+.intro-screen::after {
+  right: 10%;
+  bottom: 12%;
+  background: radial-gradient(circle, rgba(176, 219, 255, 0.18), transparent 60%);
+}
+
+.intro-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  min-width: min(720px, 78vw);
+  padding: 34px 48px 40px;
+  animation: intro-rise 950ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.intro-logo {
+  position: absolute;
+  right: clamp(-18px, -2vw, -8px);
+  top: clamp(-54px, -5vw, -34px);
+  width: clamp(58px, 8vw, 92px);
+  filter:
+    drop-shadow(0 8px 10px rgba(40, 93, 128, 0.18))
+    drop-shadow(0 0 8px rgba(255, 255, 255, 0.44));
+  animation: cat-bounce 1400ms ease-in-out infinite;
+  transform-origin: 50% 82%;
+}
+
+.intro-title {
+  position: relative;
+  display: inline-grid;
+  justify-items: stretch;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: Didot, "Bodoni 72", "Bodoni 72 Smallcaps", "Times New Roman", serif;
+  font-size: clamp(48px, 8.8vw, 96px);
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 1.02;
+  text-shadow:
+    0 0 7px rgba(255, 255, 255, 0.72),
+    0 0 18px rgba(255, 255, 255, 0.46),
+    0 0 34px rgba(218, 244, 255, 0.34);
+  white-space: nowrap;
+}
+
+.intro-title::after {
+  display: block;
+  height: 3px;
+  margin-top: 24px;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.6),
+    0 0 22px rgba(255, 255, 255, 0.34);
+  content: "";
+}
+
 .site-header {
   position: sticky;
   z-index: 80;
@@ -141,7 +246,7 @@ h3 {
 }
 
 .brand-mark {
-  display: block;
+  display: grid;
   width: 54px;
   height: 42px;
   place-items: center;
@@ -151,6 +256,14 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  transform-origin: 50% 82%;
+  transition: filter 180ms ease, transform 180ms ease;
+}
+
+.brand:hover .brand-mark img,
+.brand.is-pouncing .brand-mark img {
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.38));
+  animation: cat-pounce 520ms cubic-bezier(0.18, 0.9, 0.22, 1.2);
 }
 
 .brand-copy {
@@ -545,6 +658,8 @@ h3 {
   line-height: 0.88;
   white-space: nowrap;
   text-shadow:
+    0 0 14px rgba(255, 255, 255, 0.76),
+    0 0 42px rgba(178, 220, 255, 0.34),
     0 20px 54px rgba(112, 104, 94, 0.16),
     0 0 1px rgba(255, 255, 255, 0.8);
 }
@@ -1718,6 +1833,48 @@ section:not(.hero) {
   }
 }
 
+@keyframes intro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cat-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg) scale(1);
+  }
+
+  35% {
+    transform: translateY(-16px) rotate(2deg) scale(1.04);
+  }
+
+  58% {
+    transform: translateY(2px) rotate(-2deg) scale(0.99);
+  }
+}
+
+@keyframes cat-pounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0) scale(1);
+  }
+
+  42% {
+    transform: translateY(-8px) rotate(-4deg) scale(1.12);
+  }
+
+  70% {
+    transform: translateY(1px) rotate(3deg) scale(0.98);
+  }
+}
+
 @media (max-width: 1040px) {
   .hero,
   .section-top,
@@ -1763,6 +1920,26 @@ section:not(.hero) {
 }
 
 @media (max-width: 760px) {
+  .intro-content {
+    min-width: min(440px, 84vw);
+    padding: 58px 18px 28px;
+  }
+
+  .intro-logo {
+    right: 4px;
+    top: -14px;
+    width: clamp(52px, 18vw, 76px);
+  }
+
+  .intro-title {
+    font-size: clamp(38px, 12vw, 62px);
+  }
+
+  .intro-title::after {
+    height: 2px;
+    margin-top: 18px;
+  }
+
   .site-header {
     gap: 14px;
   }
