@@ -27,10 +27,8 @@
         </span>
       </a>
       <nav class="nav" aria-label="主导航">
-        <a href="#work">Work</a>
-        <a href="#approach">Approach</a>
-        <a href="#process">Process</a>
         <a href="#profile">Profile</a>
+        <a href="#work">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
       <button class="icon-button menu-toggle" type="button" aria-label="打开导航" aria-expanded="false">
@@ -49,7 +47,8 @@
             移动端产品与沉浸式互动，把概念拆成可以被理解、测试和落地的体验。
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#work">Explore Work</a>
+            <a class="button primary" href="#profile">Meet Lin</a>
+            <a class="button secondary" href="#work">Open Archive</a>
             <button class="button secondary" type="button" data-open-case="aurora">Featured Case</button>
           </div>
           <div class="hero-proof" aria-label="核心能力摘要">
@@ -89,59 +88,51 @@
         <small id="activeSection">Home</small>
       </aside>
 
-      <section class="quick-panel" aria-label="核心能力">
-        <article class="reveal">
-          <span>01</span>
-          <h2>Research to strategy</h2>
-          <p>用户研究、服务蓝图、用户旅程、产品分析，把复杂场景转化为明确设计机会。</p>
-        </article>
-        <article class="reveal">
-          <span>02</span>
-          <h2>Interaction to system</h2>
-          <p>信息架构、任务流、原型设计、HMI 多屏协同，让体验逻辑可以被测试和落地。</p>
-        </article>
-        <article class="reveal">
-          <span>03</span>
-          <h2>Visual to immersion</h2>
-          <p>UI 视觉、3D、VR、TouchDesigner 与 AIGC，把概念做成具有情绪和场景感的表达。</p>
-        </article>
-      </section>
-
-      <section class="approach" id="approach">
-        <div class="section-top reveal">
-          <p class="eyebrow">Approach</p>
-          <h2>Make ambiguity visible, then make it usable.</h2>
-          <p>
-            我把每个项目拆成三个层次：用户为什么需要、产品如何运作、界面如何引导。
-            这样其他人一眼能看懂每个位置的任务，而不是只看到一组好看的画面。
-          </p>
+      <section class="profile" id="profile">
+        <div class="profile-photo reveal" aria-label="个人照片展示位">
+          <div class="portrait-frame">
+            <img src="assets/hero.png" alt="工作桌面与设计系统氛围图">
+            <span>Portrait area</span>
+          </div>
+          <div class="portrait-note">
+            <strong>Lin Zhou</strong>
+            <p>UX Designer / Interaction Designer</p>
+          </div>
         </div>
-        <div class="approach-board reveal">
-          <article>
-            <span>Signal</span>
-            <h3>看见问题</h3>
-            <p>从人群、场景、情绪和业务限制中找出真正影响体验的关键点。</p>
-          </article>
-          <article>
-            <span>Structure</span>
-            <h3>组织路径</h3>
-            <p>把页面、任务、状态和反馈整理成清楚的流程，减少理解成本。</p>
-          </article>
-          <article>
-            <span>Pulse</span>
-            <h3>赋予反馈</h3>
-            <p>用轻量动效、状态提示和视觉节奏，让浏览过程更有趣也更有方向。</p>
-          </article>
+        <div class="profile-copy reveal">
+          <p class="eyebrow">Profile</p>
+          <h2>把复杂体验整理成清楚、可测试、能落地的设计系统。</h2>
+          <p>
+            我关注 UX、服务设计、HMI、多媒体交互与沉浸式体验。我的设计习惯是先理解真实场景，
+            再把用户需求、任务路径、视觉反馈和技术边界整理成团队能执行的方案。
+          </p>
+          <div class="profile-resume">
+            <article>
+              <span>Experience</span>
+              <strong>NIO Service Designer</strong>
+              <p>参与服务流程设计、服务触点梳理与体验优化。</p>
+            </article>
+            <article>
+              <span>Experience</span>
+              <strong>Taomee Visual Designer</strong>
+              <p>参与平面视觉、UI 表达和数字内容设计。</p>
+            </article>
+            <article>
+              <span>Strength</span>
+              <strong>Research → Prototype → Visual system</strong>
+              <p>用户研究、服务蓝图、信息架构、交互原型、UI 视觉和多模态体验。</p>
+            </article>
+          </div>
         </div>
       </section>
 
       <section class="work" id="work">
-        <div class="section-top reveal">
-          <p class="eyebrow">Selected work</p>
-          <h2>Case studies that explain what changed and why.</h2>
+        <div class="archive-head reveal">
+          <p class="eyebrow">Selected Project Archive</p>
+          <h2>Open a folder to see the case.</h2>
           <p>
-            每个案例都标注了项目类型、角色、关键判断和结果。你可以按领域筛选，
-            也可以打开抽屉查看更完整的设计过程。
+            每个文件夹是一份设计档案：包含项目背景、我的角色、关键设计判断与最终结果。
+            点击任意文件夹打开项目详情。
           </p>
         </div>
 
@@ -154,89 +145,12 @@
           <button class="filter-button" type="button" data-filter="immersive">Immersive</button>
         </div>
 
-        <div class="case-grid" id="caseGrid" aria-live="polite"></div>
-      </section>
-
-      <section class="process" id="process">
-        <div class="section-top reveal">
-          <p class="eyebrow">Design process</p>
-          <h2>A repeatable workflow for ambiguous problems.</h2>
-          <p>
-            这个流程不是装饰，而是用来说明我如何从洞察走到可执行的交互方案。
-          </p>
-        </div>
-
-        <div class="timeline reveal" aria-label="设计流程">
-          <button class="timeline-step is-active" type="button" data-step="0">
-            <span>Discover</span>
-            <strong>识别问题</strong>
-          </button>
-          <button class="timeline-step" type="button" data-step="1">
-            <span>Define</span>
-            <strong>建立结构</strong>
-          </button>
-          <button class="timeline-step" type="button" data-step="2">
-            <span>Design</span>
-            <strong>形成方案</strong>
-          </button>
-          <button class="timeline-step" type="button" data-step="3">
-            <span>Validate</span>
-            <strong>验证迭代</strong>
-          </button>
-        </div>
-
-        <div class="process-detail reveal" id="processDetail"></div>
-      </section>
-
-      <section class="gallery" aria-label="作品视觉画廊">
-        <div class="section-top reveal">
-          <p class="eyebrow">Visual archive</p>
-          <h2>Fragments from product, service and immersive experiments.</h2>
-          <p>视觉片段用来快速建立作品气质：车载、服务、App、VR 与媒体互动各自有清楚入口。</p>
-        </div>
-        <div class="gallery-track reveal">
-          <figure>
-            <img src="assets/portfolio/hmi-insight.png" alt="HMI 用户洞察与设计概念页面">
-            <figcaption>HMI Concept</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/portfolio/tripal-ui.png" alt="TRIPAL 旅游体验 App UI 展示">
-            <figcaption>TRIPAL UI</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/portfolio/equiflow-vr.png" alt="Equiflow VR 绘画体验现场">
-            <figcaption>Equiflow VR</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/portfolio/nature-meditation.png" alt="自然冥想媒体互动现场">
-            <figcaption>Nature Meditation</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="profile" id="profile">
-        <div class="profile-copy reveal">
-          <p class="eyebrow">Profile</p>
-          <h2>从服务体验到数字互动，我习惯把体验放回真实情境里思考。</h2>
-          <p>
-            我曾在蔚来汽车参与服务流程设计，在淘米网络参与平面与 UI 视觉设计。
-            我的工具栈覆盖 Figma、Sketch、Adobe Creative Suite、Blender、Unity、TouchDesigner、
-            Arduino、p5.js、Processing 与 AIGC 创作工具。
-          </p>
-        </div>
-        <div class="profile-panel reveal">
-          <div>
-            <span>Experience</span>
-            <strong>NIO Service Designer / Taomee Visual Designer</strong>
+        <div class="folder-stage reveal" aria-label="项目文件夹档案">
+          <div class="archive-title" aria-hidden="true">
+            <strong>WHAT IS INSIDE?</strong>
+            <span>Research. Flow. UI. System. Interaction.</span>
           </div>
-          <div>
-            <span>Strength</span>
-            <strong>User research, service blueprint, prototype, UI, immersive interaction</strong>
-          </div>
-          <div>
-            <span>Language</span>
-            <strong>Mandarin native / English proficient</strong>
-          </div>
+          <div class="case-grid folder-grid" id="caseGrid" aria-live="polite"></div>
         </div>
       </section>
 

@@ -183,7 +183,6 @@ const processSteps = [
 const caseGrid = document.querySelector("#caseGrid");
 const drawer = document.querySelector("#caseDrawer");
 const drawerContent = document.querySelector("#drawerContent");
-const processDetail = document.querySelector("#processDetail");
 const nav = document.querySelector(".nav");
 const menuToggle = document.querySelector(".menu-toggle");
 const cursorLight = document.querySelector(".cursor-light");
@@ -195,9 +194,66 @@ function renderCases(filter = "all") {
   const visibleCases = filter === "all" ? cases : cases.filter((item) => item.category === filter);
   caseGrid.innerHTML = visibleCases
     .map((item, index) => {
-      const featuredClass = index === 0 && filter === "all" ? " is-featured" : "";
+      const folderTone = ["pink", "lime", "blue", "paper", "coral", "mint", "violet"][index % 7];
       return `
-        <article class="case-card reveal${featuredClass}" data-category="${item.category}" data-index="${String(index + 1).padStart(2, "0")}">
+        <button class="folder-card reveal tone-${folderTone}" type="button" data-open-case="${item.id}" data-category="${item.category}" data-index="${String(index + 1).padStart(2, "0")}">
+          <span class="folder-shape" aria-hidden="true">
+            <span class="folder-tab"></span>
+            <span class="folder-preview">
+              <img src="${item.image}" alt="">
+            </span>
+          </span>
+          <span class="folder-meta">
+            <span>${item.type}</span>
+            <strong>${item.title}</strong>
+            <small>${item.year}</small>
+          </span>
+          <span class="folder-action">Open case</span>
+        </button>
+      `;
+    })
+    .join("");
+  observeReveals();
+}
+
+function renderProcess() {
+  return "";
+}
+
+function categoryLabel(category) {
+  const labels = {
+    hmi: "HMI",
+    web: "Web",
+    service: "Service",
+    app: "App UX",
+    immersive: "Immersive"
+  };
+  return labels[category] || category;
+}
+
+function renderCaseGallery(item) {
+  return `
+    <div class="drawer-gallery">
+      <figure>
+        <img src="${item.image}" alt="${item.title} 视觉预览">
+        <figcaption>${categoryLabel(item.category)} archive image</figcaption>
+      </figure>
+      <div class="drawer-process-map">
+        <span>01 Discover</span>
+        <span>02 Define</span>
+        <span>03 Design</span>
+        <span>04 Validate</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderLegacyCases(filter = "all") {
+  const visibleCases = filter === "all" ? cases : cases.filter((item) => item.category === filter);
+  caseGrid.innerHTML = visibleCases
+    .map((item, index) => {
+      return `
+        <article class="case-card reveal" data-category="${item.category}" data-index="${String(index + 1).padStart(2, "0")}">
           <div class="case-image">
             <img src="${item.image}" alt="${item.title} 项目封面">
           </div>
@@ -219,15 +275,6 @@ function renderCases(filter = "all") {
   observeReveals();
 }
 
-function renderProcess(stepIndex = 0) {
-  const step = processSteps[stepIndex];
-  processDetail.innerHTML = `
-    <h3>${step.title}</h3>
-    <p>${step.body}</p>
-    <ul>${step.points.map((point) => `<li>${point}</li>`).join("")}</ul>
-  `;
-}
-
 function openCase(id) {
   const item = cases.find((caseItem) => caseItem.id === id);
   if (!item) return;
@@ -245,6 +292,7 @@ function openCase(id) {
         <div><span>Role</span><strong>${item.role}</strong></div>
         <div><span>Tools</span><strong>${item.tools}</strong></div>
       </div>
+      ${renderCaseGallery(item)}
       ${item.link ? `<a class="drawer-link" href="${item.link}" target="_blank" rel="noreferrer">View live website</a>` : ""}
       <h3>Challenge</h3>
       <p>${item.challenge}</p>
@@ -312,7 +360,6 @@ function updateScrollState() {
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 renderCases();
-renderProcess();
 observeReveals();
 updateScrollState();
 
@@ -320,7 +367,6 @@ document.addEventListener("click", (event) => {
   const openButton = event.target.closest("[data-open-case]");
   const closeButton = event.target.closest("[data-close-drawer]");
   const filterButton = event.target.closest("[data-filter]");
-  const stepButton = event.target.closest("[data-step]");
   const navLink = event.target.closest(".nav a");
 
   if (openButton) openCase(openButton.dataset.openCase);
@@ -330,12 +376,6 @@ document.addEventListener("click", (event) => {
     document.querySelectorAll(".filter-button").forEach((button) => button.classList.remove("is-active"));
     filterButton.classList.add("is-active");
     renderCases(filterButton.dataset.filter);
-  }
-
-  if (stepButton) {
-    document.querySelectorAll(".timeline-step").forEach((button) => button.classList.remove("is-active"));
-    stepButton.classList.add("is-active");
-    renderProcess(Number(stepButton.dataset.step));
   }
 
   if (navLink && nav.classList.contains("is-open")) {
