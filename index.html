@@ -5,163 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="周琳 Lin Zhou 的交互设计与用户体验作品集，包含 HMI、服务设计、移动端 UX、VR 与多媒体互动案例。"
+      content="Lilian Zhou 的 UX、UI、HMI 与 AI 产品经理作品集。"
     >
-    <title>Lin Zhou | UX & Interaction Designer</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png?v=cat5">
-    <link rel="apple-touch-icon" href="assets/favicon.png?v=cat5">
-    <link rel="stylesheet" href="styles.css">
+    <title>Lilian Portfolio</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=cat-menu-2">
+    <link rel="apple-touch-icon" href="assets/favicon.png?v=cat-menu-2">
+    <link rel="stylesheet" href="styles.css?v=cat-menu-2">
   </head>
-  <body class="intro-active">
-    <div class="scroll-progress" aria-hidden="true"></div>
-    <div class="cursor-light" aria-hidden="true"></div>
-    <div class="intro-screen" id="introScreen" aria-label="Lilian Portfolio intro">
-      <div class="intro-content">
-        <img class="intro-logo" src="assets/logo.png?v=cat5" alt="">
-        <strong class="intro-title">Lilian Portfolio</strong>
-      </div>
+  <body data-theme="light">
+    <div class="ambient" aria-hidden="true">
+      <span class="glow glow-a"></span>
+      <span class="glow glow-b"></span>
+      <span class="glow glow-c"></span>
     </div>
 
     <header class="site-header">
-      <a class="brand" href="#home" aria-label="返回首页">
-        <span class="brand-mark">
-          <img src="assets/logo.png?v=cat5" alt="" aria-hidden="true">
-        </span>
-        <span class="brand-copy">
-          <strong>Lin Zhou</strong>
-          <small>UX Designer</small>
-        </span>
-      </a>
-      <nav class="nav" aria-label="主导航">
-        <a href="#profile">Profile</a>
-        <a href="#work">Projects</a>
+      <button class="cat-menu" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="quickNav">
+        <img src="assets/logo.png?v=cat5" alt="">
+      </button>
+      <nav class="quick-nav" id="quickNav" aria-label="页面导航">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#project">Project</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="icon-button menu-toggle" type="button" aria-label="打开导航" aria-expanded="false">
-        <span></span>
-        <span></span>
+      <button class="theme-toggle" type="button" aria-label="切换白天和夜晚模式" aria-pressed="false">
+        <span class="theme-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2.8v2.1M12 19.1v2.1M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M2.8 12h2.1M19.1 12h2.1M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"></path>
+          </svg>
+        </span>
+        <span class="theme-switch" aria-hidden="true"><span></span></span>
+        <span class="theme-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M20.1 14.5A7.9 7.9 0 0 1 9.5 3.9a8.5 8.5 0 1 0 10.6 10.6Z"></path>
+          </svg>
+        </span>
       </button>
     </header>
 
-    <main>
-      <section class="hero" id="home">
-        <div class="dream-stage" aria-hidden="true">
-          <span class="dream-blob dream-blob-a"></span>
-          <span class="dream-blob dream-blob-b"></span>
-          <span class="dream-blob dream-blob-c"></span>
-          <span class="dream-blob dream-blob-d"></span>
-          <span class="dream-orbit dream-orbit-a"></span>
-          <span class="dream-orbit dream-orbit-b"></span>
-          <span class="dream-spark dream-spark-a"></span>
-          <span class="dream-spark dream-spark-b"></span>
+    <main id="app">
+      <section class="hero" id="home" aria-label="首页">
+        <div class="hero-title reveal">
+          <h1>LILIAN</h1>
+          <p>PORTFOLIO</p>
         </div>
-
-        <div class="dream-cover-copy reveal">
-          <h1>Lilian的作品</h1>
-          <p>AI产品经理｜UI｜交互体验设计师｜Design + Vibe Coding</p>
+        <div class="hero-role reveal">
+          <span>UI&amp;UX | HMI</span>
+          <strong>AI PRODUCT MANAGER</strong>
         </div>
       </section>
 
-      <aside class="active-dock" aria-label="当前浏览状态">
-        <span class="dock-dot"></span>
-        <strong>MUDA is active</strong>
-        <small id="activeSection">Home</small>
-      </aside>
-
-      <section class="profile" id="profile">
-        <div class="profile-photo reveal" aria-label="个人照片展示位">
-          <div class="portrait-frame">
-            <img src="assets/hero.png" alt="工作桌面与设计系统氛围图">
-            <span>Portrait area</span>
-          </div>
-          <div class="portrait-note">
-            <strong>Lin Zhou</strong>
-            <p>UX Designer / Interaction Designer</p>
-          </div>
+      <section class="section about" id="about" aria-labelledby="about-title">
+        <div class="section-heading reveal">
+          <span class="small-name">LILIAN</span>
+          <h2 id="about-title">ABOUT</h2>
         </div>
-        <div class="profile-copy reveal">
-          <p class="eyebrow">Profile</p>
-          <h2>把复杂体验整理成清楚、可测试、能落地的设计系统。</h2>
-          <p>
-            我关注 UX、服务设计、HMI、多媒体交互与沉浸式体验。我的设计习惯是先理解真实场景，
-            再把用户需求、任务路径、视觉反馈和技术边界整理成团队能执行的方案。
-          </p>
-          <div class="profile-resume">
-            <article>
-              <span>Experience</span>
-              <strong>NIO Service Designer</strong>
-              <p>参与服务流程设计、服务触点梳理与体验优化。</p>
-            </article>
-            <article>
-              <span>Experience</span>
-              <strong>Taomee Visual Designer</strong>
-              <p>参与平面视觉、UI 表达和数字内容设计。</p>
-            </article>
-            <article>
-              <span>Strength</span>
-              <strong>Research → Prototype → Visual system</strong>
-              <p>用户研究、服务蓝图、信息架构、交互原型、UI 视觉和多模态体验。</p>
-            </article>
+
+        <div class="profile-grid">
+          <p class="side-label reveal">（个人简介）</p>
+          <div class="profile-copy reveal">
+            <p>你好，我是周琳。</p>
+            <p>
+              我是一名 UX / UI / 交互体验设计师，背景横跨艺术科技、
+              信息体验与数字产品。现在在上海参与社会产品、AI 助手和网站体验设计，
+              也做过汽车服务与智能座舱项目。
+            </p>
+            <p>我喜欢把复杂的问题，变成自然的体验。</p>
+            <p>
+              我会从用户场景、信息架构和交互原型出发，一直推进到测试与开发落地。
+              也会使用 AI 工具快速验证设计想法。对我来说，好的设计不只是好看，
+              更应该清楚、可信，并真正解决问题。
+            </p>
+            <p>我喜欢有回应的设计。</p>
+            <p>
+              无论是一段对话、一个按钮，还是声音、光线与空间，我都希望系统能在合适的
+              时刻给予恰当反馈，让人与产品之间的交流更自然，也更有温度。
+            </p>
+          </div>
+
+          <p class="side-label reveal">（教育背景）</p>
+          <div class="timeline reveal">
+            <div>
+              <time>2025</time>
+              <span>英国皇家艺术学院 | 信息体验设计硕士</span>
+            </div>
+            <div>
+              <time>2024</time>
+              <span>上海工程技术大学 | 艺术与科技学士</span>
+            </div>
+          </div>
+
+          <p class="side-label reveal">（工作经历）</p>
+          <div class="timeline reveal">
+            <div>
+              <time>2026</time>
+              <span>ICERED | AI 产品经理</span>
+            </div>
+            <div>
+              <time>2024</time>
+              <span>蔚来汽车 | 服务设计师</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="work" id="work">
-        <div class="archive-head reveal">
-          <p class="eyebrow">Selected Project Archive</p>
-          <h2>Open a folder to see the case.</h2>
-          <p>
-            每个文件夹是一份设计档案：包含项目背景、我的角色、关键设计判断与最终结果。
-            点击任意文件夹打开项目详情。
-          </p>
+      <section class="section project" id="project" aria-labelledby="project-title">
+        <div class="section-heading reveal">
+          <h2 id="project-title">PROJECT</h2>
         </div>
-
-        <div class="filter-bar reveal" aria-label="项目筛选">
-          <button class="filter-button is-active" type="button" data-filter="all">All</button>
-          <button class="filter-button" type="button" data-filter="hmi">HMI</button>
-          <button class="filter-button" type="button" data-filter="web">Web</button>
-          <button class="filter-button" type="button" data-filter="service">Service</button>
-          <button class="filter-button" type="button" data-filter="app">App UX</button>
-          <button class="filter-button" type="button" data-filter="immersive">Immersive</button>
-        </div>
-
-        <div class="folder-stage reveal" aria-label="项目文件夹档案">
-          <div class="archive-title" aria-hidden="true">
-            <strong>WHAT IS INSIDE?</strong>
-            <span>Research. Flow. UI. System. Interaction.</span>
-          </div>
-          <div class="case-grid folder-grid" id="caseGrid" aria-live="polite"></div>
-        </div>
+        <div class="project-list reveal" id="projectList"></div>
       </section>
 
-      <section class="contact" id="contact">
-        <div class="contact-inner reveal">
-          <p class="eyebrow">Contact</p>
-          <h2>Let’s talk about UX, interaction systems and future services.</h2>
-          <div class="contact-actions">
-            <a class="button primary light" href="mailto:zhoulin1712@gmail.com">zhoulin1712@gmail.com</a>
-            <a class="button secondary light-outline" href="https://github.com/linlinyyds" target="_blank" rel="noreferrer">GitHub</a>
+      <section class="section contact" id="contact" aria-labelledby="contact-title">
+        <div class="section-heading reveal">
+          <h2 id="contact-title">CONTACT</h2>
+        </div>
+        <div class="contact-grid">
+          <p class="side-label reveal">（联系方式）</p>
+          <div class="contact-copy reveal">
+            <a href="tel:+8613162331108">+86 13162331108</a>
+            <a href="mailto:zhoulin1712@gmail.com">zhoulin1712@gmail.com</a>
           </div>
         </div>
       </section>
     </main>
 
-    <aside class="case-drawer" id="caseDrawer" aria-hidden="true" aria-label="项目详情">
-      <div class="drawer-backdrop" data-close-drawer></div>
-      <article class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
-        <button class="icon-button drawer-close" type="button" aria-label="关闭项目详情" data-close-drawer>
-          <span></span>
-          <span></span>
-        </button>
-        <div id="drawerContent"></div>
-      </article>
+    <aside class="project-drawer" id="projectDrawer" aria-hidden="true">
+      <button class="drawer-close" type="button" aria-label="关闭项目详情">Close</button>
+      <div class="drawer-content" id="drawerContent"></div>
     </aside>
 
-    <footer class="site-footer">
-      <span>© <span id="year"></span> Lin Zhou</span>
-      <a href="#home">Back to top</a>
-    </footer>
-
-    <script src="script.js"></script>
+    <script src="script.js?v=cat-menu-2"></script>
   </body>
 </html>
