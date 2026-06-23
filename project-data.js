@@ -267,19 +267,31 @@ window.LILIAN_PROJECTS = [
     title: "Five Stars",
     meta: "Education Website",
     image: "assets/portfolio/fivestars-web.jpg",
-    summary: "An education website case focused on teacher discovery, subject filtering, trust-building and booking conversion.",
-    tags: ["Web UX", "Education", "Responsive"],
-    role: "Website UX, responsive layout, conversion flow",
+    summary: "A full education platform website for parent and student tutor discovery, teacher certification, subject search, registration and consultation conversion.",
+    tags: ["Web UX", "Education", "Booking Flow", "Trust Design"],
+    role: "Website UX, information architecture, responsive conversion flow",
     year: "2026",
-    intro: "Five Stars is a web UX case for an education platform, balancing parent trust, teacher information and clear booking paths.",
-    challenge: "The site needed to make information scannable while reducing friction before inquiry or booking.",
-    approach: ["Audited information hierarchy.", "Refined subject and teacher discovery.", "Designed responsive layouts around conversion."],
-    outcome: "A clearer website experience for browsing education services and making contact.",
+    intro: "Five Stars is an education service website built around the promise of finding the right private tutor. The experience connects subject exploration, teacher browsing, search, student registration, teacher onboarding and consultant support into one clear journey.",
+    challenge: "Parents and students need trust before they contact a tutor, while teachers need a simple entry point to join the platform. The website had to make certification, reviews, availability, price and subject fit easy to compare without making the page feel heavy.",
+    approach: ["Mapped the journey from home page to subject discovery, teacher comparison and consultation.", "Prioritized trust signals including certified teachers, real reviews, available schedules and clear subject tags.", "Structured search and filter logic around teacher name, subject, price and rating.", "Separated student conversion from teacher onboarding so each audience has a clearer path.", "Kept the responsive layout compact so mobile visitors can still browse and contact quickly."],
+    outcome: "A clearer education website experience that helps users understand the service, compare tutor options and move toward registration or one-on-one consultation with less friction.",
     sections: [
       {
-        label: "Preview",
-        title: "Education website",
-        text: "This case is currently represented by website assets. More detailed process material can be added later.",
+        label: "01 Platform Entry",
+        title: "Find the right private tutor",
+        text: "The homepage frames Five Stars as a private tutoring platform, then immediately guides visitors toward browsing teachers, exploring subjects or starting a consultation. This keeps the service value direct and easy to understand.",
+        image: "assets/portfolio/fivestars-web.jpg"
+      },
+      {
+        label: "02 Discovery",
+        title: "Subjects, teachers and search",
+        text: "The information architecture is organized around subject navigation, teacher discovery and search. Users can look for tutors by name or subject, then compare certification, rating, pricing and availability before making contact.",
+        image: "assets/portfolio/fivestars-web.jpg"
+      },
+      {
+        label: "03 Conversion",
+        title: "Student registration and consultant support",
+        text: "The flow supports different intents: students and parents can register, browse teachers or scan a consultant QR code for a free study plan, while teachers have a dedicated onboarding path to join the platform.",
         image: "assets/portfolio/fivestars-web.jpg"
       }
     ]
@@ -289,19 +301,31 @@ window.LILIAN_PROJECTS = [
     title: "Rako Rako Ramen",
     meta: "Food Brand Website",
     image: "assets/portfolio/rako-web.jpg",
-    summary: "A food brand website case connecting brand atmosphere, product storytelling and purchase flow.",
-    tags: ["Web UX", "Brand", "E-commerce"],
-    role: "Website UX, brand experience, commerce flow",
+    summary: "An e-commerce food brand website connecting ramen product storytelling, Japanese flavor naming, bundle boxes and purchase flow.",
+    tags: ["Web UX", "Food Brand", "E-commerce", "Product Catalog"],
+    role: "Website UX, product catalog structure, brand storytelling",
     year: "2026",
-    intro: "Rako Rako Ramen is a brand website case that uses food visuals, tone and structure to guide visitors from appetite to action.",
-    challenge: "The design needed to keep brand character while making ordering and browsing paths clear.",
-    approach: ["Studied brand visuals.", "Structured menu and purchase information.", "Refined web hierarchy for quick scanning."],
-    outcome: "A warmer food brand website experience with a more direct browsing and conversion path.",
+    intro: "Rako Rako Ramen is a UK ramen brand website and shop. The experience introduces individual ramen flavors, Japanese naming, bundle products and product states while keeping the ordering path simple.",
+    challenge: "A food e-commerce page has to create appetite quickly, but still make SKU differences, prices, stock states and bundle choices understandable. The design needed to balance brand personality with practical product browsing.",
+    approach: ["Structured the catalog around individual ramen flavors and bundle boxes.", "Balanced Japanese and English product naming so the brand feels distinctive while remaining scannable.", "Surfaced price, product image, stock state and product category as quick decision cues.", "Used bundle products to support different buying intents, from sampling to freezer stocking."],
+    outcome: "A focused brand-commerce experience where visitors can understand flavor options, compare ramen sets and move from product interest to purchase more directly.",
     sections: [
       {
-        label: "Preview",
-        title: "Food brand website",
-        text: "This case is currently represented by website assets. More detailed process material can be added later.",
+        label: "01 Brand Store",
+        title: "Ramen-first brand entry",
+        text: "The page works as both a brand expression and a shop. Visual identity, product names and product imagery create a memorable food mood while the layout keeps purchasing actions close to the product cards.",
+        image: "assets/portfolio/rako-web.jpg"
+      },
+      {
+        label: "02 Product Catalog",
+        title: "Classic, spicy and black garlic ramen",
+        text: "The catalog includes core ramen products such as Japanese Classic Tonkotsu Ramen, Japanese Spicy Tonkotsu Ramen and Japanese Black Garlic Tonkotsu Ramen, with pricing and product state presented for quick comparison.",
+        image: "assets/portfolio/rako-web.jpg"
+      },
+      {
+        label: "03 Bundle Flow",
+        title: "Sampler and stock boxes",
+        text: "Bundle products such as the Ramen Sampler Box, Late-Night Survival Kit and Freezer Stock Box help users choose by occasion and quantity. This makes the store feel less like a flat product list and more like a guided buying flow.",
         image: "assets/portfolio/rako-web.jpg"
       }
     ]
