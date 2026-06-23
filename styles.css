@@ -42,6 +42,7 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
+  color: var(--text);
   background:
     radial-gradient(ellipse at calc(var(--light-xp) + 14%) calc(10% + var(--scroll-glow)), rgba(255, 207, 228, 0.48), transparent 32vw),
     radial-gradient(ellipse at calc(var(--light-xp) - 36%) calc(34% - var(--scroll-glow)), rgba(151, 222, 243, 0.5), transparent 36vw),
