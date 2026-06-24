@@ -21,6 +21,9 @@
   --light-angle: 0deg;
   --light-scale-x: 1;
   --light-scale-y: 1;
+  --ripple-xp: 50%;
+  --ripple-yp: 40%;
+  --ripple-alpha: 0;
   --font-display: Avenir Next, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-body: Inter, Avenir Next, "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
   background: var(--bg);
@@ -44,6 +47,9 @@ body {
   overflow-x: hidden;
   color: var(--text);
   background:
+    radial-gradient(ellipse at var(--ripple-xp) var(--ripple-yp), rgba(255, 255, 255, calc(var(--ripple-alpha) * 0.48)), transparent 18vw),
+    radial-gradient(ellipse at calc(var(--ripple-xp) + 5%) calc(var(--ripple-yp) + 2%), rgba(136, 238, 224, calc(var(--ripple-alpha) * 0.34)), transparent 24vw),
+    radial-gradient(ellipse at calc(var(--ripple-xp) - 4%) calc(var(--ripple-yp) - 3%), rgba(240, 176, 226, calc(var(--ripple-alpha) * 0.28)), transparent 22vw),
     radial-gradient(ellipse at calc(var(--light-xp) + 14%) calc(10% + var(--scroll-glow)), rgba(255, 207, 228, 0.48), transparent 32vw),
     radial-gradient(ellipse at calc(var(--light-xp) - 36%) calc(34% - var(--scroll-glow)), rgba(151, 222, 243, 0.5), transparent 36vw),
     radial-gradient(ellipse at 74% 76%, rgba(202, 192, 255, 0.34), transparent 34vw),
@@ -58,6 +64,8 @@ body[data-theme="dark"] {
   --accent: #8dd8d0;
   --ink: #eef6ff;
   background:
+    radial-gradient(circle at var(--ripple-xp) var(--ripple-yp), rgba(238, 248, 255, calc(var(--ripple-alpha) * 0.22)), transparent 18vw),
+    radial-gradient(ellipse at calc(var(--ripple-xp) + 4%) calc(var(--ripple-yp) + 3%), rgba(103, 220, 210, calc(var(--ripple-alpha) * 0.24)), transparent 28vw),
     radial-gradient(circle at calc(var(--light-xp) + 18%) 12%, rgba(114, 154, 224, 0.32), transparent 30vw),
     radial-gradient(circle at calc(var(--light-xp) - 30%) calc(20% + var(--scroll-glow)), rgba(103, 220, 210, 0.18), transparent 36vw),
     radial-gradient(circle at var(--light-xp) calc(62% - var(--scroll-glow)), rgba(214, 129, 176, 0.18), transparent 34vw),
@@ -105,6 +113,8 @@ button {
 .ambient::before {
   inset: -16vmax;
   background:
+    radial-gradient(ellipse at var(--ripple-xp) var(--ripple-yp), rgba(255, 255, 255, calc(var(--ripple-alpha) * 0.34)), transparent 24vmax),
+    radial-gradient(ellipse at calc(var(--ripple-xp) - 6%) calc(var(--ripple-yp) + 6%), rgba(139, 238, 225, calc(var(--ripple-alpha) * 0.28)), transparent 34vmax),
     radial-gradient(ellipse at calc(var(--light-xp) + 12%) calc(22% + var(--scroll-glow)), rgba(255, 194, 220, 0.46), transparent 35vmax),
     radial-gradient(ellipse at calc(var(--light-xp) - 30%) calc(60% - var(--scroll-glow)), rgba(138, 222, 246, 0.44), transparent 44vmax),
     radial-gradient(ellipse at 82% 72%, rgba(190, 176, 246, 0.34), transparent 36vmax),
@@ -410,9 +420,93 @@ body[data-theme="dark"] .theme-switch span {
   padding: clamp(180px, 19vh, 230px) clamp(24px, 6vw, 96px) clamp(44px, 7vh, 88px);
   grid-template-rows: auto minmax(96px, 20vh) auto 1fr;
   justify-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ripple-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.water-ripple {
+  position: absolute;
+  left: var(--ripple-x);
+  top: var(--ripple-y);
+  width: clamp(280px, 42vw, 680px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.12) rotate(var(--ripple-rotate, 0deg));
+  background:
+    repeating-radial-gradient(
+      ellipse at 48% 52%,
+      rgba(255, 255, 255, 0.46) 0 1px,
+      rgba(137, 230, 222, 0.22) 3px 5px,
+      rgba(223, 158, 226, 0.18) 8px 10px,
+      transparent 15px 28px
+    ),
+    radial-gradient(ellipse at 48% 50%, rgba(255, 255, 255, 0.26), transparent 68%);
+  filter: blur(1.6px) saturate(1.12);
+  mix-blend-mode: soft-light;
+  animation: water-ripple 1450ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.water-ripple::before,
+.water-ripple::after {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.water-ripple::before {
+  background:
+    repeating-radial-gradient(
+      ellipse at 42% 44%,
+      rgba(160, 245, 225, 0.28) 0 2px,
+      transparent 5px 18px,
+      rgba(255, 183, 214, 0.22) 20px 22px,
+      transparent 26px 38px
+    );
+  filter: blur(3px);
+  transform: scaleX(1.16) rotate(18deg);
+}
+
+.water-ripple::after {
+  inset: 18%;
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.26),
+    inset 0 0 22px rgba(136, 224, 244, 0.24);
+  transform: scaleX(1.34) rotate(-12deg);
+}
+
+body[data-theme="light"] .water-ripple {
+  mix-blend-mode: soft-light;
+  opacity: 0;
+}
+
+body[data-theme="dark"] .water-ripple {
+  background:
+    repeating-radial-gradient(
+      ellipse at 48% 52%,
+      rgba(242, 250, 255, 0.42) 0 1px,
+      rgba(108, 226, 227, 0.22) 3px 6px,
+      rgba(176, 135, 242, 0.18) 9px 11px,
+      transparent 16px 30px
+    ),
+    radial-gradient(circle, rgba(157, 213, 255, 0.16), transparent 68%);
+  mix-blend-mode: screen;
 }
 
 .hero-title {
+  position: relative;
+  z-index: 1;
   width: fit-content;
   margin: 0;
   text-align: center;
@@ -440,6 +534,8 @@ body[data-theme="dark"] .theme-switch span {
 }
 
 .hero-role {
+  position: relative;
+  z-index: 1;
   grid-row: 3;
   display: grid;
   gap: 10px;
@@ -1135,6 +1231,28 @@ body[data-theme="dark"] .gallery-item {
   100% {
     filter: blur(36px) saturate(1.2);
     transform: translate3d(calc(var(--scroll-drift-x) + 3vw), calc(var(--scroll-drift-y) + 1.5vh), 0) scale(1.1);
+  }
+}
+
+@keyframes water-ripple {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.12) rotate(var(--ripple-rotate, 0deg));
+    filter: blur(0.2px) saturate(1.18);
+  }
+
+  16% {
+    opacity: 0.5;
+  }
+
+  58% {
+    opacity: 0.28;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.45) rotate(calc(var(--ripple-rotate, 0deg) + 12deg));
+    filter: blur(8px) saturate(1.2);
   }
 }
 
