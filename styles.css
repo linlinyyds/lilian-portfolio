@@ -866,17 +866,16 @@ body[data-theme="dark"] .project-row:hover {
   place-items: center;
 }
 
-.contact {
-  padding-top: clamp(88px, 13vw, 180px);
-  padding-bottom: clamp(82px, 10vw, 140px);
-}
-
 .contact-copy {
   display: grid;
   gap: 24px;
   color: var(--text);
   font-size: clamp(14px, 1.1vw, 18px);
   font-weight: 650;
+}
+
+#contact {
+  scroll-margin-top: 120px;
 }
 
 .contact-copy a:hover {
