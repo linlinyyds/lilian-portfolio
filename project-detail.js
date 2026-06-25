@@ -33,9 +33,35 @@ function renderNotFound() {
     <section class="detail-hero detail-empty">
       <p class="detail-kicker">PROJECT</p>
       <h1>Project not found</h1>
-      <p>这个项目暂时没有找到。你可以返回项目列表重新选择。</p>
+      <p>This project could not be found. Please return to the project list and choose another one.</p>
       <a class="back-link" href="index.html#project">Back to projects</a>
     </section>
+  `;
+}
+
+function renderSectionMedia(section) {
+  if (section.video) {
+    const poster = section.poster ? ` poster="${section.poster}"` : "";
+    const type = section.videoType || "video/mp4";
+
+    return `
+      <div class="material-video">
+        <video controls playsinline preload="metadata"${poster}>
+          <source src="${section.video}" type="${type}">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    `;
+  }
+
+  if (!section.image) {
+    return "";
+  }
+
+  return `
+    <a class="material-image" href="${section.image}" target="_blank" rel="noreferrer">
+      <img src="${section.image}" alt="${section.title}">
+    </a>
   `;
 }
 
@@ -93,15 +119,13 @@ function renderProject(project, index) {
       ${project.sections
         .map(
           (section) => `
-            <article class="material-card">
+            <article class="material-card${section.wide ? " is-wide" : ""}${section.video ? " has-video" : ""}">
               <div class="material-copy">
                 <span class="detail-label">${section.label}</span>
                 <h2>${section.title}</h2>
                 <p>${section.text}</p>
               </div>
-              <a class="material-image" href="${section.image}" target="_blank" rel="noreferrer">
-                <img src="${section.image}" alt="${section.title}">
-              </a>
+              ${renderSectionMedia(section)}
             </article>
           `
         )
@@ -113,7 +137,7 @@ function renderProject(project, index) {
       <p>${project.outcome}</p>
     </section>
 
-    <nav class="project-pager" aria-label="项目切换">
+    <nav class="project-pager" aria-label="Project switcher">
       <a href="project.html?slug=${previous.slug}">← ${previous.title}</a>
       <a href="project.html?slug=${next.slug}">${next.title} →</a>
     </nav>

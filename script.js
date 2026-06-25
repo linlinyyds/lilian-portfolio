@@ -1,6 +1,9 @@
 const projects = window.LILIAN_PROJECTS || [];
 
 const projectList = document.querySelector("#projectList");
+const projectGallery = document.querySelector("#projectGallery");
+const galleryPrev = document.querySelector("[data-gallery-prev]");
+const galleryNext = document.querySelector("[data-gallery-next]");
 const drawer = document.querySelector("#projectDrawer");
 const drawerContent = document.querySelector("#drawerContent");
 const closeDrawer = document.querySelector(".drawer-close");
@@ -48,6 +51,80 @@ function renderProjects() {
       </a>
     `)
     .join("");
+}
+
+function renderProjectGallery() {
+  if (!projectGallery) return;
+
+  const galleryOrder = [
+    "aurora-mood",
+    "equiflow",
+    "this-conversation",
+    "clink",
+    "five-stars",
+    "rako-rako-ramen",
+    "the-world-of-kantan",
+    "meditate-naturally",
+    "moving-crowds"
+  ];
+  const orderedProjects = [
+    ...galleryOrder.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean),
+    ...projects.filter((project) => !galleryOrder.includes(project.slug))
+  ];
+  const galleryVersion = "gallery-carousel-2";
+
+  projectGallery.innerHTML = orderedProjects
+    .map((project, index) => {
+      const imageSource = project.galleryImage || project.image;
+      const versionedSource = `${imageSource}${imageSource.includes("?") ? "&" : "?"}v=${galleryVersion}`;
+
+      return `
+      <a class="gallery-card gallery-${project.slug}" href="project.html?slug=${project.slug}" aria-label="Open ${project.title}" data-slug="${project.slug}">
+        <span class="gallery-thumb">
+          <img src="${versionedSource}" alt="${project.title} project preview" loading="eager" decoding="async">
+        </span>
+        <span class="gallery-caption">
+          <span class="gallery-index">${String(index + 1).padStart(2, "0")}</span>
+          <span class="gallery-title">${project.title}</span>
+          <span class="gallery-type">${project.meta}</span>
+        </span>
+      </a>
+    `;
+    })
+    .join("");
+
+  projectGallery.classList.add("is-visible");
+}
+
+function updateGalleryControls() {
+  if (!projectGallery || !galleryPrev || !galleryNext) return;
+
+  const maxScroll = projectGallery.scrollWidth - projectGallery.clientWidth - 2;
+  galleryPrev.disabled = projectGallery.scrollLeft <= 2;
+  galleryNext.disabled = projectGallery.scrollLeft >= maxScroll;
+}
+
+function scrollGallery(direction) {
+  if (!projectGallery) return;
+
+  const firstCard = projectGallery.querySelector(".gallery-card");
+  const styles = window.getComputedStyle(projectGallery);
+  const gap = Number.parseFloat(styles.columnGap || styles.gap) || 28;
+  const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : projectGallery.clientWidth * 0.72;
+  projectGallery.scrollBy({
+    left: direction * (cardWidth + gap),
+    behavior: motionQuery.matches ? "auto" : "smooth"
+  });
+}
+
+function setupGalleryCarousel() {
+  if (!projectGallery) return;
+
+  galleryPrev?.addEventListener("click", () => scrollGallery(-1));
+  galleryNext?.addEventListener("click", () => scrollGallery(1));
+  projectGallery.addEventListener("scroll", updateGalleryControls, { passive: true });
+  window.addEventListener("resize", updateGalleryControls, { passive: true });
+  updateGalleryControls();
 }
 
 function openProject(index) {
@@ -304,6 +381,8 @@ function setupPageRipple() {
 }
 
 renderProjects();
+renderProjectGallery();
+setupGalleryCarousel();
 setupReveal();
 setupTextPluck();
 setupLightField();

@@ -3,7 +3,8 @@ window.LILIAN_PROJECTS = [
     slug: "the-world-of-kantan",
     title: "The World of Kantan",
     meta: "Immersive World / VR Game",
-    image: "assets/project-materials/kantan-03.png",
+    image: "assets/gallery/kantan-cover.png",
+    galleryImage: "assets/gallery/optimized/the-world-of-kantan.jpg",
     summary: "A three-dimensional perspective on productivity anxiety. The project turns productivity guilt into an explorable cellular world, using horticultural therapy and VR interaction to create a gentle recovery loop.",
     tags: ["Immersive", "VR", "World Building"],
     role: "Concept research, character setting, 3D modelling, interaction storyboard",
@@ -42,7 +43,8 @@ window.LILIAN_PROJECTS = [
     slug: "this-conversation",
     title: "This Conversation",
     meta: "Family Dialogue / Service Game",
-    image: "assets/project-materials/conversation-04.png",
+    image: "assets/gallery/conversation-cover.png",
+    galleryImage: "assets/gallery/optimized/this-conversation.jpg",
     summary: "A service and game system for adolescents who lack voice in family communication, using a metaverse mini-court and physical board game to help parents and children express conflict more fairly.",
     tags: ["Service Design", "Research", "Game UX"],
     role: "Research, journey mapping, scenario design, voting interface, board game system",
@@ -93,7 +95,8 @@ window.LILIAN_PROJECTS = [
     slug: "meditate-naturally",
     title: "Meditate Naturally",
     meta: "Wellbeing Installation",
-    image: "assets/project-materials/meditate-03.png",
+    image: "assets/gallery/meditate-cover.png",
+    galleryImage: "assets/gallery/optimized/meditate-naturally.jpg",
     summary: "An interactive meditation installation that connects human inner state with nature awareness through costume design, projection, TouchDesigner and Arduino brainwave sensing.",
     tags: ["Wellbeing", "Installation", "TouchDesigner"],
     role: "Concept research, costume design, scenario design, interactive visual system",
@@ -132,7 +135,8 @@ window.LILIAN_PROJECTS = [
     slug: "moving-crowds",
     title: "Moving Crowds",
     meta: "Speculative Service / Bio Product",
-    image: "assets/project-materials/moving-04.png",
+    image: "assets/gallery/moving-crowds-cover.png",
+    galleryImage: "assets/gallery/optimized/moving-crowds.jpg",
     summary: "A speculative design project about future population mobility, odour recognition and bio-tech products for escaping invisible identification systems.",
     tags: ["Speculative", "Biotech", "Mobility"],
     role: "Research, experiment diary, material exploration, product concept",
@@ -177,7 +181,8 @@ window.LILIAN_PROJECTS = [
     slug: "clink",
     title: "CLINK",
     meta: "Healthcare Service System",
-    image: "assets/project-materials/clink-04.png",
+    image: "assets/gallery/clink-cover.png",
+    galleryImage: "assets/gallery/optimized/clink.jpg",
     summary: "An intelligent healthcare service system for elderly type II diabetes patients in small and medium-sized cities, combining medical cart, app UI, remote consultation and medication delivery.",
     tags: ["Healthcare", "Service Design", "App UX"],
     role: "Medical research, interviews, persona, service blueprint, product and app design",
@@ -222,21 +227,79 @@ window.LILIAN_PROJECTS = [
     slug: "aurora-mood",
     title: "Aurora Mood",
     meta: "HMI / AI Cockpit",
-    image: "assets/portfolio/figma-aurora-result.jpg",
-    summary: "A future cockpit mood system exploring AI-driven emotion companion, ambient feedback and in-car information expression.",
-    tags: ["HMI", "AI Cockpit", "Spatial UX"],
-    role: "HMI concept, visual system, cockpit interaction",
+    image: "assets/portfolio/aurora-mood/aurora-01-cover.jpg",
+    galleryImage: "assets/gallery/optimized/aurora-mood.jpg",
+    summary: "A multi-modal immersive HMI concept that turns future cockpit intelligence into calm AI companionship, adaptive driving information and ambient emotional feedback.",
+    tags: ["HMI", "AI Cockpit", "Multimodal UX", "Ambient Interaction"],
+    role: "HMI concept, cockpit information architecture, AI Agent interaction, visual language, scenario storytelling",
     year: "2026",
-    intro: "Aurora Mood explores how a cockpit can respond to emotional states through ambient light, AI assistance and calmer spatial interaction.",
-    challenge: "The design challenge is to make vehicle intelligence feel warm and legible instead of technical and intrusive.",
-    approach: ["Built an emotional HMI concept.", "Explored mood-based scenes and interface hierarchy.", "Used color, light and cockpit context to shape feedback."],
-    outcome: "A dreamlike AI cockpit concept focused on emotional safety, legibility and ambience.",
+    intro: "Aurora Mood imagines a future cockpit that understands, adapts and accompanies. It combines AI Agent sensing, a minimal HUD, immersive center-console scenes, ambient lighting and AR-style gesture control to make vehicle intelligence feel legible, gentle and emotionally warm.",
+    challenge: "Future smart cockpits can easily become overloaded with screens, data and alerts. The key challenge was to reduce driving cognitive load while still making the car feel responsive, intelligent and companion-like during stressful moments.",
+    approach: [
+      "Defined the visual language around advanced technology, simplicity, motion and emotional warmth.",
+      "Mapped young new-middle-class mobility needs across human, vehicle and environment relationships.",
+      "Built a multimodal concept around active understanding, active adaptation and active companionship.",
+      "Separated safety-critical HUD information from immersive console content so the driver can stay focused.",
+      "Designed a stress-relief scene where AI detects congestion and emotion, then coordinates music, ambient light and seat massage.",
+      "Explored AR gesture volume control through a rotating light-ring compass to reduce physical touch during driving or rest."
+    ],
+    outcome: "The final concept presents a 21:9 cockpit experience with a minimal HUD, adaptive console scenes and a warm AI companion. Aurora Mood turns the cockpit from a data display into a responsive emotional space.",
     sections: [
       {
-        label: "Preview",
-        title: "Aurora Mood",
-        text: "This case is currently represented by website assets. More detailed process material can be added later.",
-        image: "assets/portfolio/figma-aurora-result.jpg"
+        label: "01 Concept",
+        title: "Multi-modal immersive HMI",
+        text: "The project starts from the idea of invisible intelligent communication: the cockpit should not simply display more data, but should sense the driver's state and shape a calmer relationship between human, vehicle and environment.",
+        image: "assets/portfolio/aurora-mood/aurora-01-cover.jpg",
+        wide: true
+      },
+      {
+        label: "02 Visual Direction",
+        title: "Technology, motion and emotional warmth",
+        text: "The visual system balances four qualities: advanced technology, clean motion, emotional temperature and calm intelligence. The palette uses deep immersive blue, rational cyan and warmer red tones to frame a futuristic but human cockpit mood.",
+        image: "assets/portfolio/aurora-mood/aurora-02-inspiration.jpg",
+        wide: true
+      },
+      {
+        label: "03 User Insight",
+        title: "From driving efficiency to companionship",
+        text: "The target users value efficiency, low-pressure interaction and scenario-based assistance. The design positions AI as an active companion that can understand, adapt and accompany instead of waiting for the user to manage every control manually.",
+        image: "assets/portfolio/aurora-mood/aurora-03-insight.jpg",
+        wide: true
+      },
+      {
+        label: "04 Information Architecture",
+        title: "One-glance focus, one-touch immersion",
+        text: "The HUD keeps only core driving information such as speed, navigation and trip progress, while the center display carries emotional, contextual and immersive content. This split allows safety information to stay clear while the cockpit can still feel expressive.",
+        image: "assets/portfolio/aurora-mood/aurora-04-information-architecture.jpg",
+        wide: true
+      },
+      {
+        label: "05 Scenario Flow",
+        title: "Stress-relief mode in traffic",
+        text: "In a morning congestion scenario, the AI Agent detects traffic pressure and emotional tension, then asks whether to open stress-relief mode. After confirmation, the console scene, music, ambient light and seat massage work together as one calming response.",
+        image: "assets/portfolio/aurora-mood/aurora-05-journey-map.jpg",
+        wide: true
+      },
+      {
+        label: "06 Interaction Detail",
+        title: "AR gesture volume control",
+        text: "The music interface uses an AR-style rotating light-ring compass. Users can adjust volume through a simple mid-air rotation gesture, reducing direct screen touch and making interaction feel lighter during driving or rest.",
+        image: "assets/portfolio/aurora-mood/aurora-06-gesture-control.jpg",
+        wide: true
+      },
+      {
+        label: "07 Interface Detail",
+        title: "HUD and console display states",
+        text: "The final interface keeps the HUD restrained and uses the console as the emotional interaction field. Status, weather, AI companion, navigation, comfort controls and ambient feedback are layered into a soft future cockpit display.",
+        image: "assets/portfolio/aurora-mood/aurora-07-ui-detail.jpg",
+        wide: true
+      },
+      {
+        label: "08 Final Outcome",
+        title: "Immersive AI cockpit mockup",
+        text: "The concept is placed into a vehicle interior to show how the system could live in a real cockpit: a wide display, ambient glow, AI companion presence and spatial information that feels calm rather than intrusive.",
+        image: "assets/portfolio/aurora-mood/aurora-08-final-cockpit.jpg",
+        wide: true
       }
     ]
   },
@@ -244,21 +307,94 @@ window.LILIAN_PROJECTS = [
     slug: "equiflow",
     title: "Equiflow",
     meta: "VR / Digital Healing",
-    image: "assets/portfolio/figma-equiflow-board.jpg",
-    summary: "A VR digital healing experience where users draw freely in immersive space and receive AI-assisted emotional feedback.",
-    tags: ["VR", "Healing", "AI Feedback"],
-    role: "VR concept, emotional feedback flow, experience design",
+    image: "assets/portfolio/equiflow/equiflow-01-cover.jpg",
+    galleryImage: "assets/gallery/optimized/equiflow.jpg",
+    summary: "A VR-based digital healing experience that turns free spatial drawing into a reflective emotional feedback loop.",
+    tags: ["VR", "Digital Healing", "AI Feedback", "Spatial Interaction"],
+    role: "Concept strategy, VR interaction flow, emotional feedback system, prototype storytelling",
     year: "2026",
-    intro: "Equiflow uses VR drawing and AI interpretation to help users externalize emotions through a low-pressure creative space.",
-    challenge: "The experience needed to avoid judgment and make feedback feel supportive rather than evaluative.",
-    approach: ["Designed a VR drawing flow.", "Created AI emotional feedback touchpoints.", "Structured the experience around free expression and reflection."],
-    outcome: "A digital healing concept that turns drawing into a responsive emotional mirror.",
+    intro: "Equiflow explores how immersive drawing can help people externalize pressure, observe emotional traces and return to a calmer state. The project combines VR space, workplace mental-health research, AI-assisted interpretation and a physical exhibition setup.",
+    challenge: "Digital mental-health tools can easily feel diagnostic, gamified or falsely therapeutic. The key question was how to make feedback feel supportive and transparent while still giving users a meaningful ritual for expression.",
+    approach: [
+      "Mapped the wider context of digital mental healing and workplace mental-health services.",
+      "Designed an exhibition-style VR journey from invitation, headset entry, free drawing and AI interpretation to a closing reflection.",
+      "Used spatial objects, broken-office imagery and VR drawing to translate inner pressure into visible traces.",
+      "Framed AI feedback as a gentle mirror instead of a diagnosis, including visible uncertainty and reflective prompts.",
+      "Built a prototype flow that connects VR input, drawing capture, voice feedback and a healing-certificate output."
+    ],
+    outcome: "Equiflow became an immersive critical-healing prototype: a private VR drawing space, a physical ruins-office installation and a feedback loop that questions what digital healing should mean.",
     sections: [
       {
-        label: "Preview",
-        title: "Equiflow",
-        text: "This case is currently represented by website assets. More detailed process material can be added later.",
-        image: "assets/portfolio/figma-equiflow-board.jpg"
+        label: "Concept",
+        title: "Equi Flow",
+        text: "The project asks whether VR can become a calm emotional container rather than another productivity tool. The opening frame establishes Equiflow as a therapeutic spatial experience for depression, stress and self-reflection.",
+        image: "assets/portfolio/equiflow/equiflow-01-cover.jpg",
+        wide: true
+      },
+      {
+        label: "Research",
+        title: "Digital mental healing",
+        text: "The research frames digital healing as a growing field across health, workplace support and immersive technology. Equiflow positions VR drawing as a low-pressure way to externalize invisible emotions.",
+        image: "assets/portfolio/equiflow/equiflow-02-context.jpg",
+        wide: true
+      },
+      {
+        label: "Context",
+        title: "Workplace mental-health services",
+        text: "The project studies employer-led mental-health initiatives and considers how VR could sit between self-care, workplace support and guided reflection without becoming a clinical diagnosis.",
+        image: "assets/portfolio/equiflow/equiflow-03-vr-application.jpg",
+        wide: true
+      },
+      {
+        label: "Critical Frame",
+        title: "The illusion of healing",
+        text: "Equiflow treats digital therapy critically. Instead of promising instant recovery, the experience uses ambiguity and softness to remind users that technology can support reflection but should not replace care.",
+        image: "assets/portfolio/equiflow/equiflow-04-healing-frame.jpg",
+        wide: true
+      },
+      {
+        label: "Risk Reflection",
+        title: "Self-healing or self-harming",
+        text: "The design explores the tension between self-care and self-pressure. Feedback is intentionally framed as observation, not judgment, so the system does not push users toward over-analysis.",
+        image: "assets/portfolio/equiflow/equiflow-05-critical-risk.jpg",
+        wide: true
+      },
+      {
+        label: "Spatial Prototype",
+        title: "A ruins office for inner pressure",
+        text: "The physical setup translates emotional overload into a broken-office scene. The VR headset, desk objects and environmental fragments become a threshold between everyday pressure and the inner drawing space.",
+        image: "assets/portfolio/equiflow/equiflow-06-spatial-prototype.jpg",
+        wide: true
+      },
+      {
+        label: "Experience",
+        title: "Drawing as emotional trace",
+        text: "Inside VR, users draw freely in space. Color, movement and scale become emotional traces, while the system responds with gentle prompts that help users notice patterns without assigning a fixed label.",
+        image: "assets/portfolio/equiflow/equiflow-07-user-experience.jpg",
+        wide: true
+      },
+      {
+        label: "Service Flow",
+        title: "Customer journey map",
+        text: "The journey map connects entry, onboarding, VR drawing, AI reflection and closure. It clarifies when the experience should guide, when it should stay quiet and how the final reflection is delivered.",
+        image: "assets/portfolio/equiflow/equiflow-08-journey-map.jpg",
+        wide: true
+      },
+      {
+        label: "System",
+        title: "Technology implementation",
+        text: "The prototype combines VR interaction, captured drawing data, AI-assisted interpretation and output feedback. The system layer makes the emotional loop technically understandable.",
+        image: "assets/portfolio/equiflow/equiflow-09-technical-system.jpg",
+        wide: true
+      },
+      {
+        label: "Output",
+        title: "Equiflow interaction demo",
+        text: "The compressed demo video shows the project outcome: a user enters the VR scene, draws emotional traces and experiences the feedback loop within the installation.",
+        video: "assets/videos/equiflow-demo.m4v",
+        videoType: "video/mp4",
+        poster: "assets/portfolio/equiflow/equiflow-07-user-experience.jpg",
+        wide: true
       }
     ]
   },
@@ -266,7 +402,8 @@ window.LILIAN_PROJECTS = [
     slug: "five-stars",
     title: "Five Stars",
     meta: "Education Website",
-    image: "assets/portfolio/fivestars-web.jpg",
+    image: "assets/gallery/five-stars-cover.png",
+    galleryImage: "assets/gallery/optimized/five-stars.jpg",
     summary: "A full education platform website for parent and student tutor discovery, teacher certification, subject search, registration and consultation conversion.",
     tags: ["Web UX", "Education", "Booking Flow", "Trust Design"],
     role: "Website UX, information architecture, responsive conversion flow",
@@ -300,7 +437,8 @@ window.LILIAN_PROJECTS = [
     slug: "rako-rako-ramen",
     title: "Rako Rako Ramen",
     meta: "Food Brand Website",
-    image: "assets/portfolio/rako-web.jpg",
+    image: "assets/gallery/rako-rako-cover.png",
+    galleryImage: "assets/gallery/optimized/rako-rako-ramen.jpg",
     summary: "An e-commerce food brand website connecting ramen product storytelling, Japanese flavor naming, bundle boxes and purchase flow.",
     tags: ["Web UX", "Food Brand", "E-commerce", "Product Catalog"],
     role: "Website UX, product catalog structure, brand storytelling",
