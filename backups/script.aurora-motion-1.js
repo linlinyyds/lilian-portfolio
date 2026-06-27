@@ -207,7 +207,7 @@ function renderProjectGallery() {
     ...galleryOrder.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean),
     ...projects.filter((project) => !galleryOrder.includes(project.slug))
   ];
-  const galleryVersion = "thermal-liquid-3";
+  const galleryVersion = "aurora-motion-1";
 
   const cards = orderedProjects
     .map((project, index) => {
@@ -478,30 +478,25 @@ function updateScrollLight() {
   const wave = Math.sin(progress * Math.PI * 2);
   const softWave = Math.sin(progress * Math.PI);
   const counterWave = Math.cos(progress * Math.PI * 1.6);
-  const ribbonWave = Math.sin(progress * Math.PI * 3.4 + 0.7);
-  const slowWave = Math.cos(progress * Math.PI * 1.15 - 0.35);
-  const shift = softWave * 112;
-  const condense = 1 + softWave * 0.22 + Math.max(ribbonWave, 0) * 0.08;
-  const orbAX = 14 + progress * 62 + wave * 7;
-  const orbAY = 30 + Math.sin(progress * Math.PI * 2.4 + 0.2) * 21;
-  const orbBX = 60 - progress * 42 + counterWave * 9;
-  const orbBY = 68 - softWave * 34 + Math.sin(progress * Math.PI * 3.1 + 0.9) * 8;
-  const orbCX = 78 - Math.sin(progress * Math.PI * 1.25 + 0.35) * 28 + ribbonWave * 4;
-  const orbCY = 16 + progress * 52 + Math.cos(progress * Math.PI * 2.2) * 10;
+  const shift = softWave * 96;
+  const orbAX = 18 + progress * 52 + wave * 5;
+  const orbAY = 34 + Math.sin(progress * Math.PI * 2.5) * 18;
+  const orbBX = 58 - progress * 34 + counterWave * 6;
+  const orbBY = 62 - softWave * 30 + Math.sin(progress * Math.PI * 3.2) * 6;
+  const orbCX = 76 - Math.sin(progress * Math.PI * 1.15) * 22;
+  const orbCY = 20 + progress * 46 + Math.cos(progress * Math.PI * 2.4) * 8;
 
   root.style.setProperty("--scroll-glow", `${shift.toFixed(1)}px`);
-  root.style.setProperty("--scroll-drift-x", `${((progress - 0.5) * 92 + slowWave * 18).toFixed(1)}px`);
-  root.style.setProperty("--scroll-drift-y", `${(softWave * -54 + ribbonWave * 16).toFixed(1)}px`);
+  root.style.setProperty("--scroll-drift-x", `${((progress - 0.5) * 72).toFixed(1)}px`);
+  root.style.setProperty("--scroll-drift-y", `${(softWave * -42).toFixed(1)}px`);
   root.style.setProperty("--orb-a-x", `${clamp(orbAX, 6, 92).toFixed(2)}%`);
   root.style.setProperty("--orb-a-y", `${clamp(orbAY, 12, 88).toFixed(2)}%`);
   root.style.setProperty("--orb-b-x", `${clamp(orbBX, 8, 88).toFixed(2)}%`);
   root.style.setProperty("--orb-b-y", `${clamp(orbBY, 16, 90).toFixed(2)}%`);
   root.style.setProperty("--orb-c-x", `${clamp(orbCX, 14, 94).toFixed(2)}%`);
   root.style.setProperty("--orb-c-y", `${clamp(orbCY, 8, 92).toFixed(2)}%`);
-  root.style.setProperty("--orb-rotate", `${((progress - 0.5) * 24 + ribbonWave * 5).toFixed(2)}deg`);
-  root.style.setProperty("--orb-scale", `${(1 + softWave * 0.12).toFixed(3)}`);
-  root.style.setProperty("--heat-condense", `${condense.toFixed(3)}`);
-  root.style.setProperty("--heat-bloom", `${(softWave * -8 + Math.max(ribbonWave, 0) * -4).toFixed(1)}px`);
+  root.style.setProperty("--orb-rotate", `${((progress - 0.5) * 18).toFixed(2)}deg`);
+  root.style.setProperty("--orb-scale", `${(1 + softWave * 0.08).toFixed(3)}`);
 }
 
 function tickLight() {
