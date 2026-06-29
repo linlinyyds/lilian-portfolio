@@ -1107,6 +1107,7 @@ body[data-theme="dark"] .gallery-control {
 .gallery-carousel {
   display: block;
   --gallery-shift: 0px;
+  --gallery-gap: clamp(18px, 2.2vw, 34px);
   margin-right: calc(var(--left) * -0.5);
   padding: 28px calc(var(--left) * 0.54) 110px 0;
   overflow: hidden;
@@ -1118,9 +1119,16 @@ body[data-theme="dark"] .gallery-control {
   display: flex;
   align-items: start;
   width: max-content;
-  gap: clamp(18px, 2.2vw, 34px);
+  gap: var(--gallery-gap);
   transform: translate3d(calc(var(--gallery-shift) * -1), 0, 0);
   will-change: transform;
+}
+
+.gallery-sequence {
+  display: flex;
+  align-items: start;
+  flex: 0 0 auto;
+  gap: var(--gallery-gap);
 }
 
 .gallery-carousel::-webkit-scrollbar {

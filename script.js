@@ -30,10 +30,10 @@ let rippleCount = 0;
 let rippleFadeTimer;
 let currentLanguage = window.localStorage.getItem("lilian-language") === "zh" ? "zh" : "en";
 let galleryAutoFrame = 0;
-let galleryAutoDirection = 1;
 let galleryAutoPosition = 0;
 let galleryAutoPaused = false;
 let galleryResumeTimer = 0;
+let galleryLoopWidth = 0;
 
 const staticTranslations = {
   en: {
@@ -209,15 +209,16 @@ function renderProjectGallery() {
   ];
   const galleryVersion = "thermal-liquid-3";
 
-  const cards = orderedProjects
-    .map((project, index) => {
+  const createCards = (isDuplicate = false) => orderedProjects
+    .map((project) => {
       const copy = getProjectCopy(project);
       const imageSource = project.galleryImage || project.image;
       const versionedSource = `${imageSource}${imageSource.includes("?") ? "&" : "?"}v=${galleryVersion}`;
       const label = currentLanguage === "zh" ? `打开 ${copy.title}` : `Open ${copy.title}`;
+      const duplicateAttrs = isDuplicate ? ` aria-hidden="true" tabindex="-1"` : "";
 
       return `
-      <a class="gallery-card gallery-${project.slug}" href="project.html?slug=${project.slug}" aria-label="${label}" data-slug="${project.slug}">
+      <a class="gallery-card gallery-${project.slug}" href="project.html?slug=${project.slug}" aria-label="${label}" data-slug="${project.slug}"${duplicateAttrs}>
         <span class="gallery-thumb">
           <img src="${versionedSource}" alt="${copy.title} project preview" loading="eager" decoding="async">
         </span>
@@ -230,9 +231,22 @@ function renderProjectGallery() {
     })
     .join("");
 
-  projectGallery.innerHTML = `<div class="gallery-track">${cards}</div>`;
+  const cards = createCards();
+  const duplicateCards = createCards(true);
+
+  projectGallery.innerHTML = `
+    <div class="gallery-track">
+      <div class="gallery-sequence" data-gallery-sequence>${cards}</div>
+      <div class="gallery-sequence gallery-sequence-clone" aria-hidden="true">${duplicateCards}</div>
+    </div>
+  `;
   galleryAutoPosition = 0;
+  galleryLoopWidth = 0;
   projectGallery.style.setProperty("--gallery-shift", "0px");
+  window.requestAnimationFrame(() => {
+    updateGalleryLoopWidth();
+    updateGalleryControls();
+  });
 
   projectGallery.classList.add("is-visible");
 }
@@ -241,16 +255,37 @@ function getGalleryTrack() {
   return projectGallery?.querySelector(".gallery-track");
 }
 
-function getGalleryMaxShift() {
+function getGallerySequence() {
+  return projectGallery?.querySelector("[data-gallery-sequence]");
+}
+
+function getGalleryGap() {
   const track = getGalleryTrack();
-  if (!projectGallery || !track) return 0;
-  return Math.max(0, track.scrollWidth - projectGallery.clientWidth);
+  if (!track) return 0;
+  const styles = window.getComputedStyle(track);
+  return Number.parseFloat(styles.columnGap || styles.gap) || 28;
+}
+
+function updateGalleryLoopWidth() {
+  const sequence = getGallerySequence();
+  if (!sequence) {
+    galleryLoopWidth = 0;
+    return 0;
+  }
+
+  galleryLoopWidth = sequence.scrollWidth + getGalleryGap();
+  return galleryLoopWidth;
+}
+
+function normalizeGalleryPosition(position) {
+  const loopWidth = galleryLoopWidth || updateGalleryLoopWidth();
+  if (loopWidth <= 2) return 0;
+  return ((position % loopWidth) + loopWidth) % loopWidth;
 }
 
 function setGalleryShift(position) {
   if (!projectGallery) return;
-  const maxShift = getGalleryMaxShift();
-  galleryAutoPosition = clamp(position, 0, maxShift);
+  galleryAutoPosition = normalizeGalleryPosition(position);
   projectGallery.style.setProperty("--gallery-shift", `${galleryAutoPosition.toFixed(2)}px`);
   updateGalleryControls();
 }
@@ -258,9 +293,10 @@ function setGalleryShift(position) {
 function updateGalleryControls() {
   if (!projectGallery || !galleryPrev || !galleryNext) return;
 
-  const maxShift = getGalleryMaxShift();
-  galleryPrev.disabled = galleryAutoPosition <= 2;
-  galleryNext.disabled = maxShift <= 2 || galleryAutoPosition >= maxShift - 2;
+  const loopWidth = galleryLoopWidth || updateGalleryLoopWidth();
+  const disabled = loopWidth <= projectGallery.clientWidth + 2;
+  galleryPrev.disabled = disabled;
+  galleryNext.disabled = disabled;
 }
 
 function scrollGallery(direction) {
@@ -293,15 +329,14 @@ function pauseGalleryAuto(duration = 0) {
 function startGalleryAutoPlay() {
   if (!projectGallery) return;
   window.cancelAnimationFrame(galleryAutoFrame);
+  if (motionQuery.matches) return;
 
   const tick = () => {
     if (!galleryAutoPaused) {
-      const maxShift = getGalleryMaxShift();
+      const loopWidth = galleryLoopWidth || updateGalleryLoopWidth();
 
-      if (maxShift > 2) {
-        if (galleryAutoPosition >= maxShift - 1) galleryAutoDirection = -1;
-        if (galleryAutoPosition <= 1) galleryAutoDirection = 1;
-        setGalleryShift(galleryAutoPosition + galleryAutoDirection * (motionQuery.matches ? 0.12 : 0.28));
+      if (loopWidth > projectGallery.clientWidth + 2) {
+        setGalleryShift(galleryAutoPosition + 0.18);
       }
     }
 
@@ -320,7 +355,10 @@ function setupGalleryCarousel() {
   projectGallery.addEventListener("mouseleave", () => setGalleryAutoPaused(false));
   projectGallery.addEventListener("focusin", () => setGalleryAutoPaused(true));
   projectGallery.addEventListener("focusout", () => setGalleryAutoPaused(false));
-  window.addEventListener("resize", () => setGalleryShift(galleryAutoPosition), { passive: true });
+  window.addEventListener("resize", () => {
+    updateGalleryLoopWidth();
+    setGalleryShift(galleryAutoPosition);
+  }, { passive: true });
   updateGalleryControls();
   startGalleryAutoPlay();
 }
