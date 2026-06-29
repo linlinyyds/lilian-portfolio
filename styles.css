@@ -1067,52 +1067,22 @@ body[data-theme="dark"] .contact-copy a:hover {
   margin-bottom: 0;
 }
 
-.gallery-controls {
-  display: flex;
-  flex: 0 0 auto;
-  gap: 10px;
-  justify-content: flex-start;
-  margin-top: clamp(16px, 2.2vw, 28px);
-}
-
-.gallery-control {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  border: 1px solid rgba(255, 255, 255, 0.44);
-  border-radius: 999px;
-  place-items: center;
-  background: rgba(236, 243, 255, 0.24);
-  color: var(--text);
-  box-shadow: 0 16px 42px rgba(70, 83, 130, 0.12);
-  cursor: pointer;
-  transition: transform 180ms ease, opacity 180ms ease, background 180ms ease;
-}
-
-.gallery-control:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.34);
-  transform: translateY(-2px);
-}
-
-.gallery-control:disabled {
-  cursor: default;
-  opacity: 0.34;
-}
-
-body[data-theme="dark"] .gallery-control {
-  border-color: rgba(214, 231, 255, 0.2);
-  background: rgba(5, 12, 28, 0.26);
-}
-
 .gallery-carousel {
   display: block;
   --gallery-shift: 0px;
   --gallery-gap: clamp(18px, 2.2vw, 34px);
   margin-right: calc(var(--left) * -0.5);
   padding: 28px calc(var(--left) * 0.54) 110px 0;
+  cursor: grab;
   overflow: hidden;
   scrollbar-color: rgba(78, 91, 140, 0.36) rgba(255, 255, 255, 0.12);
   scrollbar-width: thin;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.gallery-carousel.is-dragging {
+  cursor: grabbing;
 }
 
 .gallery-track {

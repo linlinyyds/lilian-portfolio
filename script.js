@@ -3,8 +3,6 @@ const projectTranslations = window.LILIAN_PROJECT_TRANSLATIONS || {};
 
 const projectList = document.querySelector("#projectList");
 const projectGallery = document.querySelector("#projectGallery");
-const galleryPrev = document.querySelector("[data-gallery-prev]");
-const galleryNext = document.querySelector("[data-gallery-next]");
 const drawer = document.querySelector("#projectDrawer");
 const drawerContent = document.querySelector("#drawerContent");
 const closeDrawer = document.querySelector(".drawer-close");
@@ -34,6 +32,13 @@ let galleryAutoPosition = 0;
 let galleryAutoPaused = false;
 let galleryResumeTimer = 0;
 let galleryLoopWidth = 0;
+let galleryHoverPaused = false;
+let galleryTimedPaused = false;
+let galleryDragging = false;
+let galleryDragStartX = 0;
+let galleryDragStartPosition = 0;
+let galleryDragMoved = false;
+let gallerySuppressClick = false;
 
 const staticTranslations = {
   en: {
@@ -64,9 +69,7 @@ const staticTranslations = {
     "project.kicker": "SELECTED WORKS",
     "project.title": "PROJECT",
     "gallery.kicker": "VISUAL ARCHIVE",
-    "gallery.title": "GALLERY",
-    "gallery.prev": "Previous gallery item",
-    "gallery.next": "Next gallery item"
+    "gallery.title": "GALLERY"
   },
   zh: {
     "nav.home": "首页",
@@ -96,9 +99,7 @@ const staticTranslations = {
     "project.kicker": "精选项目",
     "project.title": "项目",
     "gallery.kicker": "视觉档案",
-    "gallery.title": "画廊",
-    "gallery.prev": "上一张画廊图片",
-    "gallery.next": "下一张画廊图片"
+    "gallery.title": "画廊"
   }
 };
 
@@ -291,39 +292,94 @@ function setGalleryShift(position) {
 }
 
 function updateGalleryControls() {
-  if (!projectGallery || !galleryPrev || !galleryNext) return;
-
-  const loopWidth = galleryLoopWidth || updateGalleryLoopWidth();
-  const disabled = loopWidth <= projectGallery.clientWidth + 2;
-  galleryPrev.disabled = disabled;
-  galleryNext.disabled = disabled;
-}
-
-function scrollGallery(direction) {
-  if (!projectGallery) return;
-  pauseGalleryAuto(2400);
-
-  const firstCard = projectGallery.querySelector(".gallery-card");
-  const track = getGalleryTrack();
-  const styles = window.getComputedStyle(track || projectGallery);
-  const gap = Number.parseFloat(styles.columnGap || styles.gap) || 28;
-  const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : projectGallery.clientWidth * 0.72;
-  setGalleryShift(galleryAutoPosition + direction * (cardWidth + gap));
+  updateGalleryLoopWidth();
 }
 
 function setGalleryAutoPaused(paused) {
   galleryAutoPaused = paused;
 }
 
+function syncGalleryAutoPause() {
+  setGalleryAutoPaused(galleryHoverPaused || galleryTimedPaused || galleryDragging);
+}
+
+function setGalleryHoverPaused(paused) {
+  galleryHoverPaused = paused;
+  syncGalleryAutoPause();
+}
+
 function pauseGalleryAuto(duration = 0) {
-  setGalleryAutoPaused(true);
+  galleryTimedPaused = true;
+  syncGalleryAutoPause();
   window.clearTimeout(galleryResumeTimer);
 
   if (duration > 0) {
     galleryResumeTimer = window.setTimeout(() => {
-      setGalleryAutoPaused(false);
+      galleryTimedPaused = false;
+      syncGalleryAutoPause();
     }, duration);
   }
+}
+
+function releaseGalleryPointer(event) {
+  if (!projectGallery || !galleryDragging) return;
+  galleryDragging = false;
+  projectGallery.classList.remove("is-dragging");
+  syncGalleryAutoPause();
+
+  if (event.pointerId !== undefined && projectGallery.hasPointerCapture?.(event.pointerId)) {
+    projectGallery.releasePointerCapture(event.pointerId);
+  }
+
+  if (galleryDragMoved) {
+    gallerySuppressClick = true;
+    window.setTimeout(() => {
+      gallerySuppressClick = false;
+    }, 160);
+  }
+
+  pauseGalleryAuto(1200);
+}
+
+function startGalleryDrag(event) {
+  if (!projectGallery) return;
+  if (event.pointerType === "mouse" && event.button !== 0) return;
+
+  galleryDragging = true;
+  galleryDragMoved = false;
+  galleryDragStartX = event.clientX;
+  galleryDragStartPosition = galleryAutoPosition;
+  projectGallery.classList.add("is-dragging");
+  syncGalleryAutoPause();
+  projectGallery.setPointerCapture?.(event.pointerId);
+}
+
+function moveGalleryDrag(event) {
+  if (!projectGallery || !galleryDragging) return;
+
+  const delta = event.clientX - galleryDragStartX;
+  if (Math.abs(delta) > 4) galleryDragMoved = true;
+  setGalleryShift(galleryDragStartPosition - delta);
+
+  if (galleryDragMoved) event.preventDefault();
+}
+
+function handleGalleryClick(event) {
+  if (!gallerySuppressClick) return;
+  event.preventDefault();
+  event.stopPropagation();
+  gallerySuppressClick = false;
+}
+
+function handleGalleryWheel(event) {
+  if (!projectGallery) return;
+
+  const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+  if (!horizontal) return;
+
+  pauseGalleryAuto(900);
+  setGalleryShift(galleryAutoPosition + event.deltaX);
+  event.preventDefault();
 }
 
 function startGalleryAutoPlay() {
@@ -349,12 +405,16 @@ function startGalleryAutoPlay() {
 function setupGalleryCarousel() {
   if (!projectGallery) return;
 
-  galleryPrev?.addEventListener("click", () => scrollGallery(-1));
-  galleryNext?.addEventListener("click", () => scrollGallery(1));
-  projectGallery.addEventListener("mouseenter", () => setGalleryAutoPaused(true));
-  projectGallery.addEventListener("mouseleave", () => setGalleryAutoPaused(false));
-  projectGallery.addEventListener("focusin", () => setGalleryAutoPaused(true));
-  projectGallery.addEventListener("focusout", () => setGalleryAutoPaused(false));
+  projectGallery.addEventListener("mouseenter", () => setGalleryHoverPaused(true));
+  projectGallery.addEventListener("mouseleave", () => setGalleryHoverPaused(false));
+  projectGallery.addEventListener("focusin", () => setGalleryHoverPaused(true));
+  projectGallery.addEventListener("focusout", () => setGalleryHoverPaused(false));
+  projectGallery.addEventListener("pointerdown", startGalleryDrag);
+  projectGallery.addEventListener("pointermove", moveGalleryDrag);
+  projectGallery.addEventListener("pointerup", releaseGalleryPointer);
+  projectGallery.addEventListener("pointercancel", releaseGalleryPointer);
+  projectGallery.addEventListener("click", handleGalleryClick, true);
+  projectGallery.addEventListener("wheel", handleGalleryWheel, { passive: false });
   window.addEventListener("resize", () => {
     updateGalleryLoopWidth();
     setGalleryShift(galleryAutoPosition);
