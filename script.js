@@ -35,6 +35,7 @@ let galleryLoopWidth = 0;
 let galleryHoverPaused = false;
 let galleryTimedPaused = false;
 let galleryDragging = false;
+let galleryPointerActive = false;
 let galleryDragStartX = 0;
 let galleryDragStartPosition = 0;
 let galleryDragMoved = false;
@@ -322,7 +323,8 @@ function pauseGalleryAuto(duration = 0) {
 }
 
 function releaseGalleryPointer(event) {
-  if (!projectGallery || !galleryDragging) return;
+  if (!projectGallery || !galleryPointerActive) return;
+  galleryPointerActive = false;
   galleryDragging = false;
   projectGallery.classList.remove("is-dragging");
   syncGalleryAutoPause();
@@ -345,23 +347,30 @@ function startGalleryDrag(event) {
   if (!projectGallery) return;
   if (event.pointerType === "mouse" && event.button !== 0) return;
 
-  galleryDragging = true;
+  galleryPointerActive = true;
+  galleryDragging = false;
   galleryDragMoved = false;
   galleryDragStartX = event.clientX;
   galleryDragStartPosition = galleryAutoPosition;
-  projectGallery.classList.add("is-dragging");
   syncGalleryAutoPause();
-  projectGallery.setPointerCapture?.(event.pointerId);
 }
 
 function moveGalleryDrag(event) {
-  if (!projectGallery || !galleryDragging) return;
+  if (!projectGallery || !galleryPointerActive) return;
 
   const delta = event.clientX - galleryDragStartX;
-  if (Math.abs(delta) > 4) galleryDragMoved = true;
-  setGalleryShift(galleryDragStartPosition - delta);
+  if (!galleryDragging && Math.abs(delta) > 4) {
+    galleryDragging = true;
+    galleryDragMoved = true;
+    projectGallery.classList.add("is-dragging");
+    syncGalleryAutoPause();
+    projectGallery.setPointerCapture?.(event.pointerId);
+  }
 
-  if (galleryDragMoved) event.preventDefault();
+  if (!galleryDragging) return;
+
+  setGalleryShift(galleryDragStartPosition - delta);
+  event.preventDefault();
 }
 
 function handleGalleryClick(event) {
