@@ -684,6 +684,11 @@ body[data-theme="dark"] .water-ripple {
   align-items: baseline;
 }
 
+.timeline > div > span {
+  white-space: pre-line;
+  line-height: 1.45;
+}
+
 .work-timeline {
   gap: 8px;
 }
