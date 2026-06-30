@@ -51,16 +51,20 @@ const experiences = [
     scope: "The work connects user scenarios, AI conversation flows and product execution. It focuses on shaping AI social product interactions, clarifying product requirements and moving design concepts toward buildable delivery.",
     caseStudy: {
       heroTitle: "Making AI social interaction understandable",
-      subtitle: "Designing chat, AI assistant and virtual users for cross-border users.",
+      heroLines: ["Making AI social", "interaction", "understandable"],
+      heroHighlightIndex: 1,
+      subtitle: "Designing chat, AI assistant and virtual users for cross-border users — where clarity of system state matters more than raw intelligence.",
       tags: ["AI Product", "Interaction Design", "Vibe Coding", "Pre-launch System"],
+      summaryLabels: ["Product Type", "Scope", "Scale", "Tracking"],
       summaryCards: [
-        "AI Social Product",
+        "AI Social",
         "Chat + AI Assistant + Virtual Users",
         "~10 Frontend Pages",
         "~50 GitHub Issues"
       ],
       contextTitle: "Context",
-      context: "ICERED is an AI social product for cross-border users. The challenge is not features, but clarity of AI interaction: users must understand what the system is doing.",
+      contextLead: "ICERED is an AI social product for cross-border users.",
+      context: "The challenge is not features, but clarity of AI interaction — users must understand what the system is doing at every moment. Ambiguity in AI behavior erodes trust faster than any bug.",
       roleTitle: "My Role",
       roleItems: [
         "Product framing across modules",
@@ -77,10 +81,10 @@ const experiences = [
       ],
       breakdownTitle: "Key Work Breakdown",
       breakdown: [
-        { title: "AI state design", text: "Make AI behavior visible before, during and after a response." },
-        { title: "Chat system", text: "Shape a continuous interaction flow across user, assistant and virtual users." },
-        { title: "Design-to-code", text: "Use AI coding tools to move from prototype to usable frontend faster." },
-        { title: "Testing loop", text: "Track issues in GitHub so design, frontend and backend feedback can be resolved." }
+        { title: "AI State Design", icon: "↯", text: "Make AI behavior visible — loading, fail and retry states that users can read at a glance." },
+        { title: "Chat System", icon: "▱", text: "Continuous interaction flow ensuring message context persists across sessions and virtual user turns." },
+        { title: "Design-to-Code", icon: "↻", text: "Figma to Claude / Codex pipeline for faster prototyping with consistent component output." },
+        { title: "Testing Loop", icon: "⌘", text: "GitHub issue tracking system tied to a 3-day testing cycle covering UX gaps and backend edge cases." }
       ],
       workflowTitle: "AI + Vibe Coding Flow",
       workflow: ["User signal", "Design", "Prototype", "AI Code", "Test", "Issue", "Iterate"],
@@ -92,6 +96,8 @@ const experiences = [
         { value: "3-day", label: "Testing cycle" }
       ],
       insightTitle: "Key Insight",
+      insightLines: ["AI experience is not", "intelligence.", "It is clarity of system state."],
+      insightHighlightIndex: 1,
       insight: "AI experience is not intelligence. It is clarity of system state.",
       previousLabel: "← NIO Case Study",
       backLabel: "Back to Work"
@@ -106,8 +112,11 @@ const experiences = [
       scope: "这段工作连接用户场景、AI 对话流程与产品执行，重点包括 AI 社交产品交互设计、产品需求梳理，以及将设计概念推进到可开发和可交付的阶段。",
       caseStudy: {
         heroTitle: "让 AI 社交交互更容易被理解",
-        subtitle: "为跨境用户设计聊天、AI 助手和虚拟用户体验。",
+        heroLines: ["让 AI 社交", "交互", "更容易被理解"],
+        heroHighlightIndex: 1,
+        subtitle: "为跨境用户设计聊天、AI 助手和虚拟用户体验 — 系统状态的清晰度比原始智能更重要。",
         tags: ["AI 产品", "交互设计", "Vibe Coding", "上线前系统"],
+        summaryLabels: ["产品类型", "范围", "规模", "追踪"],
         summaryCards: [
           "AI 社交产品",
           "聊天 + AI 助手 + 虚拟用户",
@@ -115,7 +124,8 @@ const experiences = [
           "约 50 个 GitHub Issues"
         ],
         contextTitle: "项目背景",
-        context: "ICERED 是一个面向跨境用户的 AI 社交产品。真正的挑战不是功能数量，而是 AI 交互的清晰度：用户需要理解系统正在做什么。",
+        contextLead: "ICERED 是一个面向跨境用户的 AI 社交产品。",
+        context: "真正的挑战不是功能数量，而是 AI 交互的清晰度：用户需要在每个时刻理解系统正在做什么。AI 行为的模糊感会比任何 bug 更快消耗信任。",
         roleTitle: "我的职责",
         roleItems: [
           "跨模块产品框架梳理",
@@ -132,10 +142,10 @@ const experiences = [
         ],
         breakdownTitle: "关键工作拆解",
         breakdown: [
-          { title: "AI 状态设计", text: "让 AI 在响应前、响应中和响应后的行为都能被用户理解。" },
-          { title: "聊天系统", text: "梳理用户、助手和虚拟用户之间的连续交互流程。" },
-          { title: "Design-to-code", text: "用 AI 编码工具更快把原型推进到可用前端页面。" },
-          { title: "测试闭环", text: "通过 GitHub 追踪问题，让设计、前端和后端反馈能持续被解决。" }
+          { title: "AI 状态设计", icon: "↯", text: "让加载、失败和重试状态可见，用户能一眼理解 AI 正在做什么。" },
+          { title: "聊天系统", icon: "▱", text: "梳理连续交互流程，让消息上下文跨会话和虚拟用户轮次保持稳定。" },
+          { title: "Design-to-code", icon: "↻", text: "通过 Figma 到 Claude / Codex 的流程，加快原型到前端页面的推进。" },
+          { title: "测试闭环", icon: "⌘", text: "用 GitHub issue 追踪系统覆盖 UX 缺口和后端边界问题。" }
         ],
         workflowTitle: "AI + Vibe Coding 流程",
         workflow: ["用户信号", "设计", "原型", "AI 编码", "测试", "Issue", "迭代"],
@@ -147,6 +157,8 @@ const experiences = [
           { value: "3 天", label: "测试周期" }
         ],
         insightTitle: "关键洞察",
+        insightLines: ["AI 体验不是", "智能本身。", "而是系统状态的清晰表达。"],
+        insightHighlightIndex: 1,
         insight: "AI 体验不是智能本身，而是系统状态的清晰表达。",
         previousLabel: "← NIO 案例",
         backLabel: "返回工作经历"
@@ -227,6 +239,7 @@ function applyStaticTranslations() {
 }
 
 function renderNotFound() {
+  document.body.classList.remove("case-study-page");
   detail.innerHTML = `
     <section class="experience-hero detail-empty">
       <p class="detail-kicker">${t("experience.notFoundKicker")}</p>
@@ -241,65 +254,86 @@ function renderList(items, className = "case-list") {
   return `<ul class="${className}">${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
 }
 
+function renderCaseTitle(lines, highlightIndex = -1) {
+  return lines
+    .map((line, index) => `<span class="${index === highlightIndex ? "is-highlighted" : ""}">${line}</span>`)
+    .join("");
+}
+
+function getCaseYearLabel(date) {
+  return date.replace(/\s*-\s*(Present|至今)\s*$/i, "");
+}
+
 function renderCaseStudy(copy) {
   const caseStudy = copy.caseStudy;
+  document.body.classList.add("case-study-page");
 
   detail.innerHTML = `
-    <section class="experience-hero case-hero">
-      <a class="back-link" href="index.html#about">${t("experience.back")}</a>
-      <div class="case-hero-grid">
-        <div class="experience-title-block">
-          <p class="detail-kicker">${t("experience.kicker")}</p>
-          <h1>${caseStudy.heroTitle}</h1>
+    <nav class="case-topbar" aria-label="Case page navigation">
+      <a href="index.html#about">PORTFOLIO / WORK</a>
+      <span>${copy.company}</span>
+      <time>${getCaseYearLabel(copy.date)}</time>
+    </nav>
+
+    <section class="case-hero">
+      <div class="case-shell case-hero-layout">
+        <div class="case-hero-copy">
+          <p class="case-eyebrow"><span aria-hidden="true"></span>CASE STUDY</p>
+          <h1>${renderCaseTitle(caseStudy.heroLines || [caseStudy.heroTitle], caseStudy.heroHighlightIndex)}</h1>
           <p>${caseStudy.subtitle}</p>
-          <div class="case-tags" aria-label="Case tags">
-            ${caseStudy.tags.map((tag) => `<span>${tag}</span>`).join("")}
-          </div>
         </div>
-        <div class="case-flow-panel" aria-label="${caseStudy.workflowTitle}">
-          <span class="case-panel-kicker">${caseStudy.workflowTitle}</span>
-          <div class="case-mini-flow">
-            ${caseStudy.workflow.map((step, index) => `
-              <span>${step}</span>
-              ${index < caseStudy.workflow.length - 1 ? `<i aria-hidden="true">→</i>` : ""}
-            `).join("")}
-          </div>
+        <div class="case-tag-list" aria-label="Case tags">
+          ${caseStudy.tags.map((tag) => `<span><i aria-hidden="true"></i>${tag}</span>`).join("")}
         </div>
+      </div>
+      <div class="case-shell case-summary-grid" aria-label="ICERED summary">
+        ${caseStudy.summaryCards.map((card, index) => `
+          <div class="case-summary-card">
+            <span>${caseStudy.summaryLabels[index]}</span>
+            <strong>${card}</strong>
+          </div>
+        `).join("")}
       </div>
     </section>
 
-    <section class="case-summary-grid" aria-label="ICERED summary">
-      ${caseStudy.summaryCards.map((card) => `<div class="case-summary-card">${card}</div>`).join("")}
-    </section>
-
-    <section class="case-section">
-      <p class="detail-label">${caseStudy.contextTitle}</p>
-      <div class="case-copy">
-        <h2>${caseStudy.contextTitle}</h2>
+    <section class="case-shell case-context-role">
+      <div class="case-context-block">
+        <p class="case-section-label">${caseStudy.contextTitle}</p>
+        <h2>${caseStudy.contextLead}</h2>
         <p>${caseStudy.context}</p>
       </div>
-    </section>
-
-    <section class="case-section">
-      <p class="detail-label">${caseStudy.roleTitle}</p>
-      <div class="case-two-column">
-        <div>
-          <h2>${caseStudy.roleTitle}</h2>
-          ${renderList(caseStudy.roleItems)}
-        </div>
-        <div>
-          <h2>${caseStudy.focusTitle}</h2>
-          ${renderList(caseStudy.focusAreas)}
-        </div>
+      <div class="case-role-block">
+        <p class="case-section-label">${caseStudy.roleTitle}</p>
+        ${caseStudy.roleItems.map((item, index) => `
+          <div class="case-number-row">
+            <span>${String(index + 1).padStart(2, "0")}</span>
+            <p>${item}</p>
+          </div>
+        `).join("")}
       </div>
     </section>
 
-    <section class="case-section">
-      <p class="detail-label">${caseStudy.breakdownTitle}</p>
+    <section class="case-shell case-focus-section">
+      <p class="case-section-label">${caseStudy.focusTitle}</p>
+      <div class="case-focus-grid">
+        ${caseStudy.focusAreas.map((item) => `
+          <div class="case-focus-card">
+            <span aria-hidden="true"></span>
+            <p>${item}</p>
+          </div>
+        `).join("")}
+      </div>
+    </section>
+
+    <section class="case-shell case-work-section">
+      <p class="case-section-label">${caseStudy.breakdownTitle}</p>
       <div class="case-breakdown">
         ${caseStudy.breakdown.map((item, index) => `
           <article class="case-breakdown-item">
-            <span>${String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <span>${String(index + 1).padStart(2, "0")}</span>
+              <i aria-hidden="true">${item.icon || ""}</i>
+            </div>
             <h3>${item.title}</h3>
             <p>${item.text}</p>
           </article>
@@ -307,18 +341,21 @@ function renderCaseStudy(copy) {
       </div>
     </section>
 
-    <section class="case-section">
-      <p class="detail-label">${caseStudy.workflowTitle}</p>
+    <section class="case-shell case-flow-section">
+      <p class="case-section-label">${caseStudy.workflowTitle}</p>
       <div class="case-workflow">
         ${caseStudy.workflow.map((step, index) => `
-          <span>${step}</span>
-          ${index < caseStudy.workflow.length - 1 ? `<i aria-hidden="true">→</i>` : ""}
+          <div class="case-workflow-step">
+            <span>${String(index + 1).padStart(2, "0")}</span>
+            <p>${step}</p>
+          </div>
+          ${index < caseStudy.workflow.length - 1 ? `<i aria-hidden="true"></i>` : ""}
         `).join("")}
       </div>
     </section>
 
-    <section class="case-section">
-      <p class="detail-label">${caseStudy.metricsTitle}</p>
+    <section class="case-shell case-metrics-section">
+      <p class="case-section-label">${caseStudy.metricsTitle}</p>
       <div class="case-metrics-grid">
         ${caseStudy.metrics.map((metric) => `
           <div class="case-metric">
@@ -329,12 +366,16 @@ function renderCaseStudy(copy) {
       </div>
     </section>
 
-    <section class="case-insight">
-      <p class="detail-label">${caseStudy.insightTitle}</p>
-      <blockquote>${caseStudy.insight}</blockquote>
+    <section class="case-shell case-insight">
+      <p class="case-section-label"><span aria-hidden="true"></span>${caseStudy.insightTitle}</p>
+      <blockquote>
+        ${(caseStudy.insightLines || [caseStudy.insight]).map((line, index) => `
+          <span class="${index === caseStudy.insightHighlightIndex ? "is-highlighted" : ""}">${line}</span>
+        `).join("")}
+      </blockquote>
     </section>
 
-    <nav class="case-footer-nav" aria-label="Experience navigation">
+    <nav class="case-shell case-footer-nav" aria-label="Experience navigation">
       <a href="experience.html?slug=nio">${caseStudy.previousLabel}</a>
       <a href="index.html#about">${caseStudy.backLabel}</a>
     </nav>
@@ -348,6 +389,8 @@ function renderExperience(experience) {
     renderCaseStudy(copy);
     return;
   }
+
+  document.body.classList.remove("case-study-page");
 
   detail.innerHTML = `
     <section class="experience-hero">
