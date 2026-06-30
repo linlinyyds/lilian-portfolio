@@ -756,17 +756,20 @@ body[data-theme="dark"] .work-timeline .experience-row:focus-visible {
   overflow: hidden;
   gap: 18px;
   opacity: 0;
+  padding-bottom: 0;
   transform: translateY(-4px);
   transition:
     max-height 360ms ease,
+    padding-bottom 260ms ease,
     opacity 260ms ease,
     transform 260ms ease;
 }
 
 .experience-row:hover .experience-details,
 .experience-row:focus-visible .experience-details {
-  max-height: 220px;
+  max-height: 340px;
   opacity: 1;
+  padding-bottom: 16px;
   transform: translateY(0);
 }
 
