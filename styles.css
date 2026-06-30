@@ -689,6 +689,14 @@ body[data-theme="dark"] .water-ripple {
   line-height: 1.45;
 }
 
+.timeline > div > .education-entry {
+  white-space: normal;
+}
+
+.education-separator {
+  margin: 0 0.08em;
+}
+
 .work-timeline {
   gap: 8px;
 }
@@ -1871,6 +1879,15 @@ body[data-theme="dark"] .gallery-thumb {
     grid-template-columns: 1fr;
     gap: 8px;
     transform: none;
+  }
+
+  .timeline > div > .education-entry {
+    display: grid;
+    gap: 2px;
+  }
+
+  .education-separator {
+    display: none;
   }
 
   .work-timeline .experience-row:hover,
