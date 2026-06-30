@@ -452,19 +452,19 @@ window.LILIAN_PROJECTS = [
         label: "01 Brand Store",
         title: "Ramen-first brand entry",
         text: "The page works as both a brand expression and a shop. Visual identity, product names and product imagery create a memorable food mood while the layout keeps purchasing actions close to the product cards.",
-        image: "assets/portfolio/rako-web.jpg"
+        image: "assets/portfolio/rako-rako/rako-01-brand-store.jpg"
       },
       {
         label: "02 Product Catalog",
         title: "Classic, spicy and black garlic ramen",
         text: "The catalog includes core ramen products such as Japanese Classic Tonkotsu Ramen, Japanese Spicy Tonkotsu Ramen and Japanese Black Garlic Tonkotsu Ramen, with pricing and product state presented for quick comparison.",
-        image: "assets/portfolio/rako-web.jpg"
+        image: "assets/portfolio/rako-rako/rako-02-product-catalog.jpg"
       },
       {
         label: "03 Bundle Flow",
         title: "Sampler and stock boxes",
         text: "Bundle products such as the Ramen Sampler Box, Late-Night Survival Kit and Freezer Stock Box help users choose by occasion and quantity. This makes the store feel less like a flat product list and more like a guided buying flow.",
-        image: "assets/portfolio/rako-web.jpg"
+        image: "assets/portfolio/rako-rako/rako-03-bundle-flow.jpg"
       }
     ]
   }
