@@ -49,6 +49,53 @@ const experiences = [
     focus: ["AI social product", "Conversational interaction", "Design-to-code", "Product delivery"],
     scopeTitle: "From conversational interaction to product delivery",
     scope: "The work connects user scenarios, AI conversation flows and product execution. It focuses on shaping AI social product interactions, clarifying product requirements and moving design concepts toward buildable delivery.",
+    caseStudy: {
+      heroTitle: "Making AI social interaction understandable",
+      subtitle: "Designing chat, AI assistant and virtual users for cross-border users.",
+      tags: ["AI Product", "Interaction Design", "Vibe Coding", "Pre-launch System"],
+      summaryCards: [
+        "AI Social Product",
+        "Chat + AI Assistant + Virtual Users",
+        "~10 Frontend Pages",
+        "~50 GitHub Issues"
+      ],
+      contextTitle: "Context",
+      context: "ICERED is an AI social product for cross-border users. The challenge is not features, but clarity of AI interaction: users must understand what the system is doing.",
+      roleTitle: "My Role",
+      roleItems: [
+        "Product framing across modules",
+        "AI interaction design",
+        "Figma to code with Claude and Codex",
+        "Testing and GitHub issue loop"
+      ],
+      focusTitle: "Focus Areas",
+      focusAreas: [
+        "AI response states: loading / fail / retry",
+        "Chat continuity",
+        "Virtual user behavior",
+        "System feedback clarity"
+      ],
+      breakdownTitle: "Key Work Breakdown",
+      breakdown: [
+        { title: "AI state design", text: "Make AI behavior visible before, during and after a response." },
+        { title: "Chat system", text: "Shape a continuous interaction flow across user, assistant and virtual users." },
+        { title: "Design-to-code", text: "Use AI coding tools to move from prototype to usable frontend faster." },
+        { title: "Testing loop", text: "Track issues in GitHub so design, frontend and backend feedback can be resolved." }
+      ],
+      workflowTitle: "AI + Vibe Coding Flow",
+      workflow: ["User signal", "Design", "Prototype", "AI Code", "Test", "Issue", "Iterate"],
+      metricsTitle: "Impact Metrics",
+      metrics: [
+        { value: "~10", label: "Frontend pages" },
+        { value: "~50", label: "GitHub issues" },
+        { value: "5", label: "Backend issues supported" },
+        { value: "3-day", label: "Testing cycle" }
+      ],
+      insightTitle: "Key Insight",
+      insight: "AI experience is not intelligence. It is clarity of system state.",
+      previousLabel: "← NIO Case Study",
+      backLabel: "Back to Work"
+    },
     zh: {
       company: "ICERED",
       date: "2025 - 至今",
@@ -56,7 +103,54 @@ const experiences = [
       summary: "AI 社交产品、对话式交互、Design-to-code 与产品交付。",
       focus: ["AI 社交产品", "对话式交互", "Design-to-code", "产品交付"],
       scopeTitle: "从对话交互到产品落地",
-      scope: "这段工作连接用户场景、AI 对话流程与产品执行，重点包括 AI 社交产品交互设计、产品需求梳理，以及将设计概念推进到可开发和可交付的阶段。"
+      scope: "这段工作连接用户场景、AI 对话流程与产品执行，重点包括 AI 社交产品交互设计、产品需求梳理，以及将设计概念推进到可开发和可交付的阶段。",
+      caseStudy: {
+        heroTitle: "让 AI 社交交互更容易被理解",
+        subtitle: "为跨境用户设计聊天、AI 助手和虚拟用户体验。",
+        tags: ["AI 产品", "交互设计", "Vibe Coding", "上线前系统"],
+        summaryCards: [
+          "AI 社交产品",
+          "聊天 + AI 助手 + 虚拟用户",
+          "约 10 个前端页面",
+          "约 50 个 GitHub Issues"
+        ],
+        contextTitle: "项目背景",
+        context: "ICERED 是一个面向跨境用户的 AI 社交产品。真正的挑战不是功能数量，而是 AI 交互的清晰度：用户需要理解系统正在做什么。",
+        roleTitle: "我的职责",
+        roleItems: [
+          "跨模块产品框架梳理",
+          "AI 交互体验设计",
+          "Figma 到代码，结合 Claude 与 Codex",
+          "测试与 GitHub issue 迭代闭环"
+        ],
+        focusTitle: "设计重点",
+        focusAreas: [
+          "AI 响应状态：加载 / 失败 / 重试",
+          "聊天连续性",
+          "虚拟用户行为",
+          "系统反馈清晰度"
+        ],
+        breakdownTitle: "关键工作拆解",
+        breakdown: [
+          { title: "AI 状态设计", text: "让 AI 在响应前、响应中和响应后的行为都能被用户理解。" },
+          { title: "聊天系统", text: "梳理用户、助手和虚拟用户之间的连续交互流程。" },
+          { title: "Design-to-code", text: "用 AI 编码工具更快把原型推进到可用前端页面。" },
+          { title: "测试闭环", text: "通过 GitHub 追踪问题，让设计、前端和后端反馈能持续被解决。" }
+        ],
+        workflowTitle: "AI + Vibe Coding 流程",
+        workflow: ["用户信号", "设计", "原型", "AI 编码", "测试", "Issue", "迭代"],
+        metricsTitle: "影响指标",
+        metrics: [
+          { value: "约 10", label: "前端页面" },
+          { value: "约 50", label: "GitHub Issues" },
+          { value: "5", label: "支持后端问题" },
+          { value: "3 天", label: "测试周期" }
+        ],
+        insightTitle: "关键洞察",
+        insight: "AI 体验不是智能本身，而是系统状态的清晰表达。",
+        previousLabel: "← NIO 案例",
+        backLabel: "返回工作经历"
+      }
     }
   },
   {
@@ -90,7 +184,8 @@ function t(key) {
 
 function getSlug() {
   const params = new URLSearchParams(window.location.search);
-  return params.get("slug") || experiences[0].slug;
+  const pathMatch = window.location.pathname.match(/\/work\/([^/]+)/);
+  return params.get("slug") || pathMatch?.[1] || experiences[0].slug;
 }
 
 function getExperienceCopy(experience) {
@@ -142,8 +237,117 @@ function renderNotFound() {
   `;
 }
 
+function renderList(items, className = "case-list") {
+  return `<ul class="${className}">${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
+}
+
+function renderCaseStudy(copy) {
+  const caseStudy = copy.caseStudy;
+
+  detail.innerHTML = `
+    <section class="experience-hero case-hero">
+      <a class="back-link" href="index.html#about">${t("experience.back")}</a>
+      <div class="case-hero-grid">
+        <div class="experience-title-block">
+          <p class="detail-kicker">${t("experience.kicker")}</p>
+          <h1>${caseStudy.heroTitle}</h1>
+          <p>${caseStudy.subtitle}</p>
+          <div class="case-tags" aria-label="Case tags">
+            ${caseStudy.tags.map((tag) => `<span>${tag}</span>`).join("")}
+          </div>
+        </div>
+        <div class="case-flow-panel" aria-label="${caseStudy.workflowTitle}">
+          <span class="case-panel-kicker">${caseStudy.workflowTitle}</span>
+          <div class="case-mini-flow">
+            ${caseStudy.workflow.map((step, index) => `
+              <span>${step}</span>
+              ${index < caseStudy.workflow.length - 1 ? `<i aria-hidden="true">→</i>` : ""}
+            `).join("")}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-summary-grid" aria-label="ICERED summary">
+      ${caseStudy.summaryCards.map((card) => `<div class="case-summary-card">${card}</div>`).join("")}
+    </section>
+
+    <section class="case-section">
+      <p class="detail-label">${caseStudy.contextTitle}</p>
+      <div class="case-copy">
+        <h2>${caseStudy.contextTitle}</h2>
+        <p>${caseStudy.context}</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="detail-label">${caseStudy.roleTitle}</p>
+      <div class="case-two-column">
+        <div>
+          <h2>${caseStudy.roleTitle}</h2>
+          ${renderList(caseStudy.roleItems)}
+        </div>
+        <div>
+          <h2>${caseStudy.focusTitle}</h2>
+          ${renderList(caseStudy.focusAreas)}
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="detail-label">${caseStudy.breakdownTitle}</p>
+      <div class="case-breakdown">
+        ${caseStudy.breakdown.map((item, index) => `
+          <article class="case-breakdown-item">
+            <span>${String(index + 1).padStart(2, "0")}</span>
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="detail-label">${caseStudy.workflowTitle}</p>
+      <div class="case-workflow">
+        ${caseStudy.workflow.map((step, index) => `
+          <span>${step}</span>
+          ${index < caseStudy.workflow.length - 1 ? `<i aria-hidden="true">→</i>` : ""}
+        `).join("")}
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="detail-label">${caseStudy.metricsTitle}</p>
+      <div class="case-metrics-grid">
+        ${caseStudy.metrics.map((metric) => `
+          <div class="case-metric">
+            <strong>${metric.value}</strong>
+            <span>${metric.label}</span>
+          </div>
+        `).join("")}
+      </div>
+    </section>
+
+    <section class="case-insight">
+      <p class="detail-label">${caseStudy.insightTitle}</p>
+      <blockquote>${caseStudy.insight}</blockquote>
+    </section>
+
+    <nav class="case-footer-nav" aria-label="Experience navigation">
+      <a href="experience.html?slug=nio">${caseStudy.previousLabel}</a>
+      <a href="index.html#about">${caseStudy.backLabel}</a>
+    </nav>
+  `;
+}
+
 function renderExperience(experience) {
   const copy = getExperienceCopy(experience);
+
+  if (copy.caseStudy) {
+    renderCaseStudy(copy);
+    return;
+  }
 
   detail.innerHTML = `
     <section class="experience-hero">
