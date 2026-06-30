@@ -260,22 +260,15 @@ function renderCaseTitle(lines, highlightIndex = -1) {
     .join("");
 }
 
-function getCaseYearLabel(date) {
-  return date.replace(/\s*-\s*(Present|至今)\s*$/i, "");
-}
-
 function renderCaseStudy(copy) {
   const caseStudy = copy.caseStudy;
   document.body.classList.add("case-study-page");
 
   detail.innerHTML = `
-    <nav class="case-topbar" aria-label="Case page navigation">
-      <a href="index.html#about">PORTFOLIO / WORK</a>
-      <span>${copy.company}</span>
-      <time>${getCaseYearLabel(copy.date)}</time>
-    </nav>
-
     <section class="case-hero">
+      <div class="case-shell case-back-row">
+        <a class="back-link" href="index.html#about">${t("experience.back")}</a>
+      </div>
       <div class="case-shell case-hero-layout">
         <div class="case-hero-copy">
           <p class="case-eyebrow"><span aria-hidden="true"></span>CASE STUDY</p>
