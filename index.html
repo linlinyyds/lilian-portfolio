@@ -10,7 +10,7 @@
     <title>Lilian Portfolio</title>
     <link rel="icon" type="image/png" href="assets/favicon.png?v=thermal-liquid-3">
     <link rel="apple-touch-icon" href="assets/favicon.png?v=thermal-liquid-3">
-    <link rel="stylesheet" href="styles.css?v=gallery-drag-1">
+    <link rel="stylesheet" href="styles.css?v=experience-1">
   </head>
   <body data-theme="light">
     <div class="ambient" aria-hidden="true">
@@ -105,15 +105,29 @@
           </div>
 
           <p class="side-label reveal" data-i18n="about.workLabel">( Work )</p>
-          <div class="timeline reveal">
-            <div>
-              <time>2026</time>
-              <span data-i18n="about.work1">ICERED | AI Product Manager</span>
-            </div>
-            <div>
-              <time>2024</time>
-              <span data-i18n="about.work2">NIO | Service Designer</span>
-            </div>
+          <div class="timeline work-timeline reveal">
+            <a class="experience-row" href="experience.html?slug=icered" aria-label="View ICERED experience" data-i18n-aria="about.workAria1">
+              <time data-i18n="about.workDate1">2025 - Present</time>
+              <span class="experience-summary">
+                <span class="experience-title" data-i18n="about.work1">ICERED | AI Product Manager</span>
+                <span class="experience-details">
+                  <span class="experience-role" data-i18n="about.workRole1">AI Product Manager · Interaction Experience</span>
+                  <span class="experience-copy" data-i18n="about.workDesc1">AI social product, conversational interaction, design-to-code and product delivery.</span>
+                  <span class="experience-cta" data-i18n="about.workCta">View experience ↗</span>
+                </span>
+              </span>
+            </a>
+            <a class="experience-row" href="experience.html?slug=nio" aria-label="View NIO experience" data-i18n-aria="about.workAria2">
+              <time data-i18n="about.workDate2">2024</time>
+              <span class="experience-summary">
+                <span class="experience-title" data-i18n="about.work2">NIO | Service Designer</span>
+                <span class="experience-details">
+                  <span class="experience-role" data-i18n="about.workRole2">Service Design Intern · UX</span>
+                  <span class="experience-copy" data-i18n="about.workDesc2">Vehicle service digitalisation, service blueprint and app experience.</span>
+                  <span class="experience-cta" data-i18n="about.workCta">View experience ↗</span>
+                </span>
+              </span>
+            </a>
           </div>
 
           <p class="side-label reveal" id="contact" data-i18n="about.contactLabel">( Contact )</p>
@@ -149,6 +163,6 @@
     </aside>
 
     <script src="project-data.js?v=rako-assets-1"></script>
-    <script src="script.js?v=gallery-click-1"></script>
+    <script src="script.js?v=experience-1"></script>
   </body>
 </html>
