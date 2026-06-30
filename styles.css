@@ -777,7 +777,6 @@ body[data-theme="dark"] .work-timeline .experience-row:focus-visible {
   font-size: 13px;
   font-weight: 760;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .project {
