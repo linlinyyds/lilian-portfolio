@@ -230,6 +230,16 @@ body[data-theme="dark"] .site-header {
     linear-gradient(180deg, rgba(12, 17, 33, 0.9) 0%, rgba(18, 25, 48, 0.68) 54%, rgba(8, 16, 33, 0) 100%);
 }
 
+.project-page .site-header {
+  min-height: 58px;
+  padding: 8px clamp(22px, 4vw, 70px) 6px;
+  background: transparent;
+}
+
+body[data-theme="dark"].project-page .site-header {
+  background: transparent;
+}
+
 .cat-menu {
   display: grid;
   width: 68px;
@@ -1499,6 +1509,11 @@ body[data-theme="dark"] .gallery-thumb {
     gap: 12px;
   }
 
+  .project-page .site-header {
+    min-height: 58px;
+    padding: 8px 20px 6px;
+  }
+
   .cat-menu {
     width: 54px;
   }
@@ -1576,6 +1591,11 @@ body[data-theme="dark"] .gallery-thumb {
     min-height: 88px;
     padding: 16px 16px 26px;
     grid-template-columns: auto 1fr auto;
+  }
+
+  .project-page .site-header {
+    min-height: 52px;
+    padding: 8px 16px 4px;
   }
 
   .header-actions {
