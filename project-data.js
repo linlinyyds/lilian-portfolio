@@ -402,7 +402,7 @@ window.LILIAN_PROJECTS = [
     slug: "five-stars",
     title: "Five Stars",
     meta: "Education Website",
-    image: "assets/gallery/five-stars-cover.png",
+    image: "assets/gallery/five-stars-cover.jpg",
     galleryImage: "assets/gallery/optimized/five-stars.jpg",
     summary: "A full education platform website for parent and student tutor discovery, teacher certification, subject search, registration and consultation conversion.",
     tags: ["Web UX", "Education", "Booking Flow", "Trust Design"],
@@ -417,19 +417,19 @@ window.LILIAN_PROJECTS = [
         label: "01 Platform Entry",
         title: "Find the right private tutor",
         text: "The homepage frames Five Stars as a private tutoring platform, then immediately guides visitors toward browsing teachers, exploring subjects or starting a consultation. This keeps the service value direct and easy to understand.",
-        image: "assets/portfolio/fivestars-web.jpg"
+        image: "assets/portfolio/fivestars-platform-entry.jpg"
       },
       {
         label: "02 Discovery",
         title: "Subjects, teachers and search",
         text: "The information architecture is organized around subject navigation, teacher discovery and search. Users can look for tutors by name or subject, then compare certification, rating, pricing and availability before making contact.",
-        image: "assets/portfolio/fivestars-web.jpg"
+        image: "assets/portfolio/fivestars-teacher-discovery.jpg"
       },
       {
         label: "03 Conversion",
         title: "Student registration and consultant support",
         text: "The flow supports different intents: students and parents can register, browse teachers or scan a consultant QR code for a free study plan, while teachers have a dedicated onboarding path to join the platform.",
-        image: "assets/portfolio/fivestars-web.jpg"
+        image: "assets/portfolio/fivestars-registration-flow.jpg"
       }
     ]
   },
