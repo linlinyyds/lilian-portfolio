@@ -8,6 +8,7 @@
   --line: rgba(45, 62, 94, 0.17);
   --accent: #23c6c5;
   --ink: #202940;
+  --media-bg: rgba(255, 255, 255, 0.64);
   --max: 960px;
   --left: clamp(32px, 9.4vw, 120px);
   --light-x: 52vw;
@@ -76,6 +77,7 @@ body[data-theme="dark"] {
   --line: rgba(220, 235, 255, 0.28);
   --accent: #8dd8d0;
   --ink: #eef6ff;
+  --media-bg: rgba(3, 10, 26, 0.7);
   background:
     radial-gradient(circle at var(--ripple-xp) var(--ripple-yp), rgba(238, 248, 255, calc(var(--ripple-alpha) * 0.22)), transparent 18vw),
     radial-gradient(ellipse at calc(var(--ripple-xp) + 4%) calc(var(--ripple-yp) + 3%), rgba(103, 220, 210, calc(var(--ripple-alpha) * 0.24)), transparent 28vw),
@@ -863,7 +865,7 @@ body[data-theme="dark"] .project-row:hover {
 .project-detail {
   position: relative;
   z-index: 1;
-  width: min(1120px, calc(100vw - 64px));
+  width: min(1540px, calc(100vw - clamp(56px, 8vw, 136px)));
   margin: 0 auto;
   padding: clamp(126px, 14vw, 190px) 0 clamp(84px, 10vw, 150px);
 }
@@ -1756,8 +1758,9 @@ body[data-theme="dark"] .case-tag-list {
 .detail-cover img {
   display: block;
   width: 100%;
-  aspect-ratio: 1.414 / 1;
-  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: var(--media-bg);
 }
 
 .detail-overview,
@@ -1818,38 +1821,40 @@ body[data-theme="dark"] .case-tag-list {
 
 .detail-materials {
   display: grid;
-  gap: clamp(42px, 8vw, 96px);
+  gap: clamp(72px, 9vw, 140px);
   margin-top: clamp(64px, 10vw, 130px);
 }
 
 .material-card {
   display: grid;
-  grid-template-columns: minmax(240px, 0.42fr) minmax(0, 1fr);
-  gap: clamp(28px, 5vw, 72px);
-  align-items: center;
+  grid-template-columns: minmax(160px, 0.28fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 60px);
+  align-items: start;
   padding-top: clamp(28px, 4vw, 48px);
   border-top: 1px solid var(--line);
 }
 
 .material-copy {
   display: grid;
-  gap: 14px;
+  gap: 12px;
+  max-width: 340px;
+  align-self: start;
 }
 
 .material-copy h2 {
   margin: 0;
   color: var(--text);
-  font-size: clamp(26px, 3.4vw, 54px);
+  font-size: clamp(22px, 2.1vw, 40px);
   font-weight: 260;
-  line-height: 1.08;
+  line-height: 1.12;
 }
 
 .material-copy p {
   margin: 0;
   color: var(--text-soft);
-  font-size: clamp(14px, 1.08vw, 17px);
+  font-size: clamp(13px, 0.92vw, 15px);
   font-weight: 540;
-  line-height: 1.85;
+  line-height: 1.72;
 }
 
 .material-image {
@@ -1873,8 +1878,9 @@ body[data-theme="dark"] .case-tag-list {
 .material-image img {
   display: block;
   width: 100%;
-  aspect-ratio: 1.414 / 1;
-  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: var(--media-bg);
   transition: transform 420ms ease;
 }
 
