@@ -144,9 +144,9 @@ function renderSectionMedia(section) {
   }
 
   return `
-    <a class="material-image" href="${section.image}" target="_blank" rel="noreferrer">
+    <div class="material-image">
       <img src="${section.image}" alt="${section.title}">
-    </a>
+    </div>
   `;
 }
 
