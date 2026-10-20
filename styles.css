@@ -1904,6 +1904,155 @@ body[data-theme="dark"] .case-tag-list {
   transform: scale(1.015);
 }
 
+.material-card.has-media-collection {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.has-media-collection .material-copy {
+  max-width: 760px;
+}
+
+.material-media-collection {
+  display: grid;
+  gap: clamp(24px, 4vw, 48px);
+  min-width: 0;
+}
+
+.material-media-collection.is-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.material-media-item {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+}
+
+.material-media-item figcaption,
+.material-scroll-hint,
+.material-external-link,
+.detail-source a {
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.material-card.has-media-collection .material-image img,
+.material-card.is-document .material-image img {
+  aspect-ratio: auto;
+}
+
+.material-media-item .material-video video {
+  aspect-ratio: 16 / 5;
+  object-fit: contain;
+}
+
+.material-full-size:focus-visible,
+.material-matrix-scroll:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 5px;
+}
+
+.material-embed {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--media-bg);
+}
+
+.material-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.material-matrix-block {
+  min-width: 0;
+}
+
+.material-scroll-hint {
+  margin: 0 0 16px;
+}
+
+.material-matrix-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.material-matrix {
+  width: 100%;
+  min-width: 940px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.material-matrix th,
+.material-matrix td {
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.material-matrix th {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 540;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.material-matrix tr > th:first-child {
+  width: 100px;
+}
+
+.material-matrix .material-image {
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.material-card.has-media-collection .material-matrix .material-image img {
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.material-matrix tr:last-child > * {
+  border-bottom: 0;
+}
+
+.detail-source {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.detail-source a,
+.material-external-link {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.material-matrix .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .material-media-collection.is-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .detail-outcome {
   margin-top: clamp(64px, 10vw, 120px);
   padding-top: 30px;

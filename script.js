@@ -217,6 +217,7 @@ function renderProjectGallery() {
   if (!projectGallery) return;
 
   const galleryOrder = [
+    "ea01u",
     "aurora-mood",
     "equiflow",
     "this-conversation",

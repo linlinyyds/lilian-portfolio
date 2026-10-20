@@ -31,7 +31,12 @@ const staticTranslations = {
     "detail.challenge": "CHALLENGE",
     "detail.approach": "APPROACH",
     "detail.outcome": "OUTCOME",
-    "detail.videoFallback": "Your browser does not support the video tag."
+    "detail.videoFallback": "Your browser does not support the video tag.",
+    "detail.fullSize": "View full size",
+    "detail.watchVideo": "Watch on YouTube",
+    "detail.matrixState": "State",
+    "detail.matrixScroll": "Scroll horizontally to compare all five personas",
+    "detail.source": "PROJECT REFERENCE"
   },
   zh: {
     "detailNav.projects": "所有项目",
@@ -49,7 +54,12 @@ const staticTranslations = {
     "detail.challenge": "挑战",
     "detail.approach": "方法",
     "detail.outcome": "成果",
-    "detail.videoFallback": "当前浏览器不支持视频播放。"
+    "detail.videoFallback": "当前浏览器不支持视频播放。",
+    "detail.fullSize": "查看原图",
+    "detail.watchVideo": "在 YouTube 观看",
+    "detail.matrixState": "状态",
+    "detail.matrixScroll": "左右滑动，比较全部五种角色",
+    "detail.source": "项目展示参考"
   }
 };
 
@@ -125,6 +135,26 @@ function renderNotFound() {
 }
 
 function renderSectionMedia(section) {
+  if (section.matrix) {
+    const matrix = section.matrix;
+    return `
+      <div class="material-matrix-block">
+        <p class="material-scroll-hint">${t("detail.matrixScroll")}</p>
+        <div class="material-matrix-scroll" role="region" tabindex="0" aria-label="${escapeHTML(section.title)}">
+          <table class="material-matrix">
+            <caption class="visually-hidden">${escapeHTML(section.title)}</caption>
+            <thead><tr><th scope="col">${t("detail.matrixState")}</th>${matrix.columns.map((column) => `<th scope="col">${escapeHTML(column)}</th>`).join("")}</tr></thead>
+            <tbody>${matrix.rows.map((row) => `<tr><th scope="row">${escapeHTML(row.label)}</th>${row.media.map((media) => `<td>${renderMediaItem(media)}</td>`).join("")}</tr>`).join("")}</tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  }
+
+  if (section.media) {
+    return `<div class="material-media-collection${section.layout === "grid" ? " is-grid" : ""}">${section.media.map(renderMediaItem).join("")}</div>`;
+  }
+
   if (section.video) {
     const poster = section.poster ? ` poster="${section.poster}"` : "";
     const type = section.videoType || "video/mp4";
@@ -143,11 +173,38 @@ function renderSectionMedia(section) {
     return "";
   }
 
+  if (section.zoom) {
+    return renderMediaItem({ src: section.image, alt: section.title });
+  }
+
   return `
     <div class="material-image">
       <img src="${section.image}" alt="${section.title}">
     </div>
   `;
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[character]));
+}
+
+function renderMediaItem(media) {
+  const label = escapeHTML(media.alt || media.title || media.caption || "EA01U");
+  let content;
+
+  if (media.type === "youtube") {
+    const id = encodeURIComponent(media.id);
+    content = `<div class="material-embed"><iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0" title="${label}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><a class="material-external-link" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener noreferrer">${t("detail.watchVideo")} ↗</a>`;
+  } else if (media.type === "video") {
+    const poster = media.poster ? ` poster="${escapeHTML(media.poster)}"` : "";
+    content = `<div class="material-video"><video controls playsinline preload="none" aria-label="${label}"${poster}><source src="${escapeHTML(media.src)}" type="${escapeHTML(media.videoType || "video/mp4")}">${t("detail.videoFallback")}</video></div>`;
+  } else {
+    content = `<a class="material-image material-full-size" href="${escapeHTML(media.src)}" target="_blank" rel="noopener noreferrer" aria-label="${t("detail.fullSize")}: ${label}"><img src="${escapeHTML(media.src)}" alt="${label}" loading="lazy" decoding="async"></a>`;
+  }
+
+  return `<figure class="material-media-item">${content}${media.caption ? `<figcaption>${escapeHTML(media.caption)}</figcaption>` : ""}</figure>`;
 }
 
 function renderProject(project, index) {
@@ -207,7 +264,7 @@ function renderProject(project, index) {
       ${copy.sections
         .map(
           (section) => `
-            <article class="material-card${section.wide ? " is-wide" : ""}${section.video ? " has-video" : ""}">
+            <article class="material-card${section.wide ? " is-wide" : ""}${section.video ? " has-video" : ""}${section.media || section.matrix ? " has-media-collection" : ""}${section.zoom ? " is-document" : ""}">
               <div class="material-copy">
                 <span class="detail-label">${section.label}</span>
                 <h2>${section.title}</h2>
@@ -224,6 +281,8 @@ function renderProject(project, index) {
       <span class="detail-label">${t("detail.outcome")}</span>
       <p>${copy.outcome}</p>
     </section>
+
+    ${copy.sourceUrl ? `<aside class="detail-source"><span class="detail-label">${t("detail.source")}</span><a href="${escapeHTML(copy.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHTML(copy.sourceLabel || copy.sourceUrl)} ↗</a></aside>` : ""}
 
     <nav class="project-pager" aria-label="Project switcher">
       <a href="project.html?slug=${previous.slug}">← ${previousCopy.title}</a>

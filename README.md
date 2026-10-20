@@ -1,5 +1,13 @@
 # Lin Zhou UX 作品集网站
 
+## EA01U 项目（2026-10-20）
+
+- 首页项目列表和画廊均已接入 `project.html?slug=ea01u`。
+- 中英文内容集中在 `ea01u-data.js`，在 `project-data.js` 后加载；可在这里编辑项目职责、简介及各区块说明。
+- `assets/portfolio/ea01u/` 包含参考项目公开的 52 个媒体文件，以及为 6 段视频提取的封面。视频按需播放，图片支持查看原图，VPA 的 5×5 状态表可横向滚动。
+- `assets/portfolio/ea01u/source-manifest.json` 记录原始媒体地址、大小及 SHA-256。项目页面保留简烨的展示参考链接，YouTube 影片标注德赛西威来源。
+- 获取范围为原站公开发布的媒体；没有获取未公开的 Figma、Sketch、AE 工程或完整开发仓库。
+
 这是一个可部署到 GitHub Pages 的完整静态交互式作品集网站。网站内容基于 `作品集.pptx` 整理，定位为 UX / Interaction / Service Experience 设计师作品集。
 
 ## 已包含的交互
