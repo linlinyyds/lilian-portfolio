@@ -1,108 +1,63 @@
 <!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="周琳 Lilian Zhou 的个人作品集与 CV。智能座舱 HMI 交互设计、AI 产品体验、交互原型与设计交付。">
-    <title>Lilian Portfolio — 周琳</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png?v=thermal-liquid-3">
-    <link rel="apple-touch-icon" href="assets/favicon.png?v=thermal-liquid-3">
-    <link rel="stylesheet" href="styles.css?v=portfolio-20261022">
-    <link rel="stylesheet" href="portfolio.css?v=about-cv-20261022">
-    <link rel="stylesheet" href="ambient.css?v=pointer-polish-20261022">
-    <link rel="stylesheet" href="header-behavior.css?v=header-20261022">
-    <link rel="stylesheet" href="click-feedback.css?v=pointer-polish-20261022">
-  </head>
-  <body data-theme="light" class="portfolio-home">
-    <a class="skip-link" href="#project" data-i18n="nav.skip">跳至作品</a>
-    <div class="ambient" aria-hidden="true"><span class="glow glow-a"></span><span class="glow glow-b"></span><span class="glow glow-c"></span></div>
-    <header class="site-header">
-      <button class="cat-menu" type="button" aria-label="导航菜单" data-i18n-aria="nav.menu" aria-expanded="false" aria-controls="quickNav"><img src="assets/logo.png?v=cat5" alt=""></button>
-      <nav class="quick-nav" id="quickNav" aria-label="Page navigation" inert>
-        <a href="#home" data-i18n="nav.home">首页</a>
-        <a href="#about" data-i18n="nav.about">关于 / CV</a>
-        <a href="#project" data-i18n="nav.project">作品</a>
-        <a href="#gallery" data-i18n="nav.gallery">探索</a>
-        <a href="#contact" data-i18n="nav.contact">联系</a>
-      </nav>
-      <div class="header-actions">
-        <button class="language-toggle icon-toggle" type="button" aria-label="Switch language" aria-pressed="false"><span class="lang-current" aria-hidden="true">中</span></button>
-        <button class="theme-toggle icon-toggle" type="button" aria-label="Switch between light and dark mode" aria-pressed="false">
-          <span class="theme-icon theme-sun" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.8v2.1M12 19.1v2.1M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M2.8 12h2.1M19.1 12h2.1M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"></path></svg></span>
-          <span class="theme-icon theme-moon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M20.1 14.5A7.9 7.9 0 0 1 9.5 3.9a8.5 8.5 0 1 0 10.6 10.6Z"></path></svg></span>
-        </button>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="周琳 Lilian Zhou 的交互设计作品集。智能座舱 HMI、AI 产品体验、沉浸式交互与服务设计。">
+  <meta name="theme-color" content="#f8f7f4">
+  <title>Lilian Zhou · Selected Work</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#work">跳至作品 / Skip to work</a>
+  <header class="home-header">
+    <a class="wordmark" href="index.html" aria-label="Lilian Zhou 首页">Lilian Zhou <span>/ 周琳</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="打开导航">☰</button>
+    <nav id="main-nav" aria-label="主导航">
+      <a href="#work" data-copy="navWork">作品</a>
+      <a href="#about" data-copy="navAbout">关于</a>
+      <a href="#contact" data-copy="navContact">联系</a>
+    </nav>
+    <div class="header-tools">
+      <button class="language-toggle" type="button" aria-label="Switch to English">中 <span>/ EN</span></button>
+      <button class="theme-toggle" type="button" aria-label="切换深色模式"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.7A8.1 8.1 0 0 1 9.3 4 8.2 8.2 0 1 0 20 14.7Z"/></svg></button>
+    </div>
+  </header>
+  <main>
+    <section class="intro-section" aria-labelledby="intro-heading">
+      <div class="intro-top"><span>INTERACTION DESIGN · HMI · AI</span><span>SELECTED WORK / 2022—2026</span></div>
+      <div class="intro-composition">
+        <h1 id="intro-heading"><span data-copy="heroLine1">设计人与系统</span><br><em data-copy="heroLine2">之间的交互。</em></h1>
+        <div class="intro-note"><span class="note-mark" aria-hidden="true">↘</span><p data-copy="heroNote">从智能座舱到沉浸式体验，探索技术如何被理解、被使用，以及它如何影响人的感受。</p><a href="#work" class="inline-link"><span data-copy="explore">浏览作品</span><span aria-hidden="true">↓</span></a></div>
       </div>
-    </header>
-    <main id="app">
-      <section class="hero" id="home" aria-label="Lilian Portfolio">
-        <div class="hero-title reveal"><h1 data-pluck-text>LILIAN</h1><p data-pluck-text>PORTFOLIO</p></div>
-        <div class="hero-role reveal"><span data-pluck-text>UI&amp;UX | HMI</span><strong data-pluck-text>AI PRODUCT MANAGER</strong></div>
-        <a class="cover-scroll" href="#about" data-section-link><span data-i18n="hero.scroll">向下浏览</span><span aria-hidden="true">↓</span></a>
-      </section>
-
-      <section class="section about portfolio-about" id="about" aria-labelledby="about-title">
-        <div class="about-masthead reveal">
-          <div><span class="small-name">ABOUT / CV</span><h2 id="about-title">Lilian Zhou <span>周琳</span></h2></div>
-          <a class="text-link resume-link" href="assets/resume/zhoulin-hmi-resume.pdf" download><span data-i18n="about.resume">下载简历 PDF</span><span aria-hidden="true">↓</span></a>
+    </section>
+    <section class="work-section" id="work" aria-labelledby="work-heading">
+      <div class="section-top"><h2 id="work-heading" data-copy="workTitle">项目精选</h2><span class="work-total">11 PROJECTS</span></div>
+      <div class="filter-bar" aria-label="项目筛选"><div class="filters"><button type="button" class="active" data-filter="all" aria-pressed="true" data-copy="filterAll">全部</button><button type="button" data-filter="hmi" aria-pressed="false">HMI & AI</button><button type="button" data-filter="interactive" aria-pressed="false" data-copy="filterInteractive">沉浸与交互</button><button type="button" data-filter="services" aria-pressed="false" data-copy="filterServices">服务与产品</button></div><span id="filter-count" aria-live="polite">11 / 11</span></div>
+      <div id="work-grid" class="work-grid"></div>
+    </section>
+    <section class="about-section" id="about" aria-labelledby="about-heading">
+      <div class="section-index">ABOUT / 01</div>
+      <div class="about-main">
+        <h2 id="about-heading" data-copy="aboutTitle">让复杂的系统，<br>成为清晰的体验。</h2>
+        <div class="about-copy"><p data-copy="aboutP1">我是周琳，交互与体验设计师，毕业于英国皇家艺术学院信息体验设计专业，目前在德赛西威从事智能座舱体验设计。</p><p data-copy="aboutP2">我的工作从用户场景、信息架构和状态设计，延伸到交互原型、UE 文档与设计交付。也使用 AI 辅助工具探索设计到代码的流程，以及生成式 HMI 的可能性。</p></div>
+        <a class="inline-link" href="assets/resume/zhoulin-hmi-resume.pdf" download><span data-copy="resumeLabel">下载简历 PDF</span><span aria-hidden="true">↓</span></a>
+        <div class="background-grid">
+          <div><h3 data-copy="experienceTitle">工作经历</h3><div class="cv-row"><span class="cv-date">2026.08—<span data-copy="present">至今</span></span><div><h4 data-copy="desayName">德赛西威</h4><p data-copy="desayRole">创新体验设计工程师</p></div></div><div class="cv-row"><span class="cv-date">2025.10—2026.07</span><div><h4>ICERED</h4><p data-copy="iceredRole">AI 产品经理</p></div></div><div class="cv-row"><span class="cv-date">2024.04—2024.08</span><div><h4 data-copy="nioName">蔚来汽车</h4><p data-copy="nioRole">服务设计实习生</p></div></div></div>
+          <div><h3 data-copy="educationTitle">教育背景</h3><div class="cv-row"><span class="cv-date">2024—2025</span><div><h4 data-copy="rcaName">英国皇家艺术学院</h4><p data-copy="rcaDegree">信息体验设计 · 硕士</p></div></div><div class="cv-row"><span class="cv-date">2020—2024</span><div><h4 data-copy="suesName">上海工程技术大学</h4><p data-copy="suesDegree">艺术与科技 · 学士</p></div></div><p class="language-note" data-copy="languages">普通话 / 英语可作为工作语言</p></div>
         </div>
-        <div class="about-layout">
-          <div class="about-introduction">
-            <div class="profile-copy reveal">
-              <h3 class="profile-direction"><span data-i18n="about.direction1">智能座舱 HMI 交互设计</span><span data-i18n="about.direction2">AI 产品与交互体验</span></h3>
-              <p class="profile-lead" data-i18n="about.p2">我专注于智能座舱 HMI 交互设计，把复杂的功能和用户任务，梳理成清晰的流程、界面与反馈。</p>
-              <p data-i18n="about.p4">从场景分析、信息架构与状态设计，到可操作原型、UE 文档和交付验证，我关注设计如何被实现，也使用 AI 辅助工具探索设计转前端与生成式 HMI。</p>
-            </div>
-            <div class="capability-notes reveal">
-              <h3 class="cv-label" data-i18n="about.focusLabel">能力与关注</h3>
-              <dl>
-                <div><dt data-i18n="about.focus1Title">交互逻辑与体验交付</dt><dd data-i18n="about.focus1Copy">任务流程、状态与异常设计，延伸到界面适配、设计文档与评审走查。</dd></div>
-                <div><dt data-i18n="about.focus2Title">AI 辅助原型与生成式 HMI</dt><dd data-i18n="about.focus2Copy">设计转前端与原型调试；围绕风格规则、组件复用和质量标准探索生成式设计。</dd></div>
-                <div><dt data-i18n="about.focus3Title">产品需求与协作</dt><dd data-i18n="about.focus3Copy">需求拆解、优先级判断、版本管理与测试验收，以及英文跨团队沟通。</dd></div>
-              </dl>
-            </div>
-          </div>
-          <div class="cv-column">
-            <section class="cv-block reveal" aria-labelledby="cv-experience-title">
-              <h3 class="cv-label" id="cv-experience-title" data-i18n="about.workLabel">工作经历</h3>
-              <ol class="cv-entries">
-                <li><a class="cv-entry" href="experience.html?slug=desay-sv"><time data-i18n="about.workDate0">2026.08—至今</time><span class="cv-entry-copy"><span class="cv-entry-name" data-i18n="about.company0">德赛西威</span><span class="cv-entry-role" data-i18n="about.role0">创新体验设计工程师</span><span class="cv-entry-description" data-i18n="about.workDesc0">座舱交互、界面适配、AI 界面优化与生成式 HMI 方案设计。</span></span><span class="row-arrow" aria-hidden="true">↗</span></a></li>
-                <li><a class="cv-entry" href="work/icered/"><time data-i18n="about.workDate1">2025.10—2026.07</time><span class="cv-entry-copy"><span class="cv-entry-name" data-i18n="about.company1">ICERED</span><span class="cv-entry-role" data-i18n="about.role1">AI 产品经理</span><span class="cv-entry-description" data-i18n="about.workDesc1">AI 交互、设计转前端、英文跨团队协作与产品迭代。</span></span><span class="row-arrow" aria-hidden="true">↗</span></a></li>
-                <li><a class="cv-entry" href="experience.html?slug=nio"><time data-i18n="about.workDate2">2024.04—2024.08</time><span class="cv-entry-copy"><span class="cv-entry-name" data-i18n="about.company2">蔚来汽车</span><span class="cv-entry-role" data-i18n="about.role2">服务设计实习生</span><span class="cv-entry-description" data-i18n="about.workDesc2">车辆年检服务数字化、App 流程与服务蓝图。</span></span><span class="row-arrow" aria-hidden="true">↗</span></a></li>
-              </ol>
-            </section>
-            <section class="cv-block reveal" aria-labelledby="cv-education-title">
-              <h3 class="cv-label" id="cv-education-title" data-i18n="about.educationLabel">教育背景</h3>
-              <ol class="cv-entries">
-                <li class="cv-entry"><time>2024—2025</time><span class="cv-entry-copy"><span class="cv-entry-name" data-i18n="about.edu1School">英国皇家艺术学院</span><span class="cv-entry-role" data-i18n="about.edu1Degree">信息体验设计硕士</span></span></li>
-                <li class="cv-entry"><time>2020—2024</time><span class="cv-entry-copy"><span class="cv-entry-name" data-i18n="about.edu2School">上海工程技术大学</span><span class="cv-entry-role" data-i18n="about.edu2Degree">艺术与科技学士</span></span></li>
-              </ol>
-            </section>
-            <div class="cv-language reveal"><span class="cv-label" data-i18n="about.languageLabel">语言</span><p data-i18n="about.languages">普通话 · 英语可作为工作语言</p></div>
-          </div>
-        </div>
-        <a class="section-next" href="#project" data-section-link><span data-i18n="about.next">继续浏览作品</span><span aria-hidden="true">↓</span></a>
-      </section>
-
-      <section class="section portfolio-projects" id="project" aria-labelledby="project-title">
-        <div class="section-heading reveal"><span class="small-name">SELECTED WORKS</span><h2 id="project-title">PROJECT</h2></div>
-        <div class="selected-pair" id="featuredCases"></div>
-      </section>
-
-      <section class="section gallery portfolio-gallery" id="gallery" aria-labelledby="gallery-title">
-        <div class="gallery-head reveal"><div class="section-heading"><span class="small-name">EXPERIMENTS &amp; EXPLORATIONS</span><h2 id="gallery-title">GALLERY</h2></div><div class="gallery-navigation"><span data-i18n="gallery.hint">拖动浏览</span><button type="button" data-gallery-prev aria-label="上一个作品" data-i18n-aria="gallery.previous">←</button><button type="button" data-gallery-next aria-label="下一个作品" data-i18n-aria="gallery.next">→</button></div></div>
-        <div class="gallery-carousel" id="projectGallery" tabindex="0" role="region" aria-label="作品图库，可使用左右方向键浏览" data-i18n-aria="gallery.aria"></div>
-        <details class="project-index"><summary><span data-i18n="project.archive">浏览项目目录</span><span class="index-toggle" aria-hidden="true">+</span></summary><div class="project-list" id="projectList"></div></details>
-      </section>
-
-      <section class="section portfolio-contact" id="contact" aria-labelledby="contact-title"><div class="section-heading"><span class="small-name" data-i18n="contact.kicker">聊聊设计，或打个招呼。</span><h2 id="contact-title">CONTACT</h2></div><div class="contact-copy"><a class="text-link" href="mailto:zhoulin1712@gmail.com">zhoulin1712@gmail.com <span aria-hidden="true">↗</span></a><a href="tel:+8613162331108">+86 131 6233 1108</a></div></section>
-    </main>
-    <footer class="portfolio-footer"><span>© 2026 Lilian Zhou</span><a href="#home" data-i18n="footer.top">返回顶部 ↑</a></footer>
-    <script src="project-data.js?v=portfolio-20261022"></script>
-    <script src="ea01u-data.js?v=portfolio-20261022"></script>
-    <script src="career-projects.js?v=portfolio-20261022"></script>
-    <script src="script.js?v=about-cv-20261022"></script>
-    <script src="ambient.js?v=pointer-polish-20261022"></script>
-    <script src="header-behavior.js?v=header-20261022"></script>
-    <script src="click-feedback.js?v=pointer-polish-20261022"></script>
-  </body>
+      </div>
+    </section>
+  </main>
+  <footer id="contact" class="home-footer">
+    <div class="footer-top"><span>CONTACT</span><a href="#top" data-copy="backTop">返回顶部 ↑</a></div>
+    <h2 data-copy="contactTitle">聊聊设计，或打个招呼。</h2>
+    <a class="email-link" href="mailto:zhoulin1712@gmail.com">zhoulin1712@gmail.com <span aria-hidden="true">↗</span></a>
+    <div class="footer-bottom"><span>© 2026 Lilian Zhou</span><span>Interaction, with intention.</span></div>
+  </footer>
+  <script src="asset-map.js"></script><script src="project-data.js"></script>
+  <script src="ea01u-data.js"></script>
+  <script src="career-projects.js"></script>
+  <script src="home.js"></script>
+</body>
 </html>
