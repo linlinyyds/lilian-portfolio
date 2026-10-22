@@ -10,14 +10,15 @@ const lightState = {
   targetY: window.innerHeight * 0.38
 };
 let lightShapeTimer;
-let currentLanguage = window.localStorage.getItem("lilian-language") === "zh" ? "zh" : "en";
+const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
+let currentLanguage = ["zh", "en"].includes(requestedLanguage) ? requestedLanguage : (window.localStorage.getItem("lilian-language") === "en" ? "en" : "zh");
 
 const staticTranslations = {
   en: {
     "experience.loading": "Loading experience...",
     "experience.kicker": "EXPERIENCE",
     "experience.back": "← Back to work",
-    "experience.date": "DATE",
+    "experience.date": "DATE / LOCATION",
     "experience.role": "ROLE",
     "experience.focus": "FOCUS",
     "experience.scope": "SCOPE",
@@ -29,7 +30,7 @@ const staticTranslations = {
     "experience.loading": "正在加载经历...",
     "experience.kicker": "工作经历",
     "experience.back": "← 返回工作经历",
-    "experience.date": "时间",
+    "experience.date": "时间 / 地点",
     "experience.role": "角色",
     "experience.focus": "重点",
     "experience.scope": "职责范围",
@@ -41,147 +42,374 @@ const staticTranslations = {
 
 const experiences = [
   {
-    slug: "icered",
-    company: "ICERED",
-    date: "2025 - Present",
-    role: "AI Product Manager · Interaction Experience",
-    summary: "AI social product, conversational interaction, design-to-code and product delivery.",
-    focus: ["AI social product", "Conversational interaction", "Design-to-code", "Product delivery"],
-    scopeTitle: "From conversational interaction to product delivery",
-    scope: "The work connects user scenarios, AI conversation flows and product execution. It focuses on shaping AI social product interactions, clarifying product requirements and moving design concepts toward buildable delivery.",
-    caseStudy: {
-      heroTitle: "Making AI social interaction understandable",
-      heroLines: ["Making AI social", "interaction", "understandable"],
-      heroHighlightIndex: 1,
-      subtitle: "Designing chat, AI assistant and virtual users for cross-border users — where clarity of system state matters more than raw intelligence.",
-      tags: ["AI Product", "Interaction Design", "Vibe Coding", "Pre-launch System"],
-      summaryLabels: ["Product Type", "Scope", "Scale", "Tracking"],
-      summaryCards: [
-        "AI Social",
-        "Chat + AI Assistant + Virtual Users",
-        "~10 Frontend Pages",
-        "~50 GitHub Issues"
+    "slug": "desay-sv",
+    "company": "Desay SV",
+    "date": "2026.08 – Present",
+    "location": "Guangdong, China",
+    "role": "Innovation Experience Design Engineer · Technical R&D Team",
+    "summary": "Automotive HMI interaction and delivery, interface adaptation, and generative HMI application planning.",
+    "focus": [
+      "HMI interaction",
+      "UE specifications and delivery",
+      "Generative HMI",
+      "AI cockpit UI"
+    ],
+    "scopeTitle": "Connecting HMI interaction delivery with generative design workflows",
+    "scope": "My work spans vehicle and two-wheeler interaction design, requirements reviews, UE documentation and version delivery. Alongside project delivery, I lead application-solution and implementation-path planning for generative HMI.",
+    "sections": [
+      {
+        "title": "Multi-brand HMI interaction and UE documentation",
+        "body": "Participate in vehicle and two-wheeler projects, mapping user tasks, feature flows, page transitions and state feedback. Produce and maintain UE documents to support design reviews and version delivery."
+      },
+      {
+        "title": "Requirements, boundaries and version delivery",
+        "body": "Participate in requirements and development reviews, handle interaction changes, project handovers and document maintenance. Clarify cross-page logic and exception flows, and follow review feedback through documentation updates."
+      },
+      {
+        "title": "Generative HMI application planning",
+        "body": "Lead application-solution and implementation-path planning. Explore how multimodal style understanding, reusable component templates and interface generation can work together, and define prototype tasks and quality criteria for multi-page consistency, local editing and high-resolution output."
+      },
+      {
+        "title": "Interface adaptation and AI cockpit UI",
+        "body": "Adapt layouts, component proportions and information hierarchy to screen specifications and existing design rules. Support AI cockpit UI iterations through visual checks, component presentation and detail refinement."
+      },
+      {
+        "title": "Scenario research",
+        "body": "Help organise the experience-scenario library by category, user task and trigger, providing scenario inputs for cockpit concepts and generative HMI research."
+      }
+    ],
+    "zh": {
+      "company": "德赛西威",
+      "date": "2026.08 – 至今",
+      "location": "广东",
+      "role": "创新体验设计工程师 · 技术研发组",
+      "summary": "智能座舱交互与交付、界面适配，以及生成式 HMI 应用方案与实施路径设计。",
+      "focus": [
+        "HMI 交互",
+        "UE 规范与交付",
+        "生成式 HMI",
+        "AI 座舱 UI"
       ],
-      contextTitle: "Context",
-      contextLead: "ICERED is an AI social product for cross-border users.",
-      context: "The challenge is not features, but clarity of AI interaction — users must understand what the system is doing at every moment. Ambiguity in AI behavior erodes trust faster than any bug.",
-      roleTitle: "My Role",
-      roleItems: [
-        "Product framing across modules",
-        "AI interaction design",
-        "Figma to code with Claude and Codex",
-        "Testing and GitHub issue loop"
+      "scopeTitle": "连接座舱交互交付与生成式设计流程",
+      "scope": "参与车机与二轮车交互设计、需求评审、UE 文档和版本交付；同时主导生成式 HMI 应用方案与实施路径设计，将交互规范、组件模板和原型验证任务纳入技术方案。",
+      "sections": [
+        {
+          "title": "多品牌 HMI 交互与 UE 文档",
+          "body": "参与多品牌车机及二轮车项目，梳理用户任务、功能流程、页面跳转与状态反馈，输出和维护 UE 设计文档，支持设计评审与版本交付。"
+        },
+        {
+          "title": "需求边界与版本交付",
+          "body": "参与需求与开发评审，承接需求变更、交互方案调整、项目交接和版本维护。梳理跨页面逻辑、交互边界与异常流程，跟进评审意见并同步文档。"
+        },
+        {
+          "title": "生成式 HMI 应用方案",
+          "body": "主导应用方案与实施路径设计，探索多模态风格理解、组件模板复用与界面生成的协同流程。围绕多页一致性、局部修改与高清输出，梳理技术路线、原型验证任务和质量评估标准。"
+        },
+        {
+          "title": "界面适配与 AI 座舱 UI",
+          "body": "依据屏幕规格和既有设计规范调整布局、组件比例与信息层级，进行跨分辨率适配与视觉校验；参与 AI 座舱 UI 优化，完善组件呈现和视觉细节。"
+        },
+        {
+          "title": "用户体验场景研究",
+          "body": "协同梳理体验场景库的分类、用户任务与触发条件，为座舱创新方案和生成式 HMI 研究提供场景依据。"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "icered",
+    "company": "ICERED",
+    "date": "2025.10 – 2026.07",
+    "location": "Shanghai, China",
+    "role": "AI Product Manager",
+    "summary": "AI social product for overseas users: requirements, interaction prototypes, AI-assisted frontend implementation and pre-launch testing.",
+    "focus": [
+      "AI social product",
+      "Interaction design",
+      "AI-assisted development",
+      "Requirements and acceptance"
+    ],
+    "scopeTitle": "From user feedback to testable product delivery",
+    "scope": "Participated in iterations across social, chat, AI assistant and virtual-user modules. Translated feedback into requirements, user flows and acceptance criteria, and supported prioritisation, English-language collaboration and version delivery.",
+    "caseStudy": {
+      "heroTitle": "From AI product requirements to testable interactions",
+      "heroLines": [
+        "AI product",
+        "interaction",
+        "and delivery"
       ],
-      focusTitle: "Focus Areas",
-      focusAreas: [
-        "AI response states: loading / fail / retry",
-        "Chat continuity",
-        "Virtual user behavior",
-        "System feedback clarity"
+      "heroHighlightIndex": 1,
+      "subtitle": "AI Product Manager at ICERED, working across requirements, interaction prototypes and pre-launch testing for an AI social app serving overseas users.",
+      "tags": [
+        "AI Product",
+        "Interaction Design",
+        "AI-assisted Development",
+        "English Collaboration"
       ],
-      breakdownTitle: "Key Work Breakdown",
-      breakdown: [
-        { title: "AI State Design", icon: "↯", text: "Make AI behavior visible — loading, fail and retry states that users can read at a glance." },
-        { title: "Chat System", icon: "▱", text: "Continuous interaction flow ensuring message context persists across sessions and virtual user turns." },
-        { title: "Design-to-Code", icon: "↻", text: "Figma to Claude / Codex pipeline for faster prototyping with consistent component output." },
-        { title: "Testing Loop", icon: "⌘", text: "GitHub issue tracking system tied to a 3-day testing cycle covering UX gaps and backend edge cases." }
+      "summaryLabels": [
+        "Period / Location",
+        "Role",
+        "Product Scope",
+        "Delivery Scope"
       ],
-      workflowTitle: "AI + Vibe Coding Flow",
-      workflow: ["User signal", "Design", "Prototype", "AI Code", "Test", "Issue", "Iterate"],
-      metricsTitle: "Impact Metrics",
-      metrics: [
-        { value: "~10", label: "Frontend pages" },
-        { value: "~50", label: "GitHub issues" },
-        { value: "5", label: "Backend issues supported" },
-        { value: "3-day", label: "Testing cycle" }
+      "summaryCards": [
+        "2025.10 – 2026.07 · Shanghai",
+        "AI Product Manager",
+        "Social · Chat · AI Assistant · Virtual Users",
+        "Requirements · Prototypes · Testing · Acceptance"
       ],
-      insightTitle: "Key Insight",
-      insightLines: ["AI experience is not", "intelligence.", "It is clarity of system state."],
-      insightHighlightIndex: 1,
-      insight: "AI experience is not intelligence. It is clarity of system state.",
-      previousLabel: "← NIO Case Study",
-      backLabel: "Back to Work"
+      "contextTitle": "Context",
+      "contextLead": "An AI social app for overseas users.",
+      "context": "The work covered four product modules: social, chat, AI assistant and virtual users. My focus connected user feedback, interaction requirements, testable frontend implementations and traceable issue follow-up.",
+      "roleTitle": "My Responsibilities",
+      "roleItems": [
+        "Translate feedback into requirements, user flows and acceptance criteria",
+        "Support prioritisation by impact, development cost and release risk",
+        "Turn Figma designs into code drafts and testable implementations using Claude Code, Codex and Cursor",
+        "Align scope, release cadence and delivery risks with overseas market and engineering teams in English"
+      ],
+      "focusTitle": "Interaction and Delivery Focus",
+      "focusAreas": [
+        "User flows across four modules",
+        "Interaction states and expected behaviour",
+        "Frontend prototype checks",
+        "Issue reproduction and acceptance criteria"
+      ],
+      "breakdownTitle": "Key Work",
+      "breakdown": [
+        {
+          "title": "Requirements and Priorities",
+          "icon": "↯",
+          "text": "Translate user feedback into feature requirements and flows, define acceptance criteria, and participate in priority decisions based on scope, effort and release risk."
+        },
+        {
+          "title": "Design to Testable Frontend",
+          "icon": "▱",
+          "text": "Use Claude Code, Codex and Cursor to produce code drafts and testable implementations for around 10 frontend pages. Break down tasks, organise context and iterate through debugging and interaction checks."
+        },
+        {
+          "title": "English-language Collaboration",
+          "icon": "↻",
+          "text": "Work with overseas market and engineering teams in English to clarify requirements, review designs and align feature scope, release cadence and delivery risks."
+        },
+        {
+          "title": "Pre-launch Testing and Acceptance",
+          "icon": "⌘",
+          "text": "Participate in pre-launch test rounds roughly every three days. Organise and follow up close to 50 GitHub issues with reproduction steps, priorities, expected results and acceptance criteria, tracking them through fixes and acceptance checks."
+        }
+      ],
+      "workflowTitle": "Requirements to Acceptance",
+      "workflow": [
+        "Feedback",
+        "Requirements",
+        "Priority",
+        "Prototype",
+        "Test",
+        "Issue",
+        "Acceptance"
+      ],
+      "metricsTitle": "Delivery Scale and Iteration",
+      "metrics": [
+        {
+          "value": "~10",
+          "label": "Frontend pages: code drafts and testable implementations"
+        },
+        {
+          "value": "~50",
+          "label": "GitHub issues organised and followed up"
+        },
+        {
+          "value": "~3",
+          "label": "Days between pre-launch test rounds attended"
+        },
+        {
+          "value": "4",
+          "label": "Product modules covered"
+        }
+      ],
+      "insightTitle": "Working Principle",
+      "insightLines": [
+        "Define the behaviour.",
+        "Make it testable.",
+        "Follow it through acceptance."
+      ],
+      "insightHighlightIndex": 1,
+      "insight": "Define the behaviour. Make it testable. Follow it through acceptance.",
+      "previousLabel": "← NIO Experience",
+      "backLabel": "Back to Work"
     },
-    zh: {
-      company: "ICERED",
-      date: "2025 - 至今",
-      role: "AI 产品经理 · 交互体验",
-      summary: "AI 社交产品、对话式交互、Design-to-code 与产品交付。",
-      focus: ["AI 社交产品", "对话式交互", "Design-to-code", "产品交付"],
-      scopeTitle: "从对话交互到产品落地",
-      scope: "这段工作连接用户场景、AI 对话流程与产品执行，重点包括 AI 社交产品交互设计、产品需求梳理，以及将设计概念推进到可开发和可交付的阶段。",
-      caseStudy: {
-        heroTitle: "让 AI 社交交互更容易被理解",
-        heroLines: ["让 AI 社交", "交互", "更容易被理解"],
-        heroHighlightIndex: 1,
-        subtitle: "为跨境用户设计聊天、AI 助手和虚拟用户体验 — 系统状态的清晰度比原始智能更重要。",
-        tags: ["AI 产品", "交互设计", "Vibe Coding", "上线前系统"],
-        summaryLabels: ["产品类型", "范围", "规模", "追踪"],
-        summaryCards: [
-          "AI 社交产品",
-          "聊天 + AI 助手 + 虚拟用户",
-          "约 10 个前端页面",
-          "约 50 个 GitHub Issues"
+    "zh": {
+      "company": "ICERED",
+      "date": "2025.10 – 2026.07",
+      "location": "上海",
+      "role": "AI 产品经理",
+      "summary": "面向海外用户的 AI 社交产品，覆盖需求、交互原型、AI 辅助前端实现与上线前测试。",
+      "focus": [
+        "AI 社交产品",
+        "交互设计",
+        "AI 辅助研发",
+        "需求与验收"
+      ],
+      "scopeTitle": "从用户反馈到可测试的产品交付",
+      "scope": "参与社交、聊天、AI 助手、虚拟用户四模块迭代，将反馈转化为需求、用户流程和验收标准，协同优先级判断、英文跨团队沟通与版本交付。",
+      "caseStudy": {
+        "heroTitle": "从 AI 产品需求到可测试的交互实现",
+        "heroLines": [
+          "AI 产品需求",
+          "交互实现",
+          "与交付"
         ],
-        contextTitle: "项目背景",
-        contextLead: "ICERED 是一个面向跨境用户的 AI 社交产品。",
-        context: "真正的挑战不是功能数量，而是 AI 交互的清晰度：用户需要在每个时刻理解系统正在做什么。AI 行为的模糊感会比任何 bug 更快消耗信任。",
-        roleTitle: "我的职责",
-        roleItems: [
-          "跨模块产品框架梳理",
-          "AI 交互体验设计",
-          "Figma 到代码，结合 Claude 与 Codex",
-          "测试与 GitHub issue 迭代闭环"
+        "heroHighlightIndex": 1,
+        "subtitle": "在 ICERED 担任 AI 产品经理，为面向海外用户的 AI 社交 App 参与需求梳理、交互原型与上线前测试。",
+        "tags": [
+          "AI 产品",
+          "交互设计",
+          "AI 辅助研发",
+          "英文跨团队协作"
         ],
-        focusTitle: "设计重点",
-        focusAreas: [
-          "AI 响应状态：加载 / 失败 / 重试",
-          "聊天连续性",
-          "虚拟用户行为",
-          "系统反馈清晰度"
+        "summaryLabels": [
+          "时间 / 地点",
+          "角色",
+          "产品范围",
+          "交付范围"
         ],
-        breakdownTitle: "关键工作拆解",
-        breakdown: [
-          { title: "AI 状态设计", icon: "↯", text: "让加载、失败和重试状态可见，用户能一眼理解 AI 正在做什么。" },
-          { title: "聊天系统", icon: "▱", text: "梳理连续交互流程，让消息上下文跨会话和虚拟用户轮次保持稳定。" },
-          { title: "Design-to-code", icon: "↻", text: "通过 Figma 到 Claude / Codex 的流程，加快原型到前端页面的推进。" },
-          { title: "测试闭环", icon: "⌘", text: "用 GitHub issue 追踪系统覆盖 UX 缺口和后端边界问题。" }
+        "summaryCards": [
+          "2025.10 – 2026.07 · 上海",
+          "AI 产品经理",
+          "社交 · 聊天 · AI 助手 · 虚拟用户",
+          "需求 · 原型 · 测试 · 验收"
         ],
-        workflowTitle: "AI + Vibe Coding 流程",
-        workflow: ["用户信号", "设计", "原型", "AI 编码", "测试", "Issue", "迭代"],
-        metricsTitle: "影响指标",
-        metrics: [
-          { value: "约 10", label: "前端页面" },
-          { value: "约 50", label: "GitHub Issues" },
-          { value: "5", label: "支持后端问题" },
-          { value: "3 天", label: "测试周期" }
+        "contextTitle": "项目背景",
+        "contextLead": "面向海外用户的 AI 社交 App。",
+        "context": "工作覆盖社交、聊天、AI 助手、虚拟用户四个模块，连接用户反馈、交互需求、可测试的前端实现与可追踪的问题跟进。",
+        "roleTitle": "我的职责",
+        "roleItems": [
+          "将用户反馈转化为功能需求、用户流程与验收标准",
+          "依据影响范围、开发成本和上线风险，参与优先级判断",
+          "使用 Claude Code、Codex、Cursor，将 Figma 方案转为代码草稿与可测试实现",
+          "与海外市场和技术团队英文沟通，对齐功能范围、版本节奏和交付风险"
         ],
-        insightTitle: "关键洞察",
-        insightLines: ["AI 体验不是", "智能本身。", "而是系统状态的清晰表达。"],
-        insightHighlightIndex: 1,
-        insight: "AI 体验不是智能本身，而是系统状态的清晰表达。",
-        previousLabel: "← NIO 案例",
-        backLabel: "返回工作经历"
+        "focusTitle": "交互与交付重点",
+        "focusAreas": [
+          "四模块用户流程",
+          "交互状态与预期行为",
+          "前端原型实现走查",
+          "问题复现与验收标准"
+        ],
+        "breakdownTitle": "关键工作",
+        "breakdown": [
+          {
+            "title": "需求与优先级",
+            "icon": "↯",
+            "text": "将用户反馈转化为功能需求与用户流程，明确验收标准，并依据影响范围、开发成本和上线风险参与优先级判断。"
+          },
+          {
+            "title": "设计到可测试前端",
+            "icon": "▱",
+            "text": "运用 Claude Code、Codex、Cursor，将 Figma 方案转为约 10 个前端页面的代码草稿与可测试实现。通过任务拆解、上下文组织与迭代调试，完成交互状态验证和实现走查。"
+          },
+          {
+            "title": "英文跨团队协作",
+            "icon": "↻",
+            "text": "与海外市场及技术团队开展英文沟通，协同需求澄清、设计评审和研发对接，对齐功能范围、版本节奏与交付风险。"
+          },
+          {
+            "title": "上线前测试与验收",
+            "icon": "⌘",
+            "text": "约每 3 天参与一轮上线前测试，累计整理并跟进近 50 个 GitHub issue，明确复现路径、优先级、预期结果与验收标准，跟进问题修复和验收确认。"
+          }
+        ],
+        "workflowTitle": "从需求到验收",
+        "workflow": [
+          "用户反馈",
+          "需求拆解",
+          "优先级",
+          "原型实现",
+          "测试",
+          "Issue",
+          "验收"
+        ],
+        "metricsTitle": "交付规模与迭代",
+        "metrics": [
+          {
+            "value": "约10",
+            "label": "个前端页面的代码草稿与可测试实现"
+          },
+          {
+            "value": "近50",
+            "label": "个 GitHub issue 整理并跟进"
+          },
+          {
+            "value": "约3",
+            "label": "天参与一轮上线前测试"
+          },
+          {
+            "value": "4",
+            "label": "个业务模块"
+          }
+        ],
+        "insightTitle": "工作原则",
+        "insightLines": [
+          "明确交互行为。",
+          "形成可测试实现。",
+          "跟进至验收确认。"
+        ],
+        "insightHighlightIndex": 1,
+        "insight": "明确交互行为，形成可测试实现，跟进至验收确认。",
+        "previousLabel": "← 蔚来工作经历",
+        "backLabel": "返回工作经历"
       }
     }
   },
   {
-    slug: "nio",
-    company: "NIO",
-    date: "2024",
-    role: "Service Design Intern · UX",
-    summary: "Vehicle service digitalisation, service blueprint and app experience.",
-    focus: ["Vehicle service digitalisation", "Service blueprint", "App experience", "UX support"],
-    scopeTitle: "Service design for digital vehicle-service touchpoints",
-    scope: "The internship focused on vehicle-service digitalisation and the user experience around service touchpoints. The work included understanding service flows, mapping blueprint logic and supporting app-side experience design.",
-    zh: {
-      company: "蔚来汽车",
-      date: "2024",
-      role: "服务设计实习生 · UX",
-      summary: "车辆服务数字化、服务蓝图与 App 体验。",
-      focus: ["车辆服务数字化", "服务蓝图", "App 体验", "UX 支持"],
-      scopeTitle: "面向车辆服务触点的数字化服务设计",
-      scope: "这段实习聚焦车辆服务数字化和服务触点中的用户体验，包括理解服务流程、梳理服务蓝图逻辑，并支持 App 端体验设计。"
+    "slug": "nio",
+    "company": "NIO",
+    "date": "2024.04 – 2024.08",
+    "location": "Shanghai, China",
+    "role": "Service Design Intern · UX Design",
+    "summary": "Vehicle annual-inspection service digitalisation: user research, service flows and app experience.",
+    "focus": [
+      "User research",
+      "Service blueprint",
+      "Information flow",
+      "States and exceptions"
+    ],
+    "scopeTitle": "Connecting offline service procedures with online user flows",
+    "scope": "Participated in the digitalisation of vehicle annual-inspection services, focusing on booking, document submission, progress tracking and vehicle return. Supported the translation of offline SOPs into app-side product flows.",
+    "sections": [
+      {
+        "title": "User journey and service blueprint",
+        "body": "Participated in user research, journey mapping and service-blueprint work across the four service touchpoints, considering how vehicle owners, customer support, suppliers and inspection agencies exchange information."
+      },
+      {
+        "title": "Online flows, states and exceptions",
+        "body": "Supported information architecture, field specifications, state feedback and exception-flow design. Worked with product, customer support, suppliers and testing teams on walkthroughs and validation, supporting standardised information flows and online service delivery."
+      }
+    ],
+    "zh": {
+      "company": "蔚来汽车",
+      "date": "2024.04 – 2024.08",
+      "location": "上海",
+      "role": "服务设计实习生 · UX 设计",
+      "summary": "车辆年检服务数字化，涉及用户研究、服务流程与 App 体验。",
+      "focus": [
+        "用户研究",
+        "服务蓝图",
+        "信息流",
+        "状态与异常"
+      ],
+      "scopeTitle": "连接线下服务 SOP 与线上用户流程",
+      "scope": "参与车辆年检服务数字化，围绕预约、资料提交、进度追踪与车辆归还四个节点，支持将线下 SOP 转化为 App 端产品流程。",
+      "sections": [
+        {
+          "title": "用户旅程与服务蓝图",
+          "body": "参与用户研究、用户旅程与服务蓝图梳理，关注车主、客服、供应商及检测机构在四个服务节点中的协作与信息传递。"
+        },
+        {
+          "title": "线上流程、状态与异常",
+          "body": "参与信息架构、字段规范、状态反馈与异常流程设计，与产品、客服、供应商和测试团队完成走查与验证，支持多角色信息流标准化和年检流程线上化落地。"
+        }
+      ]
     }
   }
 ];
@@ -229,6 +457,7 @@ function updateLanguageToggle() {
 function applyStaticTranslations() {
   document.documentElement.lang = currentLanguage === "zh" ? "zh-CN" : "en";
   document.body.dataset.lang = currentLanguage;
+  window.localStorage.setItem("lilian-language", currentLanguage);
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const text = t(element.dataset.i18n);
@@ -377,6 +606,11 @@ function renderCaseStudy(copy) {
 
 function renderExperience(experience) {
   const copy = getExperienceCopy(experience);
+  document.title = currentLanguage === "zh"
+    ? `${copy.company} · 周琳 HMI 作品集`
+    : `${copy.company} · Lilian HMI Portfolio`;
+  const description = document.querySelector('meta[name="description"]');
+  if (description) description.setAttribute("content", copy.summary);
 
   if (copy.caseStudy) {
     renderCaseStudy(copy);
@@ -398,7 +632,7 @@ function renderExperience(experience) {
     <section class="experience-overview" aria-label="Experience overview">
       <div>
         <span>${t("experience.date")}</span>
-        <p>${copy.date}</p>
+        <p>${copy.date}${copy.location ? `<br>${copy.location}` : ""}</p>
       </div>
       <div>
         <span>${t("experience.role")}</span>
@@ -417,6 +651,15 @@ function renderExperience(experience) {
         <p>${copy.scope}</p>
       </div>
     </section>
+    ${(copy.sections || []).map((section, index) => `
+      <section class="experience-story">
+        <p class="detail-label">${String(index + 1).padStart(2, "0")}</p>
+        <div>
+          <h2>${section.title}</h2>
+          <p>${section.body}</p>
+        </div>
+      </section>
+    `).join("")}
   `;
 }
 

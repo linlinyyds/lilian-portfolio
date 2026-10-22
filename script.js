@@ -26,7 +26,7 @@ let pluckFrame = 0;
 let pluckPointer = null;
 let rippleCount = 0;
 let rippleFadeTimer;
-let currentLanguage = window.localStorage.getItem("lilian-language") === "zh" ? "zh" : "en";
+let currentLanguage = ["zh", "en"].includes(urlParams.get("lang")) ? urlParams.get("lang") : (window.localStorage.getItem("lilian-language") === "en" ? "en" : "zh");
 let galleryAutoFrame = 0;
 let galleryAutoPosition = 0;
 let galleryAutoPaused = false;
@@ -42,87 +42,161 @@ let galleryDragMoved = false;
 let gallerySuppressClick = false;
 
 const staticTranslations = {
-  en: {
+  "en": {
     "nav.home": "Home",
-    "nav.about": "About",
-    "nav.project": "Project",
-    "nav.gallery": "Gallery",
-    "hero.name": "LILIAN",
-    "hero.portfolio": "PORTFOLIO",
-    "hero.roleLine": "UI&UX | HMI",
-    "hero.role": "AI PRODUCT MANAGER",
-    "about.kicker": "LILIAN",
-    "about.title": "ABOUT",
+    "nav.project": "Selected Work",
+    "nav.capabilities": "Practice",
+    "nav.about": "Experience",
+    "nav.gallery": "Explorations",
+    "nav.contact": "Contact",
+    "hero.heading1": "Automotive UX",
+    "hero.heading2": "& HMI Design",
+    "hero.description": "From user scenarios and interaction rules to prototype validation — designing clear, understandable cockpit and AI experiences.",
+    "hero.viewProjects": "Explore selected work",
+    "hero.downloadResume": "Résumé PDF · 中文",
+    "hero.current": "Desay SV · Innovation Experience Design Engineer",
+    "hero.education": "Royal College of Art · MA Information Experience Design",
+    "hero.location": "Seeking opportunities in Shanghai",
+    "hero.previewAria": "Explore the EA01U project",
+    "hero.previewAlt": "EA01U AI cockpit Launcher design",
+    "hero.previewText": "AI cockpit · HMI",
+    "hero.previewNote": "Scenarios · Information hierarchy · Conversation states · Feedback",
+    "project.title": "Selected work",
+    "project.intro": "Cockpit interaction at the center, connected with AI products, prototyping and automotive services.",
+    "project.archive": "Browse additional projects",
+    "project.diagram": "Interaction flow illustration",
+    "project.role": "My contribution",
+    "research.status": "R&D focus · In progress",
+    "research.title": "Generative HMI design research",
+    "research.description": "Planning an application workflow that connects style rules, component templates and interface generation, with a focus on consistency, local edits and quality evaluation.",
+    "research.link": "Explore the approach and research scope",
+    "research.imageAlt": "Illustration of the proposed generative HMI workflow",
+    "capabilities.title": "From scenarios to delivery",
+    "capabilities.intro": "Working across interaction design, AI-assisted prototyping and product collaboration.",
+    "capabilities.hmiTitle": "HMI interaction & delivery",
+    "capabilities.hmiText": "User tasks, information architecture, interface states and exceptions — through UE documentation, UI adaptation, reviews and version delivery.",
+    "capabilities.hmiLink": "Experience at Desay SV ↗",
+    "capabilities.aiTitle": "AI-assisted development",
+    "capabilities.aiText": "Using Claude Code, Codex and Cursor to break down tasks, turn designs into frontend drafts and testable implementations, then debug and verify interaction states.",
+    "capabilities.aiLink": "Design & validation at ICERED ↗",
+    "capabilities.generativeTitle": "Generative HMI planning",
+    "capabilities.generativeText": "Leading application and implementation planning across style rules, component templates, multi-page consistency, local editing and quality evaluation.",
+    "capabilities.generativeLink": "Explore the R&D focus ↗",
+    "capabilities.collaborationTitle": "Product & global collaboration",
+    "capabilities.collaborationText": "Requirements, prioritization, version planning and acceptance testing; aligning scope, schedules and delivery risks with overseas market and engineering teams in English.",
+    "capabilities.collaborationLink": "Explore product collaboration ↗",
+    "about.title": "Experience & about",
+    "about.lead": "Art and technology foundations. Automotive and AI product practice.",
     "about.profileLabel": "( Profile )",
     "about.p1": "Hello, I am Lilian Zhou.",
-    "about.p2": "I am a UX / UI / interaction experience designer with a background across art technology, information experience and digital products. Based in Shanghai, I work on social products, AI assistants and web experiences, with additional experience in automotive services and intelligent cockpit projects.",
-    "about.p3": "I like turning complex problems into experiences that feel natural.",
-    "about.p4": "I start from user scenarios, information architecture and interaction prototypes, then carry ideas through testing and development. I also use AI tools to validate design concepts quickly. For me, good design is not only visual: it should be clear, reliable and genuinely useful.",
-    "about.p5": "I care about responsive, emotionally aware design.",
-    "about.p6": "Whether it is a conversation, a button, sound, light or space, I want systems to give the right feedback at the right moment, making the relationship between people and products feel more natural and warmer.",
+    "about.p2": "I am an automotive HMI interaction designer with an MA in Information Experience Design from the Royal College of Art. At Desay SV, I work on cockpit interaction, AI cockpit interface refinement and application planning for generative HMI.",
+    "about.p4": "My work moves from user scenarios, task flows and information architecture to states and exceptions, UE documentation, UI adaptation and delivery validation. Previously, I worked on an AI social product at ICERED and vehicle-inspection service digitalization at NIO.",
+    "about.p6": "I focus on driving-information priorities, understandable system feedback and natural interaction between people and intelligent products.",
+    "about.workLabel": "( Experience )",
+    "about.workDate0": "2026.08—Present",
+    "about.work0": "Desay SV | Innovation Experience Design Engineer",
+    "about.workRole0": "Cockpit interaction · Technology R&D team · Guangdong",
+    "about.workDesc0": "Multi-brand UE delivery, UI adaptation, AI cockpit refinement and generative HMI application planning.",
+    "about.workDate1": "2025.10—2026.07",
+    "about.work1": "ICERED | AI Product Manager",
+    "about.workRole1": "AI social product for overseas users · Shanghai",
+    "about.workDesc1": "AI interaction, design-to-frontend implementation, collaboration in English, requirements and version planning.",
+    "about.workDate2": "2024.04—2024.08",
+    "about.work2": "NIO | Service Design Intern",
+    "about.workRole2": "UX & service design · Shanghai",
+    "about.workDesc2": "Vehicle-inspection service digitalization, service blueprinting, online flows, states and exceptions.",
+    "about.workCta": "Explore the work ↗",
     "about.educationLabel": "( Education )",
     "about.edu1School": "Royal College of Art",
     "about.edu1Degree": "MA Information Experience Design",
     "about.edu2School": "Shanghai University of Engineering Science",
     "about.edu2Degree": "BA Art and Technology",
-    "about.workLabel": "( Work )",
-    "about.workDate1": "2025 - Present",
-    "about.work1": "ICERED | AI Product Manager",
-    "about.workRole1": "AI Product Manager · Interaction Experience",
-    "about.workDesc1": "AI social product, conversational interaction, design-to-code and product delivery.",
-    "about.workAria1": "View ICERED experience",
-    "about.workDate2": "2024",
-    "about.work2": "NIO | Service Designer",
-    "about.workRole2": "Service Design Intern · UX",
-    "about.workDesc2": "Vehicle service digitalisation, service blueprint and app experience.",
-    "about.workAria2": "View NIO experience",
-    "about.workCta": "View experience ↗",
-    "about.contactLabel": "( Contact )",
-    "project.kicker": "SELECTED WORKS",
-    "project.title": "PROJECT",
-    "gallery.kicker": "VISUAL ARCHIVE",
-    "gallery.title": "GALLERY"
+    "gallery.title": "Further explorations",
+    "gallery.intro": "Ongoing explorations in immersive experience, service systems and digital products.",
+    "contact.title": "Let’s talk cockpit & AI experiences",
+    "contact.description": "Exploring HMI, automotive UX and AI experience design opportunities in Shanghai.",
+    "contact.resume": "Download résumé PDF · 中文 ↓",
+    "footer.top": "Back to top ↑",
+    "meta.title": "Lilian Zhou | Automotive UX & HMI Design",
+    "meta.description": "Lilian Zhou — automotive HMI interaction design, generative HMI application planning and AI-assisted prototyping. Royal College of Art graduate with experience at Desay SV, ICERED and NIO."
   },
-  zh: {
+  "zh": {
     "nav.home": "首页",
-    "nav.about": "关于",
-    "nav.project": "项目",
-    "nav.gallery": "画廊",
-    "hero.name": "LILIAN",
-    "hero.portfolio": "作品集",
-    "hero.roleLine": "UI&UX｜HMI",
-    "hero.role": "AI 产品经理",
-    "about.kicker": "周琳",
-    "about.title": "关于",
+    "nav.project": "精选项目",
+    "nav.capabilities": "专业能力",
+    "nav.about": "经历与关于",
+    "nav.gallery": "更多探索",
+    "nav.contact": "联系",
+    "hero.heading1": "智能座舱",
+    "hero.heading2": "HMI 交互设计",
+    "hero.description": "从用户场景、交互规则到原型验证，设计清晰、可理解的座舱与 AI 体验。",
+    "hero.viewProjects": "查看精选项目",
+    "hero.downloadResume": "下载简历 PDF",
+    "hero.current": "德赛西威 · 创新体验设计工程师",
+    "hero.education": "英国皇家艺术学院 · 信息体验设计硕士",
+    "hero.location": "求职意向：上海",
+    "hero.previewAria": "查看 EA01U 项目",
+    "hero.previewAlt": "EA01U 智能座舱 Launcher 方案",
+    "hero.previewText": "AI 智能座舱 · HMI",
+    "hero.previewNote": "场景 · 信息层级 · 对话状态 · 交互反馈",
+    "project.title": "精选项目",
+    "project.intro": "以座舱交互为主线，连接 AI 产品、原型实现与汽车服务体验。",
+    "project.archive": "浏览补充项目",
+    "project.diagram": "交互流程示意",
+    "project.role": "个人职责",
+    "research.status": "研发专题 · 进行中",
+    "research.title": "生成式 HMI 设计研发",
+    "research.description": "探索风格规则、组件模板与界面生成的协同流程，围绕多页一致性、局部修改和质量评价规划实施路径。",
+    "research.link": "查看技术方案与研发重点",
+    "research.imageAlt": "生成式 HMI 方案流程示意",
+    "capabilities.title": "从场景到交付",
+    "capabilities.intro": "在交互设计、AI 原型验证与产品协作之间推进工作。",
+    "capabilities.hmiTitle": "HMI 交互与交付",
+    "capabilities.hmiText": "用户任务、信息架构、页面状态与异常流程，连接 UE 文档、UI 适配、评审走查和版本交付。",
+    "capabilities.hmiLink": "德赛西威工作实践 ↗",
+    "capabilities.aiTitle": "AI 辅助研发",
+    "capabilities.aiText": "使用 Claude Code、Codex、Cursor 拆解任务，将设计转为前端代码草稿和可测试实现，开展调试与状态验证。",
+    "capabilities.aiLink": "ICERED 设计与验证 ↗",
+    "capabilities.generativeTitle": "生成式 HMI 方案",
+    "capabilities.generativeText": "主导应用方案与实施路径设计，梳理风格规则、组件模板、多页一致性、局部修改及质量评估标准。",
+    "capabilities.generativeLink": "查看研发专题 ↗",
+    "capabilities.collaborationTitle": "产品与国际协作",
+    "capabilities.collaborationText": "需求拆解、优先级判断、版本管理与测试验收；与海外市场和技术团队用英文对齐范围、节奏和交付风险。",
+    "capabilities.collaborationLink": "查看产品协作实践 ↗",
+    "about.title": "经历与关于",
+    "about.lead": "艺术科技背景，汽车与 AI 产品实践。",
     "about.profileLabel": "（个人简介）",
     "about.p1": "你好，我是周琳。",
-    "about.p2": "我是一名 UX / UI / 交互体验设计师，背景横跨艺术科技、信息体验与数字产品。现在在上海参与社会产品、AI 助手和网站体验设计，也做过汽车服务与智能座舱项目。",
-    "about.p3": "我喜欢把复杂的问题，变成自然的体验。",
-    "about.p4": "我会从用户场景、信息架构和交互原型出发，一直推进到测试与开发落地。也会使用 AI 工具快速验证设计想法。对我来说，好的设计不只是好看，更应该清楚、可信，并真正解决问题。",
-    "about.p5": "我喜欢有回应的设计。",
-    "about.p6": "无论是一段对话、一个按钮，还是声音、光线与空间，我都希望系统能在合适的时刻给予恰当反馈，让人与产品之间的交流更自然，也更有温度。",
+    "about.p2": "我是一名智能座舱 HMI 交互设计师，毕业于英国皇家艺术学院信息体验设计专业。目前在德赛西威参与座舱交互、AI 座舱界面优化与生成式 HMI 研发方案设计。",
+    "about.p4": "我的工作从用户场景、任务流程和信息架构出发，延伸到状态与异常设计、UE 文档、界面适配和交付验证。此前在 ICERED 参与海外 AI 社交产品迭代，在蔚来参与车辆年检服务数字化。",
+    "about.p6": "我关注驾驶信息的优先级、系统反馈的可理解性，以及人与智能产品之间自然的交流。",
+    "about.workLabel": "（工作经历）",
+    "about.workDate0": "2026.08—至今",
+    "about.work0": "德赛西威｜创新体验设计工程师",
+    "about.workRole0": "智能座舱交互 · 技术研发组 · 广东",
+    "about.workDesc0": "多品牌 UE 交付、界面适配、AI 座舱优化与生成式 HMI 方案设计。",
+    "about.workDate1": "2025.10—2026.07",
+    "about.work1": "ICERED｜AI 产品经理",
+    "about.workRole1": "海外 AI 社交产品 · 上海",
+    "about.workDesc1": "AI 交互、设计转前端、英文跨团队协作及需求与版本管理。",
+    "about.workDate2": "2024.04—2024.08",
+    "about.work2": "蔚来汽车｜服务设计实习生",
+    "about.workRole2": "UX 与服务设计 · 上海",
+    "about.workDesc2": "车辆年检服务数字化、服务蓝图与线上流程、状态及异常设计。",
+    "about.workCta": "查看工作实践 ↗",
     "about.educationLabel": "（教育背景）",
     "about.edu1School": "英国皇家艺术学院",
     "about.edu1Degree": "信息体验设计硕士",
     "about.edu2School": "上海工程技术大学",
     "about.edu2Degree": "艺术与科技学士",
-    "about.workLabel": "（工作经历）",
-    "about.workDate1": "2025 - 至今",
-    "about.work1": "ICERED｜AI 产品经理",
-    "about.workRole1": "AI 产品经理 · 交互体验",
-    "about.workDesc1": "AI 社交产品、对话式交互、Design-to-code 与产品交付。",
-    "about.workAria1": "查看 ICERED 工作经历",
-    "about.workDate2": "2024",
-    "about.work2": "蔚来汽车｜服务设计师",
-    "about.workRole2": "服务设计实习生 · UX",
-    "about.workDesc2": "车辆服务数字化、服务蓝图与 App 体验。",
-    "about.workAria2": "查看蔚来汽车工作经历",
-    "about.workCta": "查看经历 ↗",
-    "about.contactLabel": "（联系方式）",
-    "project.kicker": "精选项目",
-    "project.title": "项目",
-    "gallery.kicker": "视觉档案",
-    "gallery.title": "画廊"
+    "gallery.title": "更多探索",
+    "gallery.intro": "沉浸式体验、服务系统与数字产品中的持续探索。",
+    "contact.title": "聊聊座舱与 AI 体验",
+    "contact.description": "关注上海的智能座舱 HMI、汽车 UX 与 AI 体验设计机会。",
+    "contact.resume": "下载完整简历 PDF ↓",
+    "footer.top": "返回顶部 ↑",
+    "meta.title": "周琳 Lilian Zhou｜智能座舱 HMI 交互设计",
+    "meta.description": "周琳 Lilian Zhou｜智能座舱 HMI 交互设计、生成式 HMI 方案与 AI 辅助研发。英国皇家艺术学院硕士，德赛西威、ICERED 与蔚来项目经验。"
   }
 };
 
@@ -145,7 +219,7 @@ function t(key) {
 }
 
 function getProjectCopy(project) {
-  const translation = projectTranslations[currentLanguage]?.[project.slug] || {};
+  const translation = (currentLanguage === "zh" && project.zh) || projectTranslations[currentLanguage]?.[project.slug] || {};
   return {
     ...project,
     ...translation,
@@ -165,6 +239,9 @@ function updateLanguageToggle() {
 function applyStaticTranslations() {
   document.documentElement.lang = currentLanguage === "zh" ? "zh-CN" : "en";
   document.body.dataset.lang = currentLanguage;
+  window.localStorage.setItem("lilian-language", currentLanguage);
+  document.title = t("meta.title");
+  document.querySelector('meta[name="description"]')?.setAttribute("content", t("meta.description"));
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const text = t(element.dataset.i18n);
@@ -182,21 +259,44 @@ function applyStaticTranslations() {
     if (text) element.setAttribute("aria-label", text);
   });
 
+  document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+    const text = t(element.dataset.i18nAlt);
+    if (text) element.alt = text;
+  });
   updateLanguageToggle();
 }
 
 function applyLanguage() {
   applyStaticTranslations();
+  renderFeaturedCases();
   renderProjects();
   renderProjectGallery();
   rebuildPluckTextTargets();
   updateGalleryControls();
 }
 
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[character]));
+}
+
+function renderFeaturedCases() {
+  const container = document.querySelector("#featuredCases");
+  if (!container) return;
+  container.innerHTML = (window.LILIAN_FEATURED_CASES || []).map((item, index) => {
+    const copy = currentLanguage === "zh" ? { ...item, ...item.zh } : item;
+    const isDiagram = ["icered", "nio"].includes(item.slug);
+    return `<a class="featured-case" href="${escapeHTML(item.href)}" aria-label="${escapeHTML(copy.title)}">
+      <div class="featured-case-image"><img src="${escapeHTML(item.image)}" alt="${escapeHTML(copy.title)}" loading="lazy" decoding="async"><span class="featured-case-number">0${index + 1}</span>${isDiagram ? `<span class="featured-case-diagram">${t("project.diagram")}</span>` : ""}</div>
+      <div class="featured-case-copy"><p class="featured-case-kind">${escapeHTML(copy.kind)}</p><div class="featured-case-title"><h3>${escapeHTML(copy.title)}</h3><span aria-hidden="true">↗</span></div><p class="featured-case-summary">${escapeHTML(copy.summary)}</p><div class="featured-case-meta"><p><span>${t("project.role")}</span>${escapeHTML(copy.role)}</p><span class="career-status">${escapeHTML(copy.stage)}</span></div></div>
+    </a>`;
+  }).join("");
+}
+
 function renderProjects() {
   if (!projectList) return;
 
-  projectList.innerHTML = projects
+  const featuredSlugs = (window.LILIAN_FEATURED_CASES || []).map((item) => item.slug);
+  projectList.innerHTML = projects.filter((project) => !featuredSlugs.includes(project.slug) && project.slug !== "generative-hmi")
     .map((project, index) => {
       const copy = getProjectCopy(project);
 
@@ -216,21 +316,11 @@ function renderProjects() {
 function renderProjectGallery() {
   if (!projectGallery) return;
 
-  const galleryOrder = [
-    "ea01u",
-    "aurora-mood",
-    "equiflow",
-    "this-conversation",
-    "clink",
-    "five-stars",
-    "rako-rako-ramen",
-    "the-world-of-kantan",
-    "meditate-naturally",
-    "moving-crowds"
-  ];
+  const featured = window.LILIAN_FEATURED_CASES || [];
+  const featuredSlugs = featured.map((item) => item.slug);
   const orderedProjects = [
-    ...galleryOrder.map((slug) => projects.find((project) => project.slug === slug)).filter(Boolean),
-    ...projects.filter((project) => !galleryOrder.includes(project.slug))
+    ...featured.map((item) => ({ ...item, meta: item.kind, galleryImage: item.image, zh: item.zh ? { ...item.zh, meta: item.zh.kind } : undefined })),
+    ...projects.filter((project) => !featuredSlugs.includes(project.slug))
   ];
   const galleryVersion = "thermal-liquid-3";
 
@@ -243,9 +333,9 @@ function renderProjectGallery() {
       const duplicateAttrs = isDuplicate ? ` aria-hidden="true" tabindex="-1"` : "";
 
       return `
-      <a class="gallery-card gallery-${project.slug}" href="project.html?slug=${project.slug}" aria-label="${label}" data-slug="${project.slug}"${duplicateAttrs}>
+      <a class="gallery-card gallery-${project.slug}" href="${project.href || `project.html?slug=${project.slug}`}" aria-label="${label}" data-slug="${project.slug}"${duplicateAttrs}>
         <span class="gallery-thumb">
-          <img src="${versionedSource}" alt="${copy.title} project preview" loading="eager" decoding="async">
+          <img src="${versionedSource}" alt="${copy.title} project preview" loading="lazy" decoding="async">
         </span>
         <span class="gallery-caption">
           <span class="gallery-title">${copy.title}</span>
@@ -745,6 +835,7 @@ function setupPageRipple() {
 }
 
 applyStaticTranslations();
+renderFeaturedCases();
 renderProjects();
 renderProjectGallery();
 setupGalleryCarousel();

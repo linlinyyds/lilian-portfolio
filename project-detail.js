@@ -12,7 +12,8 @@ const lightState = {
   targetY: window.innerHeight * 0.38
 };
 let lightShapeTimer;
-let currentLanguage = window.localStorage.getItem("lilian-language") === "zh" ? "zh" : "en";
+const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
+let currentLanguage = ["zh", "en"].includes(requestedLanguage) ? requestedLanguage : (window.localStorage.getItem("lilian-language") === "en" ? "en" : "zh");
 
 const staticTranslations = {
   en: {
@@ -36,7 +37,11 @@ const staticTranslations = {
     "detail.watchVideo": "Watch on YouTube",
     "detail.matrixState": "State",
     "detail.matrixScroll": "Scroll horizontally to compare all five personas",
-    "detail.source": "PROJECT REFERENCE"
+    "detail.source": "PROJECT REFERENCE",
+    "detail.stage": "PROJECT STAGE",
+    "detail.scope": "MY CONTRIBUTION",
+    "detail.deliverables": "DELIVERABLES & SCOPE",
+    "detail.contents": "Explore the case study"
   },
   zh: {
     "detailNav.projects": "所有项目",
@@ -59,7 +64,11 @@ const staticTranslations = {
     "detail.watchVideo": "在 YouTube 观看",
     "detail.matrixState": "状态",
     "detail.matrixScroll": "左右滑动，比较全部五种角色",
-    "detail.source": "项目展示参考"
+    "detail.source": "项目展示参考",
+    "detail.stage": "项目阶段",
+    "detail.scope": "个人职责范围",
+    "detail.deliverables": "交付物与展示范围",
+    "detail.contents": "浏览案例目录"
   }
 };
 
@@ -109,6 +118,7 @@ function updateLanguageToggle() {
 function applyStaticTranslations() {
   document.documentElement.lang = currentLanguage === "zh" ? "zh-CN" : "en";
   document.body.dataset.lang = currentLanguage;
+  window.localStorage.setItem("lilian-language", currentLanguage);
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const text = t(element.dataset.i18n);
@@ -221,6 +231,7 @@ function renderProject(project, index) {
         <p class="detail-kicker">${copy.meta}</p>
         <h1>${copy.title}</h1>
         <p>${copy.summary}</p>
+        <div class="detail-hero-meta">${copy.stage ? `<span class="career-status">${escapeHTML(copy.stage)}</span>` : ""}<p><span class="detail-label">${t("detail.role")}</span>${escapeHTML(copy.role)}</p></div>
       </div>
       <div class="detail-cover">
         <img src="${project.image}" alt="${copy.title} cover">
@@ -242,6 +253,16 @@ function renderProject(project, index) {
       </div>
     </section>
 
+    ${copy.stage || copy.roleScope || copy.deliverables ? `
+      <section class="detail-brief" aria-label="${t("detail.scope")}">
+        <div class="detail-brief-grid">
+          <div><span class="detail-label">${t("detail.stage")}</span><p>${escapeHTML(copy.stage || copy.projectType || copy.year)}</p></div>
+          <div><span class="detail-label">${t("detail.scope")}</span><p>${escapeHTML(copy.roleScope || copy.role)}</p></div>
+        </div>
+        ${copy.deliverables?.length ? `<div><span class="detail-label">${t("detail.deliverables")}</span><ul>${copy.deliverables.map((item) => `<li>${escapeHTML(item)}</li>`).join("")}</ul></div>` : ""}
+      </section>
+    ` : ""}
+
     <section class="detail-story">
       <div>
         <span class="detail-label">${t("detail.intro")}</span>
@@ -260,15 +281,18 @@ function renderProject(project, index) {
       </ol>
     </section>
 
+    <details class="detail-contents"><summary>${t("detail.contents")}</summary><nav aria-label="${t("detail.contents")}">${copy.sections.map((section, sectionIndex) => `<a href="#section-${sectionIndex + 1}">${escapeHTML(section.label)} · ${escapeHTML(section.title)}</a>`).join("")}</nav></details>
+
     <section class="detail-materials">
       ${copy.sections
         .map(
-          (section) => `
-            <article class="material-card${section.wide ? " is-wide" : ""}${section.video ? " has-video" : ""}${section.media || section.matrix ? " has-media-collection" : ""}${section.zoom ? " is-document" : ""}">
+          (section, sectionIndex) => `
+            <article id="section-${sectionIndex + 1}" class="material-card${section.wide ? " is-wide" : ""}${section.video ? " has-video" : ""}${section.media || section.matrix ? " has-media-collection" : ""}${section.zoom ? " is-document" : ""}${!section.image && !section.video && !section.media && !section.matrix ? " is-text-only" : ""}">
               <div class="material-copy">
                 <span class="detail-label">${section.label}</span>
                 <h2>${section.title}</h2>
                 <p>${section.text}</p>
+                ${section.points?.length ? `<ul class="material-points">${section.points.map((point) => `<li>${escapeHTML(point)}</li>`).join("")}</ul>` : ""}
               </div>
               ${renderSectionMedia(section)}
             </article>
@@ -291,6 +315,7 @@ function renderProject(project, index) {
   `;
 
   document.title = `${copy.title} · Lilian Portfolio`;
+  document.querySelector('meta[name="description"]')?.setAttribute("content", copy.summary);
 }
 
 function setLightVars(x, y) {

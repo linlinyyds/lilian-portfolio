@@ -1,70 +1,29 @@
-# Lin Zhou UX 作品集网站
+# 周琳智能座舱 HMI 作品集
 
-## EA01U 项目（2026-10-20）
+面向智能座舱 HMI、Automotive UX 与 AI 体验设计岗位的静态作品集，提供中英文和明暗主题。线上地址为 https://lilianportfolio.xyz/ 。履历以 2026 年 10 月的上海求职版 V4 简历为依据。
 
-- 首页项目列表和画廊均已接入 `project.html?slug=ea01u`。
-- 中英文内容集中在 `ea01u-data.js`，在 `project-data.js` 后加载；可在这里编辑项目职责、简介及各区块说明。
-- `assets/portfolio/ea01u/` 包含参考项目公开的 52 个媒体文件，以及为 6 段视频提取的封面。视频按需播放，图片支持查看原图，VPA 的 5×5 状态表可横向滚动。
-- `assets/portfolio/ea01u/source-manifest.json` 记录原始媒体地址、大小及 SHA-256。项目页面保留简烨的展示参考链接，YouTube 影片标注德赛西威来源。
-- 获取范围为原站公开发布的媒体；没有获取未公开的 Figma、Sketch、AE 工程或完整开发仓库。
+## 内容维护
 
-这是一个可部署到 GitHub Pages 的完整静态交互式作品集网站。网站内容基于 `作品集.pptx` 整理，定位为 UX / Interaction / Service Experience 设计师作品集。
+- `index.html`：首页结构、精选项目、专业能力、经历和联系入口。
+- `script.js`：首页中英文文案、精选卡片、补充项目和画廊交互。
+- `project-data.js`：原有项目的基础资料。
+- `ea01u-data.js`：EA01U 中英文内容与公开展示媒体。
+- `career-projects.js`：HMI 求职方向的内容补充、极光心境更新、生成式 HMI 专题和四个精选案例。
+- `project-detail.js`：项目详情、职责与阶段摘要、章节目录、媒体与状态矩阵。
+- `experience-detail.js`：德赛西威、ICERED 和蔚来的中英文经历。
+- `styles.css`：原有视觉与交互基础；`career.css`：求职版布局及案例阅读样式。
+- `assets/resume/`：检查后的两页 PDF 简历及原版 DOCX。
 
-## 已包含的交互
+新增数据脚本应在基础项目资料之后、页面脚本之前加载。首页和详情默认中文，保留用户已选择的英文偏好；`?lang=zh` 或 `?lang=en` 可指定分享链接语言。
 
-- 项目类型筛选：All / HMI / Service / App UX / Immersive
-- 项目详情弹层：点击 `Open case` 或首屏 `Featured Case` 打开
-- 设计流程切换：Discover / Define / Design / Validate
-- 滚动进入动画
-- 鼠标跟随光效
-- 响应式导航与移动端布局
+## 展示口径
 
-## 文件结构
+首页精选顺序为 EA01U、Aurora Mood 极光心境、ICERED、蔚来。生成式 HMI 另设研发专题。概念方案、进行中的研究、交付范围及后续验证规划均在案例中标明。
 
-```text
-index.html          页面结构
-styles.css          视觉样式与响应式布局
-script.js           项目数据、筛选、弹层、流程切换等交互
-assets/portfolio/   从作品集 PPTX 提取的项目图片
-```
+ICERED 和蔚来封面是依据工作范围绘制的流程示意，不是真实产品截图。生成式 HMI 的 SVG 表达应用方案，未呈现已完成的模型评测结果。
 
-## 后续修改项目内容
+EA01U 保留 52 个原始公开媒体、六段视频的封面及简烨的展示参考链接；官方 YouTube 视频标注德赛西威来源。`assets/portfolio/ea01u/source-manifest.json` 记录原始媒体地址和 SHA-256。公开资料不包含未公开的 Figma、Sketch 或 AE 工程。
 
-大部分作品集内容都集中在 `script.js` 的 `cases` 数组里。修改项目标题、类型、标签、简介、详情、图片路径，优先改这里。
+## 本地预览与发布
 
-每个项目字段含义：
-
-```js
-{
-  id: "aurora",
-  title: "项目名称",
-  type: "项目类型",
-  category: "hmi",
-  image: "assets/portfolio/xxx.png",
-  year: "年份或阶段",
-  role: "你的职责",
-  tools: "工具与方法",
-  summary: "卡片摘要",
-  tags: ["标签"],
-  challenge: "问题背景",
-  decisions: ["关键设计决策"],
-  outcome: "结果或产出"
-}
-```
-
-## 本地预览
-
-直接用浏览器打开 `index.html` 即可。这个网站不需要安装依赖。
-
-## 部署到 GitHub Pages
-
-1. 在 GitHub 创建仓库：`linlinyyds.github.io`
-2. 上传本项目所有文件到仓库根目录
-3. 进入仓库 `Settings` -> `Pages`
-4. Source 选择 `Deploy from a branch`
-5. Branch 选择 `main` 和 `/root`
-6. 部署完成后网站地址为：
-
-```text
-https://linlinyyds.github.io
-```
+无需安装前端依赖。在仓库根目录启动静态文件服务，即可打开 `index.html` 预览。发布沿用现有 GitHub Pages 仓库与 `main` 分支，保留 `CNAME` 和 `.nojekyll`，以维持现有域名。
