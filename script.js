@@ -10,15 +10,11 @@ const themeToggle = document.querySelector(".theme-toggle");
 const languageToggle = document.querySelector(".language-toggle");
 const catMenu = document.querySelector(".cat-menu");
 const quickNav = document.querySelector("#quickNav");
-const root = document.documentElement;
 const urlParams = new URLSearchParams(window.location.search);
-const effectsEnabled = urlParams.get("fx") !== "off";
 const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const pluckLetters = [];
 let pluckFrame = 0;
 let pluckPointer = null;
-let rippleCount = 0;
-let rippleFadeTimer;
 let currentLanguage = ["zh", "en"].includes(urlParams.get("lang")) ? urlParams.get("lang") : (window.localStorage.getItem("lilian-language") === "en" ? "en" : "zh");
 let galleryAutoPosition = 0;
 let galleryLoopWidth = 0;
@@ -648,41 +644,6 @@ function rebuildPluckTextTargets() {
   });
 }
 
-function setupPageRipple() {
-  if (!effectsEnabled || motionQuery.matches) return;
-
-  const rippleField = document.createElement("div");
-  rippleField.className = "ripple-field";
-  rippleField.setAttribute("aria-hidden", "true");
-  document.body.appendChild(rippleField);
-
-  document.addEventListener("pointerdown", (event) => {
-    if (event.pointerType === "touch" && event.isPrimary === false) return;
-    if (event.target.closest("a, button, input, textarea, select, summary")) return;
-
-    const rippleXp = clamp((event.clientX / Math.max(window.innerWidth, 1)) * 100, 0, 100);
-    const rippleYp = clamp((event.clientY / Math.max(window.innerHeight, 1)) * 100, 0, 100);
-    const ripple = document.createElement("span");
-    ripple.className = "water-ripple";
-    ripple.style.setProperty("--ripple-x", `${event.clientX.toFixed(1)}px`);
-    ripple.style.setProperty("--ripple-y", `${event.clientY.toFixed(1)}px`);
-    ripple.style.setProperty("--ripple-rotate", `${((rippleCount * 29) % 48 - 24).toFixed(1)}deg`);
-    rippleCount += 1;
-
-    root.style.setProperty("--ripple-xp", `${rippleXp.toFixed(2)}%`);
-    root.style.setProperty("--ripple-yp", `${rippleYp.toFixed(2)}%`);
-    root.style.setProperty("--ripple-alpha", document.body.dataset.theme === "dark" ? "0.58" : "0.72");
-
-    window.clearTimeout(rippleFadeTimer);
-    rippleFadeTimer = window.setTimeout(() => {
-      root.style.setProperty("--ripple-alpha", "0");
-    }, 520);
-
-    rippleField.appendChild(ripple);
-    window.setTimeout(() => ripple.remove(), 1700);
-  });
-}
-
 setMenu(false);
 setupNavigationTracking();
 applyStaticTranslations();
@@ -692,7 +653,6 @@ renderProjectGallery();
 setupGalleryCarousel();
 setupReveal();
 setupTextPluck();
-setupPageRipple();
 
 const savedTheme = window.localStorage.getItem("lilian-theme");
 setTheme(savedTheme === "dark" ? "dark" : "light");

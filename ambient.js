@@ -22,6 +22,8 @@
     root.style.setProperty("--light-angle", `${angle.toFixed(2)}deg`);
     root.style.setProperty("--light-scale-x", (1 + stretch).toFixed(4));
     root.style.setProperty("--light-scale-y", (1 - stretch * .38).toFixed(4));
+    root.style.setProperty("--light-flow-x", `${clamp((targetX - x) / 10, -12, 12).toFixed(1)}px`);
+    root.style.setProperty("--light-flow-y", `${clamp((targetY - y) / 10, -10, 10).toFixed(1)}px`);
   };
   const settle = (time) => {
     frame = 0;

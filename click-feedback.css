@@ -1,0 +1,101 @@
+.click-feedback-layer {
+  --click-main-alpha: .56;
+  --click-echo-alpha: .22;
+  --click-core-alpha: .16;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  contain: layout style paint;
+  pointer-events: none;
+}
+
+body[data-theme="dark"] .click-feedback-layer {
+  --click-main-alpha: .32;
+  --click-echo-alpha: .12;
+  --click-core-alpha: .08;
+}
+
+.click-feedback {
+  --click-start: 9px;
+  --click-end: 94px;
+  --click-echo-end: 87px;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.click-feedback.is-compact {
+  --click-start: 6px;
+  --click-end: 54px;
+  --click-echo-end: 49px;
+}
+
+.click-feedback::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  content: "";
+  background: radial-gradient(circle, var(--fx-pearl, #fffdfb) 0%, color-mix(in srgb, var(--fx-mint, #9de1dc) 24%, transparent) 35%, transparent 72%);
+  filter: blur(5px);
+  opacity: 0;
+  animation: click-feedback-core 650ms ease-out both;
+}
+
+.click-feedback.is-compact::before {
+  width: 40px;
+  height: 40px;
+}
+
+.click-feedback svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.click-feedback-mint { stop-color: var(--fx-mint, #9de1dc); }
+.click-feedback-blue { stop-color: var(--fx-blue, #b8c8f0); }
+.click-feedback-rose { stop-color: var(--fx-rose, #f2b9d3); }
+
+.click-feedback-wave {
+  r: var(--click-start);
+  stroke-width: 1.1px;
+  opacity: 0;
+  animation: click-feedback-main 900ms cubic-bezier(.16, .72, .28, 1) both;
+}
+
+.click-feedback-wave.is-echo {
+  stroke-width: .75px;
+  animation: click-feedback-echo 810ms cubic-bezier(.16, .72, .28, 1) 90ms both;
+}
+
+@keyframes click-feedback-main {
+  0% { r: var(--click-start); opacity: 0; }
+  14% { opacity: var(--click-main-alpha); }
+  68% { opacity: calc(var(--click-main-alpha) * .38); }
+  100% { r: var(--click-end); opacity: 0; }
+}
+
+@keyframes click-feedback-echo {
+  0% { r: var(--click-start); opacity: 0; }
+  14% { opacity: var(--click-echo-alpha); }
+  68% { opacity: calc(var(--click-echo-alpha) * .32); }
+  100% { r: var(--click-echo-end); opacity: 0; }
+}
+
+@keyframes click-feedback-core {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.5); }
+  20% { opacity: var(--click-core-alpha); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .click-feedback-layer { display: none; }
+  .click-feedback-wave, .click-feedback::before { animation: none; }
+}

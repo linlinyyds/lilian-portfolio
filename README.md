@@ -12,7 +12,8 @@
 - `project-detail.js`：项目详情、职责与阶段摘要、章节目录、媒体与状态矩阵。
 - `experience-detail.js`：德赛西威、ICERED 和蔚来的中英文经历。
 - `styles.css`：原有封面、视觉与文字交互基础；`portfolio.css`：首页开放式排版与响应式布局；`career.css`：案例阅读样式。
-- `ambient.css` / `ambient.js`：原版多彩流动背景与鼠标光晕；保留三个色团、呼吸动画和轻微形变，优化青粉交界与单次平滑跟随。鼠标停止后保留氛围，触屏和减少动画模式关闭鼠标效果。
+- `ambient.css` / `ambient.js`：共享青绿、雾蓝、淡紫与柔粉配色，保留原色团、呼吸与轻微形变；光晕内部色斑按运动方向错位，停留后自然回拢。触屏和减少动画模式关闭鼠标效果。
+- `click-feedback.css` / `click-feedback.js`：完成点击后触发渐变细涟漪，拖动与选文不触发；最多四组并发，动画后回收。
 - `header-behavior.css` / `header-behavior.js`：共享顶部菜单显隐；下滑收起、上滑出现，展开菜单与键盘操作保持可见。
 - `assets/resume/`：检查后的两页 PDF 简历及原版 DOCX。
 
@@ -29,3 +30,7 @@ EA01U 保留 52 个原始公开媒体、六段视频的封面及简烨的展示�
 ## 本地预览与发布
 
 无需安装前端依赖。在仓库根目录启动静态文件服务，即可打开 `index.html` 预览。发布沿用现有 GitHub Pages 仓库与 `main` 分支，保留 `CNAME` 和 `.nojekyll`，以维持现有域名。
+
+## 动效参考
+
+配色与色斑组织参考 [Paper Mesh Gradient](https://shaders.paper.design/mesh-gradient)，渐变细线与波动参考 [Marlène Bruhat 的 SVG Emitter](https://tympanus.net/codrops/2022/08/24/custom-svg-cursors-with-an-interactive-emitter-effect/)，点击节奏参考 [Codrops Subtle Click Feedback](https://tympanus.net/codrops/2015/02/11/subtle-click-feedback-effects/)。按本站背景与字体重新设计，使用本地原生 CSS、SVG 和 JavaScript 实现。
