@@ -14,13 +14,6 @@ const root = document.documentElement;
 const urlParams = new URLSearchParams(window.location.search);
 const effectsEnabled = urlParams.get("fx") !== "off";
 const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-const lightState = {
-  x: window.innerWidth * 0.52,
-  y: window.innerHeight * 0.38,
-  targetX: window.innerWidth * 0.52,
-  targetY: window.innerHeight * 0.38
-};
-let lightShapeTimer;
 const pluckLetters = [];
 let pluckFrame = 0;
 let pluckPointer = null;
@@ -655,121 +648,6 @@ function rebuildPluckTextTargets() {
   });
 }
 
-function setLightVars(x, y) {
-  const width = Math.max(window.innerWidth, 1);
-  const height = Math.max(window.innerHeight, 1);
-  root.style.setProperty("--light-x", `${x.toFixed(1)}px`);
-  root.style.setProperty("--light-y", `${y.toFixed(1)}px`);
-  root.style.setProperty("--light-xp", `${((x / width) * 100).toFixed(2)}%`);
-  root.style.setProperty("--light-yp", `${((y / height) * 100).toFixed(2)}%`);
-}
-
-function updateScrollLight() {
-  const page = document.documentElement;
-  const maxScroll = Math.max(page.scrollHeight - window.innerHeight, 1);
-  const progress = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
-  const wave = Math.sin(progress * Math.PI * 2);
-  const softWave = Math.sin(progress * Math.PI);
-  const counterWave = Math.cos(progress * Math.PI * 1.6);
-  const ribbonWave = Math.sin(progress * Math.PI * 3.4 + 0.7);
-  const slowWave = Math.cos(progress * Math.PI * 1.15 - 0.35);
-  const shift = softWave * 112;
-  const condense = 1 + softWave * 0.22 + Math.max(ribbonWave, 0) * 0.08;
-  const orbAX = 14 + progress * 62 + wave * 7;
-  const orbAY = 30 + Math.sin(progress * Math.PI * 2.4 + 0.2) * 21;
-  const orbBX = 60 - progress * 42 + counterWave * 9;
-  const orbBY = 68 - softWave * 34 + Math.sin(progress * Math.PI * 3.1 + 0.9) * 8;
-  const orbCX = 78 - Math.sin(progress * Math.PI * 1.25 + 0.35) * 28 + ribbonWave * 4;
-  const orbCY = 16 + progress * 52 + Math.cos(progress * Math.PI * 2.2) * 10;
-
-  root.style.setProperty("--scroll-glow", `${shift.toFixed(1)}px`);
-  root.style.setProperty("--scroll-drift-x", `${((progress - 0.5) * 92 + slowWave * 18).toFixed(1)}px`);
-  root.style.setProperty("--scroll-drift-y", `${(softWave * -54 + ribbonWave * 16).toFixed(1)}px`);
-  root.style.setProperty("--orb-a-x", `${clamp(orbAX, 6, 92).toFixed(2)}%`);
-  root.style.setProperty("--orb-a-y", `${clamp(orbAY, 12, 88).toFixed(2)}%`);
-  root.style.setProperty("--orb-b-x", `${clamp(orbBX, 8, 88).toFixed(2)}%`);
-  root.style.setProperty("--orb-b-y", `${clamp(orbBY, 16, 90).toFixed(2)}%`);
-  root.style.setProperty("--orb-c-x", `${clamp(orbCX, 14, 94).toFixed(2)}%`);
-  root.style.setProperty("--orb-c-y", `${clamp(orbCY, 8, 92).toFixed(2)}%`);
-  root.style.setProperty("--orb-rotate", `${((progress - 0.5) * 24 + ribbonWave * 5).toFixed(2)}deg`);
-  root.style.setProperty("--orb-scale", `${(1 + softWave * 0.12).toFixed(3)}`);
-  root.style.setProperty("--heat-condense", `${condense.toFixed(3)}`);
-  root.style.setProperty("--heat-bloom", `${(softWave * -8 + Math.max(ribbonWave, 0) * -4).toFixed(1)}px`);
-}
-
-function tickLight() {
-  const ease = motionQuery.matches ? 1 : 0.075;
-  lightState.x += (lightState.targetX - lightState.x) * ease;
-  lightState.y += (lightState.targetY - lightState.y) * ease;
-  setLightVars(lightState.x, lightState.y);
-
-  if (!motionQuery.matches) {
-    window.requestAnimationFrame(tickLight);
-  }
-}
-
-function setupLightField() {
-  setLightVars(lightState.x, lightState.y);
-  updateScrollLight();
-
-  if (!motionQuery.matches) {
-    window.requestAnimationFrame(tickLight);
-  }
-
-  window.addEventListener(
-    "pointermove",
-    (event) => {
-      if (event.pointerType === "touch") return;
-      const dx = event.clientX - lightState.targetX;
-      const dy = event.clientY - lightState.targetY;
-      const speed = Math.min(Math.hypot(dx, dy), 420);
-      const stretch = speed / 2800;
-      const pull = 0.42;
-
-      lightState.targetX += (event.clientX - lightState.targetX) * pull;
-      lightState.targetY += (event.clientY - lightState.targetY) * pull;
-      const angle = clamp(Math.atan2(dy, dx) * 180 / Math.PI, -10, 10);
-      root.style.setProperty("--cursor-alpha", document.body.dataset.theme === "dark" ? "0.64" : "0.52");
-      root.style.setProperty("--light-angle", `${angle.toFixed(1)}deg`);
-      root.style.setProperty("--light-scale-x", `${(1 + stretch).toFixed(3)}`);
-      root.style.setProperty("--light-scale-y", `${(1 - stretch * 0.32).toFixed(3)}`);
-
-      window.clearTimeout(lightShapeTimer);
-      lightShapeTimer = window.setTimeout(() => {
-        root.style.setProperty("--light-scale-x", "1");
-        root.style.setProperty("--light-scale-y", "1");
-      }, 180);
-
-      if (motionQuery.matches) {
-        lightState.x = lightState.targetX;
-        lightState.y = lightState.targetY;
-        setLightVars(lightState.x, lightState.y);
-      }
-    },
-    { passive: true }
-  );
-
-  document.addEventListener("mouseleave", () => {
-    root.style.setProperty("--cursor-alpha", "0");
-  });
-
-  window.addEventListener("blur", () => {
-    root.style.setProperty("--cursor-alpha", "0");
-  });
-
-  window.addEventListener("scroll", updateScrollLight, { passive: true });
-
-  window.addEventListener(
-    "resize",
-    () => {
-      lightState.targetX = Math.min(lightState.targetX, window.innerWidth);
-      lightState.targetY = Math.min(lightState.targetY, window.innerHeight);
-      updateScrollLight();
-    },
-    { passive: true }
-  );
-}
-
 function setupPageRipple() {
   if (!effectsEnabled || motionQuery.matches) return;
 
@@ -794,8 +672,6 @@ function setupPageRipple() {
     root.style.setProperty("--ripple-xp", `${rippleXp.toFixed(2)}%`);
     root.style.setProperty("--ripple-yp", `${rippleYp.toFixed(2)}%`);
     root.style.setProperty("--ripple-alpha", document.body.dataset.theme === "dark" ? "0.58" : "0.72");
-    lightState.targetX += (event.clientX - lightState.targetX) * 0.28;
-    lightState.targetY += (event.clientY - lightState.targetY) * 0.28;
 
     window.clearTimeout(rippleFadeTimer);
     rippleFadeTimer = window.setTimeout(() => {
@@ -816,7 +692,6 @@ renderProjectGallery();
 setupGalleryCarousel();
 setupReveal();
 setupTextPluck();
-setupLightField();
 setupPageRipple();
 
 const savedTheme = window.localStorage.getItem("lilian-theme");
@@ -831,7 +706,19 @@ if (catMenu) {
 
 if (quickNav) {
   quickNav.addEventListener("click", (event) => {
-    if (event.target.closest("a")) closeMenu();
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const hash = link.getAttribute("href");
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (!target) return;
+    event.preventDefault();
+    closeMenu();
+    if (window.location.hash !== hash) window.history.pushState(null, "", hash);
+    const hadTabIndex = target.hasAttribute("tabindex");
+    if (!hadTabIndex) target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+    if (!hadTabIndex) target.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
+    target.scrollIntoView({ block: "start", behavior: motionQuery.matches ? "auto" : "smooth" });
   });
 }
 

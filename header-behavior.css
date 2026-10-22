@@ -1,0 +1,19 @@
+.site-header.header-behavior {
+  translate: 0 0;
+  transition: translate 200ms ease;
+}
+
+.site-header.header-behavior.is-header-hidden {
+  translate: 0 calc(-100% - 12px);
+}
+
+.site-header.header-behavior.has-keyboard-focus {
+  translate: 0 0;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header.header-behavior {
+    transition: none;
+  }
+}
