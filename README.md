@@ -12,7 +12,7 @@
 - `project-detail.js`：项目详情、职责与阶段摘要、章节目录、媒体与状态矩阵。
 - `experience-detail.js`：德赛西威、ICERED 和蔚来的中英文经历。
 - `styles.css`：原有封面、视觉与文字交互基础；`portfolio.css`：首页开放式排版与响应式布局；`career.css`：案例阅读样式。
-- `ambient.css` / `ambient.js`：共享的柔和背景与单色鼠标光晕；短跟随、闲置淡出，触屏和减少动画模式关闭鼠标效果。
+- `ambient.css` / `ambient.js`：原版多彩流动背景与鼠标光晕；保留三个色团、呼吸动画和轻微形变，优化青粉交界与单次平滑跟随。鼠标停止后保留氛围，触屏和减少动画模式关闭鼠标效果。
 - `header-behavior.css` / `header-behavior.js`：共享顶部菜单显隐；下滑收起、上滑出现，展开菜单与键盘操作保持可见。
 - `assets/resume/`：检查后的两页 PDF 简历及原版 DOCX。
 

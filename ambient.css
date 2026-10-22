@@ -1,50 +1,22 @@
-/* Separate the quiet page colour from the small pointer light. */
-body {
-  background: linear-gradient(150deg, #fffefa 0%, #fffcfd 48%, #fcfffd 100%);
-}
-.ambient::before {
-  inset: -4vmax;
-  background:
-    radial-gradient(ellipse 40vmax 45vmax at 0% 32%, rgba(121, 225, 211, .16), transparent 74%),
-    radial-gradient(ellipse 40vmax 40vmax at 100% 8%, rgba(255, 180, 203, .17), transparent 74%),
-    radial-gradient(ellipse 38vmax 30vmax at 92% 100%, rgba(157, 219, 236, .12), transparent 74%),
-    radial-gradient(ellipse at 50% 48%, rgba(255, 255, 255, .55), transparent 65%);
-  filter: blur(36px);
-  opacity: .9;
-  transform: translate3d(var(--scroll-drift-x), var(--scroll-drift-y), 0);
-  animation: none;
-  will-change: auto;
-}
+/* Keep the original flowing field; refine only the pointer's colour overlap. */
 .ambient::after {
-  top: 0;
-  left: 0;
-  width: clamp(240px, 28vmax, 360px);
-  height: clamp(240px, 28vmax, 360px);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(136, 226, 214, .28) 0%, rgba(170, 235, 226, .12) 38%, transparent 72%);
-  filter: blur(20px);
-  opacity: var(--cursor-alpha, 0);
-  transform: translate3d(calc(var(--light-x) - 50%), calc(var(--light-y) - 50%), 0);
-  transition: opacity 360ms ease;
-  mix-blend-mode: normal;
-  will-change: transform;
-}
-.glow { display: none; }
-body[data-theme="dark"] {
-  background: linear-gradient(160deg, #0b1220 0%, #11192b 50%, #0b1523 100%);
-}
-body[data-theme="dark"] .ambient::before {
   background:
-    radial-gradient(ellipse 42vmax 48vmax at 0% 24%, rgba(85, 185, 190, .11), transparent 76%),
-    radial-gradient(ellipse 44vmax 40vmax at 100% 12%, rgba(152, 140, 199, .10), transparent 76%),
-    radial-gradient(ellipse 40vmax 30vmax at 90% 105%, rgba(85, 141, 185, .10), transparent 76%);
-  opacity: .85;
+    radial-gradient(ellipse at 50% 48%, rgba(255, 253, 251, .80) 0%, transparent 29%),
+    radial-gradient(ellipse at 28% 52%, rgba(0, 206, 232, .36) 8%, transparent 47%),
+    radial-gradient(ellipse at 72% 46%, rgba(245, 72, 137, .34) 10%, transparent 48%),
+    radial-gradient(ellipse at 64% 74%, rgba(255, 172, 100, .14) 0%, transparent 43%);
+  filter: blur(34px) saturate(1.16);
 }
 body[data-theme="dark"] .ambient::after {
-  background: radial-gradient(circle, rgba(119, 212, 207, .20) 0%, rgba(119, 212, 207, .07) 40%, transparent 72%);
-  mix-blend-mode: normal;
+  background:
+    radial-gradient(ellipse at 50% 48%, rgba(230, 246, 255, .22) 0%, transparent 28%),
+    radial-gradient(ellipse at 28% 52%, rgba(105, 229, 232, .32) 8%, transparent 47%),
+    radial-gradient(ellipse at 72% 46%, rgba(132, 152, 245, .28) 12%, transparent 48%),
+    radial-gradient(ellipse at 65% 74%, rgba(238, 148, 196, .14) 0%, transparent 43%);
 }
 @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
   .ambient::after { display: none; }
-  .ambient::before { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient::before, .glow { animation: none; transform: none; }
 }
