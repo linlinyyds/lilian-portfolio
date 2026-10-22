@@ -27,176 +27,63 @@ let pluckPointer = null;
 let rippleCount = 0;
 let rippleFadeTimer;
 let currentLanguage = ["zh", "en"].includes(urlParams.get("lang")) ? urlParams.get("lang") : (window.localStorage.getItem("lilian-language") === "en" ? "en" : "zh");
-let galleryAutoFrame = 0;
 let galleryAutoPosition = 0;
-let galleryAutoPaused = false;
-let galleryResumeTimer = 0;
 let galleryLoopWidth = 0;
-let galleryHoverPaused = false;
-let galleryTimedPaused = false;
 let galleryDragging = false;
 let galleryPointerActive = false;
 let galleryDragStartX = 0;
+let galleryDragStartY = 0;
 let galleryDragStartPosition = 0;
 let galleryDragMoved = false;
 let gallerySuppressClick = false;
+const menuTabIndexes = new WeakMap();
 
 const staticTranslations = {
-  "en": {
-    "nav.home": "Home",
-    "nav.project": "Selected Work",
-    "nav.capabilities": "Practice",
-    "nav.about": "Experience",
-    "nav.gallery": "Explorations",
-    "nav.contact": "Contact",
-    "hero.heading1": "Automotive UX",
-    "hero.heading2": "& HMI Design",
-    "hero.description": "From user scenarios and interaction rules to prototype validation — designing clear, understandable cockpit and AI experiences.",
-    "hero.viewProjects": "Explore selected work",
-    "hero.downloadResume": "Résumé PDF · 中文",
-    "hero.current": "Desay SV · Innovation Experience Design Engineer",
-    "hero.education": "Royal College of Art · MA Information Experience Design",
-    "hero.location": "Seeking opportunities in Shanghai",
-    "hero.previewAria": "Explore the EA01U project",
-    "hero.previewAlt": "EA01U AI cockpit Launcher design",
-    "hero.previewText": "AI cockpit · HMI",
-    "hero.previewNote": "Scenarios · Information hierarchy · Conversation states · Feedback",
-    "project.title": "Selected work",
-    "project.intro": "Cockpit interaction at the center, connected with AI products, prototyping and automotive services.",
-    "project.archive": "Browse additional projects",
-    "project.diagram": "Interaction flow illustration",
-    "project.role": "My contribution",
-    "research.status": "R&D focus · In progress",
-    "research.title": "Generative HMI design research",
-    "research.description": "Planning an application workflow that connects style rules, component templates and interface generation, with a focus on consistency, local edits and quality evaluation.",
-    "research.link": "Explore the approach and research scope",
-    "research.imageAlt": "Illustration of the proposed generative HMI workflow",
-    "capabilities.title": "From scenarios to delivery",
-    "capabilities.intro": "Working across interaction design, AI-assisted prototyping and product collaboration.",
-    "capabilities.hmiTitle": "HMI interaction & delivery",
-    "capabilities.hmiText": "User tasks, information architecture, interface states and exceptions — through UE documentation, UI adaptation, reviews and version delivery.",
-    "capabilities.hmiLink": "Experience at Desay SV ↗",
-    "capabilities.aiTitle": "AI-assisted development",
-    "capabilities.aiText": "Using Claude Code, Codex and Cursor to break down tasks, turn designs into frontend drafts and testable implementations, then debug and verify interaction states.",
-    "capabilities.aiLink": "Design & validation at ICERED ↗",
-    "capabilities.generativeTitle": "Generative HMI planning",
-    "capabilities.generativeText": "Leading application and implementation planning across style rules, component templates, multi-page consistency, local editing and quality evaluation.",
-    "capabilities.generativeLink": "Explore the R&D focus ↗",
-    "capabilities.collaborationTitle": "Product & global collaboration",
-    "capabilities.collaborationText": "Requirements, prioritization, version planning and acceptance testing; aligning scope, schedules and delivery risks with overseas market and engineering teams in English.",
-    "capabilities.collaborationLink": "Explore product collaboration ↗",
-    "about.title": "Experience & about",
-    "about.lead": "Art and technology foundations. Automotive and AI product practice.",
-    "about.profileLabel": "( Profile )",
+  en: {
+    "nav.home": "Home", "nav.project": "Work", "nav.about": "About", "nav.gallery": "Gallery", "nav.contact": "Contact", "nav.skip": "Skip to work",
+    "nav.menu": "Navigation menu", "hero.scroll": "Scroll to explore",
+    "project.practice": "( Practice & research )", "project.view": "View project", "project.archive": "Browse project index",
+    "research.title": "Generative HMI", "research.index": "R&D proposal · In progress",
+    "about.profileLabel": "( Profile )", "about.workLabel": "( Experience )", "about.educationLabel": "( Education )",
     "about.p1": "Hello, I am Lilian Zhou.",
-    "about.p2": "I am an automotive HMI interaction designer with an MA in Information Experience Design from the Royal College of Art. At Desay SV, I work on cockpit interaction, AI cockpit interface refinement and application planning for generative HMI.",
-    "about.p4": "My work moves from user scenarios, task flows and information architecture to states and exceptions, UE documentation, UI adaptation and delivery validation. Previously, I worked on an AI social product at ICERED and vehicle-inspection service digitalization at NIO.",
-    "about.p6": "I focus on driving-information priorities, understandable system feedback and natural interaction between people and intelligent products.",
-    "about.workLabel": "( Experience )",
-    "about.workDate0": "2026.08—Present",
-    "about.work0": "Desay SV | Innovation Experience Design Engineer",
-    "about.workRole0": "Cockpit interaction · Technology R&D team · Guangdong",
-    "about.workDesc0": "Multi-brand UE delivery, UI adaptation, AI cockpit refinement and generative HMI application planning.",
-    "about.workDate1": "2025.10—2026.07",
-    "about.work1": "ICERED | AI Product Manager",
-    "about.workRole1": "AI social product for overseas users · Shanghai",
-    "about.workDesc1": "AI interaction, design-to-frontend implementation, collaboration in English, requirements and version planning.",
-    "about.workDate2": "2024.04—2024.08",
-    "about.work2": "NIO | Service Design Intern",
-    "about.workRole2": "UX & service design · Shanghai",
-    "about.workDesc2": "Vehicle-inspection service digitalization, service blueprinting, online flows, states and exceptions.",
-    "about.workCta": "Explore the work ↗",
-    "about.educationLabel": "( Education )",
-    "about.edu1School": "Royal College of Art",
-    "about.edu1Degree": "MA Information Experience Design",
-    "about.edu2School": "Shanghai University of Engineering Science",
-    "about.edu2Degree": "BA Art and Technology",
-    "gallery.title": "Further explorations",
-    "gallery.intro": "Ongoing explorations in immersive experience, service systems and digital products.",
-    "contact.title": "Let’s talk cockpit & AI experiences",
-    "contact.description": "Exploring HMI, automotive UX and AI experience design opportunities in Shanghai.",
-    "contact.resume": "Download résumé PDF · 中文 ↓",
-    "footer.top": "Back to top ↑",
-    "meta.title": "Lilian Zhou | Automotive UX & HMI Design",
-    "meta.description": "Lilian Zhou — automotive HMI interaction design, generative HMI application planning and AI-assisted prototyping. Royal College of Art graduate with experience at Desay SV, ICERED and NIO."
+    "about.p2": "I design automotive HMI at Desay SV, working on cockpit interaction, AI interfaces and generative HMI application planning. I hold an MA in Information Experience Design from the Royal College of Art.",
+    "about.p4": "Previously, I worked on an overseas AI social product at ICERED and vehicle-inspection services at NIO. My practice spans user flows, interface states and prototypes, through to design documentation and delivery validation.",
+    "about.resume": "Résumé PDF · 中文",
+    "about.workDate0": "2026.08—Present", "about.work0": "Desay SV | Innovation Experience Design Engineer",
+    "about.workDesc0": "Cockpit interaction, UI adaptation, AI interfaces and generative HMI application planning.",
+    "about.workDate1": "2025.10—2026.07", "about.work1": "ICERED | AI Product Manager",
+    "about.workDesc1": "AI interaction, design-to-code, collaboration in English and product iteration.",
+    "about.workDate2": "2024.04—2024.08", "about.work2": "NIO | Service Design Intern",
+    "about.workDesc2": "Vehicle-inspection service digitalization, app flows and service blueprinting.",
+    "about.edu1School": "Royal College of Art", "about.edu1Degree": "MA Information Experience Design",
+    "about.edu2School": "Shanghai University of Engineering Science", "about.edu2Degree": "BA Art and Technology",
+    "gallery.hint": "Drag to browse", "gallery.previous": "Previous project", "gallery.next": "Next project", "gallery.aria": "Project gallery. Use left and right arrow keys to browse.",
+    "contact.kicker": "For a conversation, or just a hello.", "footer.top": "Back to top ↑",
+    "meta.title": "Lilian Portfolio",
+    "meta.description": "Lilian Zhou’s portfolio. Automotive HMI, UI/UX, AI products and experience design. Royal College of Art, Desay SV, ICERED and NIO."
   },
-  "zh": {
-    "nav.home": "首页",
-    "nav.project": "精选项目",
-    "nav.capabilities": "专业能力",
-    "nav.about": "经历与关于",
-    "nav.gallery": "更多探索",
-    "nav.contact": "联系",
-    "hero.heading1": "智能座舱",
-    "hero.heading2": "HMI 交互设计",
-    "hero.description": "从用户场景、交互规则到原型验证，设计清晰、可理解的座舱与 AI 体验。",
-    "hero.viewProjects": "查看精选项目",
-    "hero.downloadResume": "下载简历 PDF",
-    "hero.current": "德赛西威 · 创新体验设计工程师",
-    "hero.education": "英国皇家艺术学院 · 信息体验设计硕士",
-    "hero.location": "求职意向：上海",
-    "hero.previewAria": "查看 EA01U 项目",
-    "hero.previewAlt": "EA01U 智能座舱 Launcher 方案",
-    "hero.previewText": "AI 智能座舱 · HMI",
-    "hero.previewNote": "场景 · 信息层级 · 对话状态 · 交互反馈",
-    "project.title": "精选项目",
-    "project.intro": "以座舱交互为主线，连接 AI 产品、原型实现与汽车服务体验。",
-    "project.archive": "浏览补充项目",
-    "project.diagram": "交互流程示意",
-    "project.role": "个人职责",
-    "research.status": "研发专题 · 进行中",
-    "research.title": "生成式 HMI 设计研发",
-    "research.description": "探索风格规则、组件模板与界面生成的协同流程，围绕多页一致性、局部修改和质量评价规划实施路径。",
-    "research.link": "查看技术方案与研发重点",
-    "research.imageAlt": "生成式 HMI 方案流程示意",
-    "capabilities.title": "从场景到交付",
-    "capabilities.intro": "在交互设计、AI 原型验证与产品协作之间推进工作。",
-    "capabilities.hmiTitle": "HMI 交互与交付",
-    "capabilities.hmiText": "用户任务、信息架构、页面状态与异常流程，连接 UE 文档、UI 适配、评审走查和版本交付。",
-    "capabilities.hmiLink": "德赛西威工作实践 ↗",
-    "capabilities.aiTitle": "AI 辅助研发",
-    "capabilities.aiText": "使用 Claude Code、Codex、Cursor 拆解任务，将设计转为前端代码草稿和可测试实现，开展调试与状态验证。",
-    "capabilities.aiLink": "ICERED 设计与验证 ↗",
-    "capabilities.generativeTitle": "生成式 HMI 方案",
-    "capabilities.generativeText": "主导应用方案与实施路径设计，梳理风格规则、组件模板、多页一致性、局部修改及质量评估标准。",
-    "capabilities.generativeLink": "查看研发专题 ↗",
-    "capabilities.collaborationTitle": "产品与国际协作",
-    "capabilities.collaborationText": "需求拆解、优先级判断、版本管理与测试验收；与海外市场和技术团队用英文对齐范围、节奏和交付风险。",
-    "capabilities.collaborationLink": "查看产品协作实践 ↗",
-    "about.title": "经历与关于",
-    "about.lead": "艺术科技背景，汽车与 AI 产品实践。",
-    "about.profileLabel": "（个人简介）",
+  zh: {
+    "nav.home": "首页", "nav.project": "作品", "nav.about": "关于", "nav.gallery": "探索", "nav.contact": "联系", "nav.skip": "跳至作品",
+    "nav.menu": "导航菜单", "hero.scroll": "向下浏览",
+    "project.practice": "（工作与研究）", "project.view": "查看项目", "project.archive": "浏览项目目录",
+    "research.title": "生成式 HMI", "research.index": "研发方案 · 进行中",
+    "about.profileLabel": "（个人简介）", "about.workLabel": "（工作经历）", "about.educationLabel": "（教育背景）",
     "about.p1": "你好，我是周琳。",
-    "about.p2": "我是一名智能座舱 HMI 交互设计师，毕业于英国皇家艺术学院信息体验设计专业。目前在德赛西威参与座舱交互、AI 座舱界面优化与生成式 HMI 研发方案设计。",
-    "about.p4": "我的工作从用户场景、任务流程和信息架构出发，延伸到状态与异常设计、UE 文档、界面适配和交付验证。此前在 ICERED 参与海外 AI 社交产品迭代，在蔚来参与车辆年检服务数字化。",
-    "about.p6": "我关注驾驶信息的优先级、系统反馈的可理解性，以及人与智能产品之间自然的交流。",
-    "about.workLabel": "（工作经历）",
-    "about.workDate0": "2026.08—至今",
-    "about.work0": "德赛西威｜创新体验设计工程师",
-    "about.workRole0": "智能座舱交互 · 技术研发组 · 广东",
-    "about.workDesc0": "多品牌 UE 交付、界面适配、AI 座舱优化与生成式 HMI 方案设计。",
-    "about.workDate1": "2025.10—2026.07",
-    "about.work1": "ICERED｜AI 产品经理",
-    "about.workRole1": "海外 AI 社交产品 · 上海",
-    "about.workDesc1": "AI 交互、设计转前端、英文跨团队协作及需求与版本管理。",
-    "about.workDate2": "2024.04—2024.08",
-    "about.work2": "蔚来汽车｜服务设计实习生",
-    "about.workRole2": "UX 与服务设计 · 上海",
-    "about.workDesc2": "车辆年检服务数字化、服务蓝图与线上流程、状态及异常设计。",
-    "about.workCta": "查看工作实践 ↗",
-    "about.educationLabel": "（教育背景）",
-    "about.edu1School": "英国皇家艺术学院",
-    "about.edu1Degree": "信息体验设计硕士",
-    "about.edu2School": "上海工程技术大学",
-    "about.edu2Degree": "艺术与科技学士",
-    "gallery.title": "更多探索",
-    "gallery.intro": "沉浸式体验、服务系统与数字产品中的持续探索。",
-    "contact.title": "聊聊座舱与 AI 体验",
-    "contact.description": "关注上海的智能座舱 HMI、汽车 UX 与 AI 体验设计机会。",
-    "contact.resume": "下载完整简历 PDF ↓",
-    "footer.top": "返回顶部 ↑",
-    "meta.title": "周琳 Lilian Zhou｜智能座舱 HMI 交互设计",
-    "meta.description": "周琳 Lilian Zhou｜智能座舱 HMI 交互设计、生成式 HMI 方案与 AI 辅助研发。英国皇家艺术学院硕士，德赛西威、ICERED 与蔚来项目经验。"
+    "about.p2": "目前在德赛西威做智能座舱 HMI 交互设计，参与座舱交互、AI 界面优化与生成式 HMI 方案设计。硕士毕业于英国皇家艺术学院信息体验设计专业。",
+    "about.p4": "此前在 ICERED 参与海外 AI 社交产品迭代，在蔚来参与车辆年检服务数字化。我的工作从用户流程、界面状态和原型出发，延伸到设计文档与交付验证。",
+    "about.resume": "下载简历 PDF",
+    "about.workDate0": "2026.08—至今", "about.work0": "德赛西威｜创新体验设计工程师",
+    "about.workDesc0": "座舱交互、界面适配、AI 界面优化与生成式 HMI 方案设计。",
+    "about.workDate1": "2025.10—2026.07", "about.work1": "ICERED｜AI 产品经理",
+    "about.workDesc1": "AI 交互、设计转前端、英文跨团队协作与产品迭代。",
+    "about.workDate2": "2024.04—2024.08", "about.work2": "蔚来汽车｜服务设计实习生",
+    "about.workDesc2": "车辆年检服务数字化、App 流程与服务蓝图。",
+    "about.edu1School": "英国皇家艺术学院", "about.edu1Degree": "信息体验设计硕士",
+    "about.edu2School": "上海工程技术大学", "about.edu2Degree": "艺术与科技学士",
+    "gallery.hint": "拖动浏览", "gallery.previous": "上一个作品", "gallery.next": "下一个作品", "gallery.aria": "作品图库，可使用左右方向键浏览",
+    "contact.kicker": "聊聊设计，或打个招呼。", "footer.top": "返回顶部 ↑",
+    "meta.title": "Lilian Portfolio · 周琳",
+    "meta.description": "周琳 Lilian Zhou 的作品集。智能座舱 HMI、UI/UX、AI 产品与体验设计。英国皇家艺术学院、德赛西威、ICERED 与蔚来。"
   }
 };
 
@@ -282,13 +169,18 @@ function escapeHTML(value) {
 function renderFeaturedCases() {
   const container = document.querySelector("#featuredCases");
   if (!container) return;
-  container.innerHTML = (window.LILIAN_FEATURED_CASES || []).map((item, index) => {
+  const featured = window.LILIAN_FEATURED_CASES || [];
+  container.innerHTML = featured.slice(0, 2).map((item) => {
     const copy = currentLanguage === "zh" ? { ...item, ...item.zh } : item;
-    const isDiagram = ["icered", "nio"].includes(item.slug);
-    return `<a class="featured-case" href="${escapeHTML(item.href)}" aria-label="${escapeHTML(copy.title)}">
-      <div class="featured-case-image"><img src="${escapeHTML(item.image)}" alt="${escapeHTML(copy.title)}" loading="lazy" decoding="async"><span class="featured-case-number">0${index + 1}</span>${isDiagram ? `<span class="featured-case-diagram">${t("project.diagram")}</span>` : ""}</div>
-      <div class="featured-case-copy"><p class="featured-case-kind">${escapeHTML(copy.kind)}</p><div class="featured-case-title"><h3>${escapeHTML(copy.title)}</h3><span aria-hidden="true">↗</span></div><p class="featured-case-summary">${escapeHTML(copy.summary)}</p><div class="featured-case-meta"><p><span>${t("project.role")}</span>${escapeHTML(copy.role)}</p><span class="career-status">${escapeHTML(copy.stage)}</span></div></div>
+    return `<a class="work-feature" href="${escapeHTML(item.href)}" aria-label="${escapeHTML(copy.title)}">
+      <div class="work-image"><img src="${escapeHTML(item.image)}" alt="${escapeHTML(copy.title)}" loading="lazy" decoding="async" width="1200" height="750"><span class="work-open" aria-hidden="true">${t("project.view")} <span>↗</span></span></div>
+      <div class="work-caption"><div class="work-caption-top"><span>${escapeHTML(copy.kind)}</span><span>${item.slug === "ea01u" ? "2026" : "2024"}</span></div><div class="work-title"><h3>${escapeHTML(copy.title)}</h3><span class="row-arrow" aria-hidden="true">↗</span></div><p>${escapeHTML(copy.summary)}</p></div>
     </a>`;
+  }).join("");
+  const practice = document.querySelector("#practiceCases");
+  if (practice) practice.innerHTML = featured.slice(2).map((item) => {
+    const copy = currentLanguage === "zh" ? { ...item, ...item.zh } : item;
+    return `<a class="practice-row" href="${escapeHTML(item.href)}"><span class="practice-name">${escapeHTML(copy.title)}</span><span class="practice-description">${escapeHTML(copy.kind)}</span><span class="row-arrow" aria-hidden="true">↗</span></a>`;
   }).join("");
 }
 
@@ -315,25 +207,22 @@ function renderProjects() {
 
 function renderProjectGallery() {
   if (!projectGallery) return;
+  const previousPosition = galleryAutoPosition;
 
   const featured = window.LILIAN_FEATURED_CASES || [];
   const featuredSlugs = featured.map((item) => item.slug);
-  const orderedProjects = [
-    ...featured.map((item) => ({ ...item, meta: item.kind, galleryImage: item.image, zh: item.zh ? { ...item.zh, meta: item.zh.kind } : undefined })),
-    ...projects.filter((project) => !featuredSlugs.includes(project.slug))
-  ];
+  const orderedProjects = projects.filter((project) => !featuredSlugs.includes(project.slug) && project.slug !== "generative-hmi");
   const galleryVersion = "thermal-liquid-3";
 
-  const createCards = (isDuplicate = false) => orderedProjects
+  const createCards = () => orderedProjects
     .map((project) => {
       const copy = getProjectCopy(project);
       const imageSource = project.galleryImage || project.image;
       const versionedSource = `${imageSource}${imageSource.includes("?") ? "&" : "?"}v=${galleryVersion}`;
       const label = currentLanguage === "zh" ? `打开 ${copy.title}` : `Open ${copy.title}`;
-      const duplicateAttrs = isDuplicate ? ` aria-hidden="true" tabindex="-1"` : "";
 
       return `
-      <a class="gallery-card gallery-${project.slug}" href="${project.href || `project.html?slug=${project.slug}`}" aria-label="${label}" data-slug="${project.slug}"${duplicateAttrs}>
+      <a class="gallery-card gallery-${project.slug}" href="${project.href || `project.html?slug=${project.slug}`}" aria-label="${label}" data-slug="${project.slug}">
         <span class="gallery-thumb">
           <img src="${versionedSource}" alt="${copy.title} project preview" loading="lazy" decoding="async">
         </span>
@@ -347,17 +236,15 @@ function renderProjectGallery() {
     .join("");
 
   const cards = createCards();
-  const duplicateCards = createCards(true);
 
   projectGallery.innerHTML = `
     <div class="gallery-track">
       <div class="gallery-sequence" data-gallery-sequence>${cards}</div>
-      <div class="gallery-sequence gallery-sequence-clone" aria-hidden="true">${duplicateCards}</div>
     </div>
   `;
-  galleryAutoPosition = 0;
+  galleryAutoPosition = previousPosition;
   galleryLoopWidth = 0;
-  projectGallery.style.setProperty("--gallery-shift", "0px");
+  projectGallery.style.setProperty("--gallery-shift", `${previousPosition}px`);
   window.requestAnimationFrame(() => {
     updateGalleryLoopWidth();
     updateGalleryControls();
@@ -388,14 +275,28 @@ function updateGalleryLoopWidth() {
     return 0;
   }
 
-  galleryLoopWidth = sequence.scrollWidth + getGalleryGap();
+  galleryLoopWidth = sequence.scrollWidth;
   return galleryLoopWidth;
 }
 
+function getGalleryViewport() {
+  if (!projectGallery) return { left: 0, right: 0, width: 0 };
+  const rect = projectGallery.getBoundingClientRect();
+  const styles = window.getComputedStyle(projectGallery);
+  const leftPadding = Number.parseFloat(styles.paddingLeft) || 0;
+  const rightPadding = Number.parseFloat(styles.paddingRight) || 0;
+  const width = Math.max(0, projectGallery.clientWidth - leftPadding - rightPadding);
+  const left = rect.left + leftPadding;
+  return { left, right: left + width, width };
+}
+
+function getGalleryMaxShift() {
+  const width = galleryLoopWidth || updateGalleryLoopWidth();
+  return Math.max(0, width - getGalleryViewport().width);
+}
+
 function normalizeGalleryPosition(position) {
-  const loopWidth = galleryLoopWidth || updateGalleryLoopWidth();
-  if (loopWidth <= 2) return 0;
-  return ((position % loopWidth) + loopWidth) % loopWidth;
+  return clamp(position, 0, getGalleryMaxShift());
 }
 
 function setGalleryShift(position) {
@@ -406,33 +307,63 @@ function setGalleryShift(position) {
 }
 
 function updateGalleryControls() {
+  if (!projectGallery) return;
   updateGalleryLoopWidth();
+  const maxShift = getGalleryMaxShift();
+  galleryAutoPosition = normalizeGalleryPosition(galleryAutoPosition);
+  projectGallery.style.setProperty("--gallery-shift", `${galleryAutoPosition.toFixed(2)}px`);
+  document.querySelectorAll("[data-gallery-prev]").forEach((button) => {
+    button.disabled = galleryAutoPosition <= 1;
+    button.setAttribute("aria-controls", projectGallery.id);
+  });
+  document.querySelectorAll("[data-gallery-next]").forEach((button) => {
+    button.disabled = galleryAutoPosition >= maxShift - 1;
+    button.setAttribute("aria-controls", projectGallery.id);
+  });
+  projectGallery.querySelectorAll(".gallery-sequence-clone").forEach((clone) => {
+    clone.inert = true;
+    clone.querySelectorAll("a").forEach((link) => link.setAttribute("tabindex", "-1"));
+  });
 }
 
-function setGalleryAutoPaused(paused) {
-  galleryAutoPaused = paused;
+function moveGalleryByCard(direction) {
+  const card = getGallerySequence()?.querySelector(".gallery-card");
+  if (!card) return;
+  const step = card.getBoundingClientRect().width + getGalleryGap();
+  setGalleryShift(galleryAutoPosition + direction * step);
 }
 
-function syncGalleryAutoPause() {
-  setGalleryAutoPaused(galleryHoverPaused || galleryTimedPaused || galleryDragging);
-}
-
-function setGalleryHoverPaused(paused) {
-  galleryHoverPaused = paused;
-  syncGalleryAutoPause();
-}
-
-function pauseGalleryAuto(duration = 0) {
-  galleryTimedPaused = true;
-  syncGalleryAutoPause();
-  window.clearTimeout(galleryResumeTimer);
-
-  if (duration > 0) {
-    galleryResumeTimer = window.setTimeout(() => {
-      galleryTimedPaused = false;
-      syncGalleryAutoPause();
-    }, duration);
+function ensureGalleryCardVisible(card) {
+  if (!projectGallery || !card || card.closest(".gallery-sequence-clone")) return;
+  projectGallery.scrollLeft = 0;
+  const viewport = getGalleryViewport();
+  const rect = card.getBoundingClientRect();
+  if (rect.left < viewport.left) {
+    setGalleryShift(galleryAutoPosition + rect.left - viewport.left);
+  } else if (rect.right > viewport.right) {
+    setGalleryShift(galleryAutoPosition + rect.right - viewport.right);
   }
+}
+
+function handleGalleryKeydown(event) {
+  if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+  if (event.altKey || event.ctrlKey || event.metaKey) return;
+  const cards = Array.from(getGallerySequence()?.querySelectorAll(".gallery-card") || []);
+  if (!cards.length) return;
+  const focusedCard = event.target.closest(".gallery-card");
+  const focusedIndex = cards.indexOf(focusedCard);
+  let nextIndex;
+  if (event.key === "Home") nextIndex = 0;
+  else if (event.key === "End") nextIndex = cards.length - 1;
+  else if (focusedIndex >= 0) nextIndex = clamp(focusedIndex + (event.key === "ArrowRight" ? 1 : -1), 0, cards.length - 1);
+  else {
+    const viewport = getGalleryViewport();
+    nextIndex = cards.findIndex((card) => card.getBoundingClientRect().right > viewport.left + 1);
+    nextIndex = Math.max(0, nextIndex);
+  }
+  event.preventDefault();
+  cards[nextIndex].focus({ preventScroll: true });
+  ensureGalleryCardVisible(cards[nextIndex]);
 }
 
 function releaseGalleryPointer(event) {
@@ -440,7 +371,6 @@ function releaseGalleryPointer(event) {
   galleryPointerActive = false;
   galleryDragging = false;
   projectGallery.classList.remove("is-dragging");
-  syncGalleryAutoPause();
 
   if (event.pointerId !== undefined && projectGallery.hasPointerCapture?.(event.pointerId)) {
     projectGallery.releasePointerCapture(event.pointerId);
@@ -452,31 +382,34 @@ function releaseGalleryPointer(event) {
       gallerySuppressClick = false;
     }, 160);
   }
-
-  pauseGalleryAuto(1200);
 }
 
 function startGalleryDrag(event) {
   if (!projectGallery) return;
   if (event.pointerType === "mouse" && event.button !== 0) return;
+  if (event.isPrimary === false) return;
 
   galleryPointerActive = true;
   galleryDragging = false;
   galleryDragMoved = false;
   galleryDragStartX = event.clientX;
+  galleryDragStartY = event.clientY;
   galleryDragStartPosition = galleryAutoPosition;
-  syncGalleryAutoPause();
 }
 
 function moveGalleryDrag(event) {
   if (!projectGallery || !galleryPointerActive) return;
 
   const delta = event.clientX - galleryDragStartX;
+  const verticalDelta = event.clientY - galleryDragStartY;
+  if (!galleryDragging && event.pointerType === "touch" && Math.abs(verticalDelta) > Math.abs(delta) && Math.abs(verticalDelta) > 6) {
+    galleryPointerActive = false;
+    return;
+  }
   if (!galleryDragging && Math.abs(delta) > 4) {
     galleryDragging = true;
     galleryDragMoved = true;
     projectGallery.classList.add("is-dragging");
-    syncGalleryAutoPause();
     projectGallery.setPointerCapture?.(event.pointerId);
   }
 
@@ -496,53 +429,38 @@ function handleGalleryClick(event) {
 function handleGalleryWheel(event) {
   if (!projectGallery) return;
 
-  const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+  const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY) || event.shiftKey;
   if (!horizontal) return;
 
-  pauseGalleryAuto(900);
-  setGalleryShift(galleryAutoPosition + event.deltaX);
+  const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? getGalleryViewport().width : 1;
+  const delta = event.shiftKey && Math.abs(event.deltaY) > Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+  setGalleryShift(galleryAutoPosition + delta * unit);
   event.preventDefault();
-}
-
-function startGalleryAutoPlay() {
-  if (!projectGallery) return;
-  window.cancelAnimationFrame(galleryAutoFrame);
-  if (motionQuery.matches) return;
-
-  const tick = () => {
-    if (!galleryAutoPaused) {
-      const loopWidth = galleryLoopWidth || updateGalleryLoopWidth();
-
-      if (loopWidth > projectGallery.clientWidth + 2) {
-        setGalleryShift(galleryAutoPosition + 0.18);
-      }
-    }
-
-    galleryAutoFrame = window.requestAnimationFrame(tick);
-  };
-
-  galleryAutoFrame = window.requestAnimationFrame(tick);
 }
 
 function setupGalleryCarousel() {
   if (!projectGallery) return;
 
-  projectGallery.addEventListener("mouseenter", () => setGalleryHoverPaused(true));
-  projectGallery.addEventListener("mouseleave", () => setGalleryHoverPaused(false));
-  projectGallery.addEventListener("focusin", () => setGalleryHoverPaused(true));
-  projectGallery.addEventListener("focusout", () => setGalleryHoverPaused(false));
+  projectGallery.setAttribute("aria-keyshortcuts", "ArrowLeft ArrowRight Home End");
+  projectGallery.addEventListener("focusin", (event) => ensureGalleryCardVisible(event.target.closest(".gallery-card")));
+  projectGallery.addEventListener("keydown", handleGalleryKeydown);
+  projectGallery.addEventListener("dragstart", (event) => event.preventDefault());
   projectGallery.addEventListener("pointerdown", startGalleryDrag);
   projectGallery.addEventListener("pointermove", moveGalleryDrag);
   projectGallery.addEventListener("pointerup", releaseGalleryPointer);
   projectGallery.addEventListener("pointercancel", releaseGalleryPointer);
+  projectGallery.addEventListener("lostpointercapture", releaseGalleryPointer);
   projectGallery.addEventListener("click", handleGalleryClick, true);
   projectGallery.addEventListener("wheel", handleGalleryWheel, { passive: false });
+  window.addEventListener("pointerup", releaseGalleryPointer);
+  window.addEventListener("pointercancel", releaseGalleryPointer);
+  document.querySelectorAll("[data-gallery-prev]").forEach((button) => button.addEventListener("click", () => moveGalleryByCard(-1)));
+  document.querySelectorAll("[data-gallery-next]").forEach((button) => button.addEventListener("click", () => moveGalleryByCard(1)));
   window.addEventListener("resize", () => {
     updateGalleryLoopWidth();
     setGalleryShift(galleryAutoPosition);
   }, { passive: true });
   updateGalleryControls();
-  startGalleryAutoPlay();
 }
 
 function openProject(index) {
@@ -564,19 +482,74 @@ function openProject(index) {
 }
 
 function closeProject() {
+  if (!drawer) return;
   drawer.classList.remove("is-open");
   drawer.setAttribute("aria-hidden", "true");
 }
 
-function setMenu(open) {
+function setMenu(open, { restoreFocus = false } = {}) {
   if (!catMenu || !quickNav) return;
   catMenu.classList.toggle("is-open", open);
   catMenu.setAttribute("aria-expanded", open ? "true" : "false");
   quickNav.classList.toggle("is-open", open);
+  quickNav.inert = !open;
+  quickNav.setAttribute("aria-hidden", open ? "false" : "true");
+  quickNav.querySelectorAll("a").forEach((link) => {
+    if (!open) {
+      if (!menuTabIndexes.has(link)) menuTabIndexes.set(link, link.getAttribute("tabindex"));
+      link.setAttribute("tabindex", "-1");
+    } else if (menuTabIndexes.has(link)) {
+      const previousTabIndex = menuTabIndexes.get(link);
+      if (previousTabIndex === null) link.removeAttribute("tabindex");
+      else link.setAttribute("tabindex", previousTabIndex);
+      menuTabIndexes.delete(link);
+    }
+  });
+  if (!open && restoreFocus) catMenu.focus({ preventScroll: true });
 }
 
-function closeMenu() {
-  setMenu(false);
+function closeMenu(options) {
+  setMenu(false, options);
+}
+
+function updateActiveNavigation() {
+  if (!quickNav) return;
+  const destinations = Array.from(quickNav.querySelectorAll('a[href^="#"]')).map((link) => {
+    const hash = link.getAttribute("href");
+    let id;
+    try { id = decodeURIComponent(hash.slice(1)); } catch { return null; }
+    const section = document.getElementById(id);
+    return section ? { link, section, top: section.getBoundingClientRect().top } : null;
+  }).filter(Boolean);
+  if (!destinations.length) return;
+  const activationLine = Math.min(window.innerHeight * 0.25, 180);
+  const reached = destinations.filter((item) => item.top <= activationLine);
+  let active = reached.sort((a, b) => b.top - a.top)[0] || destinations[0];
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+    active = destinations.reduce((last, item) => item.top > last.top ? item : last);
+  }
+  destinations.forEach(({ link }) => {
+    if (link === active.link) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
+}
+
+function setupNavigationTracking() {
+  if (!quickNav) return;
+  let scheduled = false;
+  const scheduleUpdate = () => {
+    if (scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(() => {
+      scheduled = false;
+      updateActiveNavigation();
+    });
+  };
+  window.addEventListener("scroll", scheduleUpdate, { passive: true });
+  window.addEventListener("resize", scheduleUpdate, { passive: true });
+  window.addEventListener("hashchange", scheduleUpdate);
+  window.addEventListener("load", scheduleUpdate);
+  updateActiveNavigation();
 }
 
 function setupReveal() {
@@ -834,6 +807,8 @@ function setupPageRipple() {
   });
 }
 
+setMenu(false);
+setupNavigationTracking();
 applyStaticTranslations();
 renderFeaturedCases();
 renderProjects();
@@ -878,8 +853,9 @@ closeDrawer?.addEventListener("click", closeProject);
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
+    const menuWasOpen = catMenu?.getAttribute("aria-expanded") === "true";
     closeProject();
-    closeMenu();
+    closeMenu({ restoreFocus: menuWasOpen });
   }
 });
 

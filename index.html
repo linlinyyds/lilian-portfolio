@@ -3,128 +3,80 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta
-      name="description"
-      content="周琳 Lilian Zhou｜智能座舱 HMI 交互设计师。车载交互、生成式 HMI、AI 辅助研发与原型验证。"
-    >
-    <title>周琳 Lilian Zhou｜智能座舱 HMI 交互设计</title>
+    <meta name="description" content="周琳 Lilian Zhou 的作品集。智能座舱 HMI、UI/UX、AI 产品与体验设计。">
+    <title>Lilian Portfolio — 周琳</title>
     <link rel="icon" type="image/png" href="assets/favicon.png?v=thermal-liquid-3">
     <link rel="apple-touch-icon" href="assets/favicon.png?v=thermal-liquid-3">
-    <link rel="stylesheet" href="styles.css?v=hmi-20261022">
-    <link rel="stylesheet" href="career.css?v=hmi-20261022">
+    <link rel="stylesheet" href="styles.css?v=portfolio-20261022">
+    <link rel="stylesheet" href="portfolio.css?v=portfolio-20261022">
   </head>
-  <body data-theme="light" class="career-home">
-    <div class="ambient" aria-hidden="true">
-      <span class="glow glow-a"></span>
-      <span class="glow glow-b"></span>
-      <span class="glow glow-c"></span>
-    </div>
-
+  <body data-theme="light" class="portfolio-home">
+    <a class="skip-link" href="#project" data-i18n="nav.skip">跳至作品</a>
+    <div class="ambient" aria-hidden="true"><span class="glow glow-a"></span><span class="glow glow-b"></span><span class="glow glow-c"></span></div>
     <header class="site-header">
-      <button class="cat-menu" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="quickNav">
-        <img src="assets/logo.png?v=cat5" alt="">
-      </button>
-      <nav class="quick-nav" id="quickNav" aria-label="Page navigation">
+      <button class="cat-menu" type="button" aria-label="导航菜单" data-i18n-aria="nav.menu" aria-expanded="false" aria-controls="quickNav"><img src="assets/logo.png?v=cat5" alt=""></button>
+      <nav class="quick-nav" id="quickNav" aria-label="Page navigation" inert>
         <a href="#home" data-i18n="nav.home">首页</a>
-        <a href="#project" data-i18n="nav.project">精选项目</a>
-        <a href="#capabilities" data-i18n="nav.capabilities">专业能力</a>
-        <a href="#about" data-i18n="nav.about">经历与关于</a>
-        <a href="#gallery" data-i18n="nav.gallery">更多探索</a>
+        <a href="#project" data-i18n="nav.project">作品</a>
+        <a href="#about" data-i18n="nav.about">关于</a>
+        <a href="#gallery" data-i18n="nav.gallery">探索</a>
         <a href="#contact" data-i18n="nav.contact">联系</a>
       </nav>
       <div class="header-actions">
-        <button class="language-toggle icon-toggle" type="button" aria-label="Switch language" aria-pressed="false">
-          <span class="lang-current" aria-hidden="true">中</span>
-        </button>
+        <button class="language-toggle icon-toggle" type="button" aria-label="Switch language" aria-pressed="false"><span class="lang-current" aria-hidden="true">中</span></button>
         <button class="theme-toggle icon-toggle" type="button" aria-label="Switch between light and dark mode" aria-pressed="false">
-          <span class="theme-icon theme-sun" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false">
-              <circle cx="12" cy="12" r="4"></circle>
-              <path d="M12 2.8v2.1M12 19.1v2.1M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M2.8 12h2.1M19.1 12h2.1M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"></path>
-            </svg>
-          </span>
-          <span class="theme-icon theme-moon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false">
-              <path d="M20.1 14.5A7.9 7.9 0 0 1 9.5 3.9a8.5 8.5 0 1 0 10.6 10.6Z"></path>
-            </svg>
-          </span>
+          <span class="theme-icon theme-sun" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.8v2.1M12 19.1v2.1M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M2.8 12h2.1M19.1 12h2.1M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"></path></svg></span>
+          <span class="theme-icon theme-moon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M20.1 14.5A7.9 7.9 0 0 1 9.5 3.9a8.5 8.5 0 1 0 10.6 10.6Z"></path></svg></span>
         </button>
       </div>
     </header>
-
     <main id="app">
-      <section class="hero career-hero" id="home" aria-labelledby="hero-title">
-        <div class="career-hero-copy reveal">
-          <p class="career-eyebrow">LILIAN ZHOU <span>周琳</span></p>
-          <p class="career-discipline">AUTOMOTIVE UX · AI EXPERIENCE</p>
-          <h1 id="hero-title"><span data-i18n="hero.heading1">智能座舱</span><span data-i18n="hero.heading2">HMI 交互设计</span></h1>
-          <p class="career-hero-description" data-i18n="hero.description">从用户场景、交互规则到原型验证，设计清晰、可理解的座舱与 AI 体验。</p>
-          <div class="career-actions">
-            <a class="career-button is-primary" href="#project"><span data-i18n="hero.viewProjects">查看精选项目</span><span aria-hidden="true">↗</span></a>
-            <a class="career-button" href="assets/resume/zhoulin-hmi-resume.pdf" download><span data-i18n="hero.downloadResume">下载简历</span><span aria-hidden="true">↓</span></a>
+      <section class="hero" id="home" aria-label="Lilian Portfolio">
+        <div class="hero-title reveal"><h1 data-pluck-text>LILIAN</h1><p data-pluck-text>PORTFOLIO</p></div>
+        <div class="hero-role reveal"><span data-pluck-text>UI&amp;UX | HMI</span><strong data-pluck-text>AI PRODUCT MANAGER</strong></div>
+        <a class="cover-scroll" href="#project"><span data-i18n="hero.scroll">向下浏览</span><span aria-hidden="true">↓</span></a>
+      </section>
+
+      <section class="section portfolio-projects" id="project" aria-labelledby="project-title">
+        <div class="section-heading reveal"><span class="small-name">SELECTED WORKS</span><h2 id="project-title">PROJECT</h2></div>
+        <div class="selected-pair" id="featuredCases"></div>
+        <div class="practice-index reveal">
+          <p class="side-label" data-i18n="project.practice">（工作与研究）</p>
+          <div class="practice-links">
+            <div id="practiceCases"></div>
+            <a class="practice-row" href="project.html?slug=generative-hmi"><span class="practice-name" data-i18n="research.title">生成式 HMI</span><span class="practice-description" data-i18n="research.index">研发方案 · 进行中</span><span class="row-arrow" aria-hidden="true">↗</span></a>
           </div>
-          <ul class="career-credentials">
-            <li data-i18n="hero.current">德赛西威 · 创新体验设计工程师</li>
-            <li data-i18n="hero.education">英国皇家艺术学院 · 信息体验设计硕士</li>
-            <li data-i18n="hero.location">求职意向：上海</li>
-          </ul>
-        </div>
-        <a class="career-hero-preview reveal" href="project.html?slug=ea01u" aria-label="查看 EA01U 项目" data-i18n-aria="hero.previewAria">
-          <div class="career-preview-label"><span>SELECTED / 01</span><span>2026</span></div>
-          <img src="assets/portfolio/ea01u/launcher-balance-bird-poster.png" alt="EA01U 智能座舱 Launcher 方案" data-i18n-alt="hero.previewAlt" fetchpriority="high" decoding="async" width="1280" height="400">
-          <div class="career-preview-caption"><div><strong>EA01U</strong><span data-i18n="hero.previewText">AI 智能座舱 · HMI</span></div><span aria-hidden="true">↗</span></div>
-          <p class="career-preview-note" data-i18n="hero.previewNote">场景 · 信息层级 · 对话状态 · 交互反馈</p>
-        </a>
-      </section>
-
-      <section class="section career-projects" id="project" aria-labelledby="project-title">
-        <div class="career-section-heading reveal"><div><p class="career-eyebrow">SELECTED WORK / 01</p><h2 id="project-title" data-i18n="project.title">精选项目</h2></div><p data-i18n="project.intro">以座舱交互为主线，连接 AI 产品、原型实现与汽车服务体验。</p></div>
-        <div class="featured-cases" id="featuredCases"></div>
-        <a class="research-spotlight reveal" href="project.html?slug=generative-hmi">
-          <div class="research-spotlight-copy"><span class="career-status" data-i18n="research.status">研发专题 · 进行中</span><h3 data-i18n="research.title">生成式 HMI 设计研发</h3><p data-i18n="research.description">探索风格规则、组件模板与界面生成的协同流程，围绕多页一致性、局部修改和质量评价规划实施路径。</p><span class="career-text-link"><span data-i18n="research.link">查看技术方案与研发重点</span> ↗</span></div>
-          <img src="assets/portfolio/generative-hmi/overview.svg" alt="生成式 HMI 方案流程示意" data-i18n-alt="research.imageAlt" loading="lazy" decoding="async" width="1200" height="760">
-        </a>
-      </section>
-
-      <section class="section career-capabilities" id="capabilities" aria-labelledby="capabilities-title">
-        <div class="career-section-heading reveal"><div><p class="career-eyebrow">PRACTICE / 02</p><h2 id="capabilities-title" data-i18n="capabilities.title">从场景到交付</h2></div><p data-i18n="capabilities.intro">在交互设计、AI 原型验证与产品协作之间推进工作。</p></div>
-        <div class="capability-grid">
-          <article class="capability-card reveal"><span class="capability-number">01</span><h3 data-i18n="capabilities.hmiTitle">HMI 交互与交付</h3><p data-i18n="capabilities.hmiText">用户任务、信息架构、页面状态与异常流程，连接 UE 文档、UI 适配、评审走查和版本交付。</p><a href="experience.html?slug=desay-sv" class="career-text-link" data-i18n="capabilities.hmiLink">德赛西威工作实践 ↗</a></article>
-          <article class="capability-card reveal"><span class="capability-number">02</span><h3 data-i18n="capabilities.aiTitle">AI 辅助研发</h3><p data-i18n="capabilities.aiText">使用 Claude Code、Codex、Cursor 拆解任务，将设计转为前端代码草稿和可测试实现，开展调试与状态验证。</p><a href="work/icered/" class="career-text-link" data-i18n="capabilities.aiLink">ICERED 设计与验证 ↗</a></article>
-          <article class="capability-card reveal"><span class="capability-number">03</span><h3 data-i18n="capabilities.generativeTitle">生成式 HMI 方案</h3><p data-i18n="capabilities.generativeText">主导应用方案与实施路径设计，梳理风格规则、组件模板、多页一致性、局部修改及质量评估标准。</p><a href="project.html?slug=generative-hmi" class="career-text-link" data-i18n="capabilities.generativeLink">查看研发专题 ↗</a></article>
-          <article class="capability-card reveal"><span class="capability-number">04</span><h3 data-i18n="capabilities.collaborationTitle">产品与国际协作</h3><p data-i18n="capabilities.collaborationText">需求拆解、优先级判断、版本管理与测试验收；与海外市场和技术团队用英文对齐范围、节奏和交付风险。</p><a href="work/icered/" class="career-text-link" data-i18n="capabilities.collaborationLink">查看产品协作实践 ↗</a></article>
         </div>
       </section>
 
-      <section class="section about career-about" id="about" aria-labelledby="about-title">
-        <div class="career-section-heading reveal"><div><p class="career-eyebrow">EXPERIENCE / 03</p><h2 id="about-title" data-i18n="about.title">经历与关于</h2></div><p data-i18n="about.lead">艺术科技背景，汽车与 AI 产品实践。</p></div>
+      <section class="section about portfolio-about" id="about" aria-labelledby="about-title">
+        <div class="section-heading reveal"><span class="small-name">LILIAN ZHOU</span><h2 id="about-title">ABOUT</h2></div>
         <div class="profile-grid">
           <p class="side-label reveal" data-i18n="about.profileLabel">（个人简介）</p>
-          <div class="profile-copy reveal"><p data-i18n="about.p1">你好，我是周琳。</p><p data-i18n="about.p2">我是一名智能座舱 HMI 交互设计师，毕业于英国皇家艺术学院信息体验设计专业。目前在德赛西威参与座舱交互、AI 座舱界面优化与生成式 HMI 研发方案设计。</p><p data-i18n="about.p4">我的工作从用户场景、任务流程和信息架构出发，延伸到状态与异常设计、UE 文档、界面适配和交付验证。此前在 ICERED 参与海外 AI 社交产品迭代，在蔚来参与车辆年检服务数字化。</p><p data-i18n="about.p6">我关注驾驶信息的优先级、系统反馈的可理解性，以及人与智能产品之间自然的交流。</p></div>
+          <div class="profile-copy reveal"><p class="profile-greeting" data-i18n="about.p1">你好，我是周琳。</p><p data-i18n="about.p2">我是一名智能座舱 HMI 交互设计师，毕业于英国皇家艺术学院信息体验设计专业。目前在德赛西威参与座舱交互、AI 座舱界面优化与生成式 HMI 研发方案设计。</p><p data-i18n="about.p4">我的工作从用户场景、任务流程和信息架构出发，延伸到状态与异常设计、UE 文档、界面适配和交付验证。此前在 ICERED 参与海外 AI 社交产品迭代，在蔚来参与车辆年检服务数字化。</p><a class="text-link resume-link" href="assets/resume/zhoulin-hmi-resume.pdf" download><span data-i18n="about.resume">下载简历 PDF</span><span aria-hidden="true">↓</span></a></div>
           <p class="side-label reveal" data-i18n="about.workLabel">（工作经历）</p>
           <div class="timeline work-timeline reveal">
-            <a class="experience-row" href="experience.html?slug=desay-sv"><time data-i18n="about.workDate0">2026.08—至今</time><span class="experience-summary"><span class="experience-title" data-i18n="about.work0">德赛西威｜创新体验设计工程师</span><span class="experience-details"><span class="experience-role" data-i18n="about.workRole0">智能座舱交互 · 技术研发组 · 广东</span><span class="experience-copy" data-i18n="about.workDesc0">多品牌 UE 交付、界面适配、AI 座舱优化与生成式 HMI 方案设计。</span><span class="experience-cta" data-i18n="about.workCta">查看工作实践 ↗</span></span></span></a>
-            <a class="experience-row" href="work/icered/"><time data-i18n="about.workDate1">2025.10—2026.07</time><span class="experience-summary"><span class="experience-title" data-i18n="about.work1">ICERED｜AI 产品经理</span><span class="experience-details"><span class="experience-role" data-i18n="about.workRole1">海外 AI 社交产品 · 上海</span><span class="experience-copy" data-i18n="about.workDesc1">AI 交互、设计转前端、英文跨团队协作及需求与版本管理。</span><span class="experience-cta" data-i18n="about.workCta">查看工作实践 ↗</span></span></span></a>
-            <a class="experience-row" href="experience.html?slug=nio"><time data-i18n="about.workDate2">2024.04—2024.08</time><span class="experience-summary"><span class="experience-title" data-i18n="about.work2">蔚来汽车｜服务设计实习生</span><span class="experience-details"><span class="experience-role" data-i18n="about.workRole2">UX 与服务设计 · 上海</span><span class="experience-copy" data-i18n="about.workDesc2">车辆年检服务数字化、服务蓝图与线上流程、状态及异常设计。</span><span class="experience-cta" data-i18n="about.workCta">查看工作实践 ↗</span></span></span></a>
+            <a class="experience-row" href="experience.html?slug=desay-sv"><time data-i18n="about.workDate0">2026.08—至今</time><span class="experience-summary"><span class="experience-title" data-i18n="about.work0">德赛西威｜创新体验设计工程师</span><span class="experience-copy" data-i18n="about.workDesc0">多品牌 UE 交付、界面适配、AI 座舱优化与生成式 HMI 方案设计。</span></span><span class="row-arrow" aria-hidden="true">↗</span></a>
+            <a class="experience-row" href="work/icered/"><time data-i18n="about.workDate1">2025.10—2026.07</time><span class="experience-summary"><span class="experience-title" data-i18n="about.work1">ICERED｜AI 产品经理</span><span class="experience-copy" data-i18n="about.workDesc1">AI 交互、设计转前端、英文跨团队协作及需求与版本管理。</span></span><span class="row-arrow" aria-hidden="true">↗</span></a>
+            <a class="experience-row" href="experience.html?slug=nio"><time data-i18n="about.workDate2">2024.04—2024.08</time><span class="experience-summary"><span class="experience-title" data-i18n="about.work2">蔚来汽车｜服务设计实习生</span><span class="experience-copy" data-i18n="about.workDesc2">车辆年检服务数字化、服务蓝图与线上流程、状态及异常设计。</span></span><span class="row-arrow" aria-hidden="true">↗</span></a>
           </div>
           <p class="side-label reveal" data-i18n="about.educationLabel">（教育背景）</p>
-          <div class="timeline education-timeline reveal"><div><time>2024—2025</time><span class="education-entry"><span data-i18n="about.edu1School">英国皇家艺术学院</span><span class="education-separator" aria-hidden="true">｜</span><span data-i18n="about.edu1Degree">信息体验设计硕士</span></span></div><div><time>2020—2024</time><span class="education-entry"><span data-i18n="about.edu2School">上海工程技术大学</span><span class="education-separator" aria-hidden="true">｜</span><span data-i18n="about.edu2Degree">艺术与科技学士</span></span></div></div>
+          <div class="timeline education-timeline reveal"><div><time>2024—2025</time><span class="education-entry"><span data-i18n="about.edu1School">英国皇家艺术学院</span><span class="education-degree" data-i18n="about.edu1Degree">信息体验设计硕士</span></span></div><div><time>2020—2024</time><span class="education-entry"><span data-i18n="about.edu2School">上海工程技术大学</span><span class="education-degree" data-i18n="about.edu2Degree">艺术与科技学士</span></span></div></div>
         </div>
       </section>
 
-      <section class="section gallery career-gallery" id="gallery" aria-labelledby="gallery-title">
-        <div class="career-section-heading reveal"><div><p class="career-eyebrow">EXPLORATIONS / 04</p><h2 id="gallery-title" data-i18n="gallery.title">更多探索</h2></div><p data-i18n="gallery.intro">沉浸式体验、服务系统与数字产品中的持续探索。</p></div>
-        <div class="gallery-carousel" id="projectGallery" tabindex="0" aria-label="Project visual carousel"></div>
-        <details class="career-archive"><summary data-i18n="project.archive">浏览补充项目</summary><div class="project-list" id="projectList"></div></details>
+      <section class="section gallery portfolio-gallery" id="gallery" aria-labelledby="gallery-title">
+        <div class="gallery-head reveal"><div class="section-heading"><span class="small-name">EXPERIMENTS &amp; EXPLORATIONS</span><h2 id="gallery-title">GALLERY</h2></div><div class="gallery-navigation"><span data-i18n="gallery.hint">拖动浏览</span><button type="button" data-gallery-prev aria-label="上一个作品" data-i18n-aria="gallery.previous">←</button><button type="button" data-gallery-next aria-label="下一个作品" data-i18n-aria="gallery.next">→</button></div></div>
+        <div class="gallery-carousel" id="projectGallery" tabindex="0" role="region" aria-label="作品图库，可使用左右方向键浏览" data-i18n-aria="gallery.aria"></div>
+        <details class="project-index"><summary><span data-i18n="project.archive">浏览项目目录</span><span class="index-toggle" aria-hidden="true">+</span></summary><div class="project-list" id="projectList"></div></details>
       </section>
 
-      <section class="section career-contact" id="contact" aria-labelledby="contact-title"><div><p class="career-eyebrow">LET’S CONNECT / 05</p><h2 id="contact-title" data-i18n="contact.title">聊聊座舱与 AI 体验</h2><p data-i18n="contact.description">关注上海的智能座舱 HMI、汽车 UX 与 AI 体验设计机会。</p></div><div class="contact-copy"><a href="mailto:zhoulin1712@gmail.com">zhoulin1712@gmail.com ↗</a><a href="tel:+8613162331108">+86 131 6233 1108</a><a href="assets/resume/zhoulin-hmi-resume.pdf" download data-i18n="contact.resume">下载完整简历 ↓</a></div></section>
+      <section class="section portfolio-contact" id="contact" aria-labelledby="contact-title"><div class="section-heading"><span class="small-name" data-i18n="contact.kicker">聊聊设计，或打个招呼。</span><h2 id="contact-title">CONTACT</h2></div><div class="contact-copy"><a class="text-link" href="mailto:zhoulin1712@gmail.com">zhoulin1712@gmail.com <span aria-hidden="true">↗</span></a><a href="tel:+8613162331108">+86 131 6233 1108</a></div></section>
     </main>
-    <footer class="career-footer"><span>© 2026 Lilian Zhou</span><a href="#home" data-i18n="footer.top">返回顶部 ↑</a></footer>
-    <aside class="project-drawer" id="projectDrawer" aria-hidden="true"><button class="drawer-close" type="button" aria-label="Close project details">Close</button><div class="drawer-content" id="drawerContent"></div></aside>
-    <script src="project-data.js?v=hmi-20261022"></script>
-    <script src="ea01u-data.js?v=hmi-20261022"></script>
-    <script src="career-projects.js?v=hmi-20261022"></script>
-    <script src="script.js?v=hmi-20261022"></script>
+    <footer class="portfolio-footer"><span>© 2026 Lilian Zhou</span><a href="#home" data-i18n="footer.top">返回顶部 ↑</a></footer>
+    <script src="project-data.js?v=portfolio-20261022"></script>
+    <script src="ea01u-data.js?v=portfolio-20261022"></script>
+    <script src="career-projects.js?v=portfolio-20261022"></script>
+    <script src="script.js?v=portfolio-20261022"></script>
   </body>
 </html>
