@@ -29,50 +29,68 @@ const menuTabIndexes = new WeakMap();
 
 const staticTranslations = {
   en: {
-    "nav.home": "Home", "nav.project": "Work", "nav.about": "About", "nav.gallery": "Gallery", "nav.contact": "Contact", "nav.skip": "Skip to work",
+    "nav.home": "Home", "nav.project": "Work", "nav.about": "About / CV", "nav.gallery": "Gallery", "nav.contact": "Contact", "nav.skip": "Skip to work",
     "nav.menu": "Navigation menu", "hero.scroll": "Scroll to explore",
-    "project.practice": "( Practice & research )", "project.view": "View project", "project.archive": "Browse project index",
-    "research.title": "Generative HMI", "research.index": "R&D proposal · In progress",
-    "about.profileLabel": "( Profile )", "about.workLabel": "( Experience )", "about.educationLabel": "( Education )",
-    "about.p1": "Hello, I am Lilian Zhou.",
-    "about.p2": "I design automotive HMI at Desay SV, working on cockpit interaction, AI interfaces and generative HMI application planning. I hold an MA in Information Experience Design from the Royal College of Art.",
-    "about.p4": "Previously, I worked on an overseas AI social product at ICERED and vehicle-inspection services at NIO. My practice spans user flows, interface states and prototypes, through to design documentation and delivery validation.",
+    "project.view": "View project", "project.archive": "Browse project index",
+    "about.workLabel": "Experience", "about.educationLabel": "Education",
+    "about.direction1": "Automotive HMI interaction design",
+    "about.direction2": "AI product experiences",
+    "about.p2": "I design automotive HMI, with a focus on making complex functions and user tasks easier to navigate through clear flows, interfaces and feedback.",
+    "about.p4": "My practice spans scenario analysis, information architecture and system states, through to interactive prototypes, interaction specifications and delivery reviews. I also use AI-assisted tools to explore design-to-code and generative HMI.",
+    "about.focusLabel": "Capabilities & interests",
+    "about.focus1Title": "Interaction logic & delivery",
+    "about.focus1Copy": "Task flows, system states and exception handling, carried through to UI adaptation, design specifications and reviews.",
+    "about.focus2Title": "AI-assisted prototypes & generative HMI",
+    "about.focus2Copy": "Frontend prototyping and debugging; exploring generative design through style rules, reusable components and quality criteria.",
+    "about.focus3Title": "Product requirements & collaboration",
+    "about.focus3Copy": "Requirements breakdown, prioritization, version management and acceptance testing, with cross-team collaboration in English.",
     "about.resume": "Résumé PDF · 中文",
-    "about.workDate0": "2026.08—Present", "about.work0": "Desay SV | Innovation Experience Design Engineer",
+    "about.next": "Continue to selected work",
+    "about.workDate0": "2026.08—Present", "about.company0": "Desay SV", "about.role0": "Innovation Experience Design Engineer",
     "about.workDesc0": "Cockpit interaction, UI adaptation, AI interfaces and generative HMI application planning.",
-    "about.workDate1": "2025.10—2026.07", "about.work1": "ICERED | AI Product Manager",
+    "about.workDate1": "2025.10—2026.07", "about.company1": "ICERED", "about.role1": "AI Product Manager",
     "about.workDesc1": "AI interaction, design-to-code, collaboration in English and product iteration.",
-    "about.workDate2": "2024.04—2024.08", "about.work2": "NIO | Service Design Intern",
+    "about.workDate2": "2024.04—2024.08", "about.company2": "NIO", "about.role2": "Service Design Intern",
     "about.workDesc2": "Vehicle-inspection service digitalization, app flows and service blueprinting.",
     "about.edu1School": "Royal College of Art", "about.edu1Degree": "MA Information Experience Design",
     "about.edu2School": "Shanghai University of Engineering Science", "about.edu2Degree": "BA Art and Technology",
+    "about.languageLabel": "Languages", "about.languages": "Mandarin · English as a working language",
     "gallery.hint": "Drag to browse", "gallery.previous": "Previous project", "gallery.next": "Next project", "gallery.aria": "Project gallery. Use left and right arrow keys to browse.",
     "contact.kicker": "For a conversation, or just a hello.", "footer.top": "Back to top ↑",
     "meta.title": "Lilian Portfolio",
-    "meta.description": "Lilian Zhou’s portfolio. Automotive HMI, UI/UX, AI products and experience design. Royal College of Art, Desay SV, ICERED and NIO."
+    "meta.description": "Lilian Zhou’s portfolio and CV. Automotive HMI interaction design, AI product experiences, interactive prototyping and design delivery."
   },
   zh: {
-    "nav.home": "首页", "nav.project": "作品", "nav.about": "关于", "nav.gallery": "探索", "nav.contact": "联系", "nav.skip": "跳至作品",
+    "nav.home": "首页", "nav.project": "作品", "nav.about": "关于 / CV", "nav.gallery": "探索", "nav.contact": "联系", "nav.skip": "跳至作品",
     "nav.menu": "导航菜单", "hero.scroll": "向下浏览",
-    "project.practice": "（工作与研究）", "project.view": "查看项目", "project.archive": "浏览项目目录",
-    "research.title": "生成式 HMI", "research.index": "研发方案 · 进行中",
-    "about.profileLabel": "（个人简介）", "about.workLabel": "（工作经历）", "about.educationLabel": "（教育背景）",
-    "about.p1": "你好，我是周琳。",
-    "about.p2": "目前在德赛西威做智能座舱 HMI 交互设计，参与座舱交互、AI 界面优化与生成式 HMI 方案设计。硕士毕业于英国皇家艺术学院信息体验设计专业。",
-    "about.p4": "此前在 ICERED 参与海外 AI 社交产品迭代，在蔚来参与车辆年检服务数字化。我的工作从用户流程、界面状态和原型出发，延伸到设计文档与交付验证。",
+    "project.view": "查看项目", "project.archive": "浏览项目目录",
+    "about.workLabel": "工作经历", "about.educationLabel": "教育背景",
+    "about.direction1": "智能座舱 HMI 交互设计",
+    "about.direction2": "AI 产品与交互体验",
+    "about.p2": "我专注于智能座舱 HMI 交互设计，把复杂的功能和用户任务，梳理成清晰的流程、界面与反馈。",
+    "about.p4": "从场景分析、信息架构与状态设计，到可操作原型、UE 文档和交付验证，我关注设计如何被实现，也使用 AI 辅助工具探索设计转前端与生成式 HMI。",
+    "about.focusLabel": "能力与关注",
+    "about.focus1Title": "交互逻辑与体验交付",
+    "about.focus1Copy": "任务流程、状态与异常设计，延伸到界面适配、设计文档与评审走查。",
+    "about.focus2Title": "AI 辅助原型与生成式 HMI",
+    "about.focus2Copy": "设计转前端与原型调试；围绕风格规则、组件复用和质量标准探索生成式设计。",
+    "about.focus3Title": "产品需求与协作",
+    "about.focus3Copy": "需求拆解、优先级判断、版本管理与测试验收，以及英文跨团队沟通。",
     "about.resume": "下载简历 PDF",
-    "about.workDate0": "2026.08—至今", "about.work0": "德赛西威｜创新体验设计工程师",
+    "about.next": "继续浏览作品",
+    "about.workDate0": "2026.08—至今", "about.company0": "德赛西威", "about.role0": "创新体验设计工程师",
     "about.workDesc0": "座舱交互、界面适配、AI 界面优化与生成式 HMI 方案设计。",
-    "about.workDate1": "2025.10—2026.07", "about.work1": "ICERED｜AI 产品经理",
+    "about.workDate1": "2025.10—2026.07", "about.company1": "ICERED", "about.role1": "AI 产品经理",
     "about.workDesc1": "AI 交互、设计转前端、英文跨团队协作与产品迭代。",
-    "about.workDate2": "2024.04—2024.08", "about.work2": "蔚来汽车｜服务设计实习生",
+    "about.workDate2": "2024.04—2024.08", "about.company2": "蔚来汽车", "about.role2": "服务设计实习生",
     "about.workDesc2": "车辆年检服务数字化、App 流程与服务蓝图。",
     "about.edu1School": "英国皇家艺术学院", "about.edu1Degree": "信息体验设计硕士",
     "about.edu2School": "上海工程技术大学", "about.edu2Degree": "艺术与科技学士",
+    "about.languageLabel": "语言", "about.languages": "普通话 · 英语可作为工作语言",
     "gallery.hint": "拖动浏览", "gallery.previous": "上一个作品", "gallery.next": "下一个作品", "gallery.aria": "作品图库，可使用左右方向键浏览",
     "contact.kicker": "聊聊设计，或打个招呼。", "footer.top": "返回顶部 ↑",
     "meta.title": "Lilian Portfolio · 周琳",
-    "meta.description": "周琳 Lilian Zhou 的作品集。智能座舱 HMI、UI/UX、AI 产品与体验设计。英国皇家艺术学院、德赛西威、ICERED 与蔚来。"
+    "meta.description": "周琳 Lilian Zhou 的个人作品集与 CV。智能座舱 HMI 交互设计、AI 产品体验、交互原型与设计交付。"
   }
 };
 
@@ -165,11 +183,6 @@ function renderFeaturedCases() {
       <div class="work-image"><img src="${escapeHTML(item.image)}" alt="${escapeHTML(copy.title)}" loading="lazy" decoding="async" width="1200" height="750"><span class="work-open" aria-hidden="true">${t("project.view")} <span>↗</span></span></div>
       <div class="work-caption"><div class="work-caption-top"><span>${escapeHTML(copy.kind)}</span><span>${item.slug === "ea01u" ? "2026" : "2024"}</span></div><div class="work-title"><h3>${escapeHTML(copy.title)}</h3><span class="row-arrow" aria-hidden="true">↗</span></div><p>${escapeHTML(copy.summary)}</p></div>
     </a>`;
-  }).join("");
-  const practice = document.querySelector("#practiceCases");
-  if (practice) practice.innerHTML = featured.slice(2).map((item) => {
-    const copy = currentLanguage === "zh" ? { ...item, ...item.zh } : item;
-    return `<a class="practice-row" href="${escapeHTML(item.href)}"><span class="practice-name">${escapeHTML(copy.title)}</span><span class="practice-description">${escapeHTML(copy.kind)}</span><span class="row-arrow" aria-hidden="true">↗</span></a>`;
   }).join("");
 }
 
@@ -664,23 +677,24 @@ if (catMenu) {
   });
 }
 
-if (quickNav) {
-  quickNav.addEventListener("click", (event) => {
-    const link = event.target.closest('a[href^="#"]');
-    if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const hash = link.getAttribute("href");
-    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
-    if (!target) return;
-    event.preventDefault();
-    closeMenu();
-    if (window.location.hash !== hash) window.history.pushState(null, "", hash);
-    const hadTabIndex = target.hasAttribute("tabindex");
-    if (!hadTabIndex) target.setAttribute("tabindex", "-1");
-    target.focus({ preventScroll: true });
-    if (!hadTabIndex) target.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
-    target.scrollIntoView({ block: "start", behavior: motionQuery.matches ? "auto" : "smooth" });
-  });
-}
+document.addEventListener("click", (event) => {
+  const link = event.target.closest('#quickNav a[href^="#"], a[data-section-link]');
+  if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const hash = link.getAttribute("href");
+  if (!hash?.startsWith("#")) return;
+  let id;
+  try { id = decodeURIComponent(hash.slice(1)); } catch { return; }
+  const target = document.getElementById(id);
+  if (!target) return;
+  event.preventDefault();
+  closeMenu();
+  if (window.location.hash !== hash) window.history.pushState(null, "", hash);
+  const hadTabIndex = target.hasAttribute("tabindex");
+  if (!hadTabIndex) target.setAttribute("tabindex", "-1");
+  target.focus({ preventScroll: true });
+  if (!hadTabIndex) target.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
+  target.scrollIntoView({ block: "start", behavior: motionQuery.matches ? "auto" : "smooth" });
+});
 
 if (themeToggle) {
   themeToggle.addEventListener("click", () => {
