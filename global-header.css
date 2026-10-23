@@ -1,11 +1,11 @@
 /* Shared portfolio navigation. Load after page-specific styles. */
-:root { --global-header-height: 88px; }
+:root { --global-header-height: 64px; }
 
 .global-header {
   --gh-text: #252722;
   --gh-muted: #74766e;
-  --gh-line: rgba(38, 42, 33, .14);
-  --gh-surface: rgba(250, 250, 247, .89);
+  --gh-line: rgba(38, 42, 33, .09);
+  --gh-surface: rgba(250, 250, 247, .82);
   position: fixed;
   inset: 0 0 auto;
   z-index: 100;
@@ -32,7 +32,7 @@
 .global-header[data-theme="dark"] {
   --gh-text: #eeefe8;
   --gh-muted: #b7bbb0;
-  --gh-line: rgba(235, 239, 227, .17);
+  --gh-line: rgba(235, 239, 227, .12);
   --gh-surface: rgba(25, 29, 26, .92);
 }
 
@@ -56,7 +56,7 @@
   padding: 6px 0;
   color: var(--gh-text);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -.045em;
@@ -78,7 +78,7 @@
   position: static;
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 28px;
   width: auto;
   max-height: none;
   padding: 0;
@@ -105,7 +105,7 @@
   border-radius: 0;
   background: transparent;
   color: var(--gh-muted);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.3;
   letter-spacing: 0;
@@ -117,7 +117,7 @@
 .global-header .global-nav a::after {
   position: absolute;
   right: 0;
-  bottom: 7px;
+  bottom: 10px;
   left: 0;
   height: 1px;
   background: currentColor;
@@ -170,7 +170,7 @@
   color: var(--gh-text);
   box-shadow: none;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0;
@@ -202,12 +202,12 @@
 
 .global-header .theme-toggle svg {
   display: block;
-  flex: 0 0 19px;
-  width: 19px;
-  height: 19px;
+  flex: 0 0 17px;
+  width: 17px;
+  height: 17px;
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.5;
+  stroke-width: 1.3;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -221,7 +221,7 @@
   height: 17px;
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.5;
+  stroke-width: 1.3;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -263,13 +263,13 @@ body.portfolio-home:has(> .global-header) .cv-screen {
   .global-header .global-header-inner { gap: 22px; }
   .global-header .global-nav { gap: 22px; }
   .global-header .global-controls { gap: 7px; margin-left: 0; }
-  .global-header .global-brand { font-size: 22px; }
+  .global-header .global-brand { font-size: 21px; }
 }
 
 @media (max-width: 760px) {
-  :root { --global-header-height: 72px; }
+  :root { --global-header-height: 58px; }
   .global-header .global-header-inner { gap: 16px; padding-right: 22px; padding-left: 22px; }
-  .global-header .global-brand { gap: 8px; font-size: 21px; }
+  .global-header .global-brand { gap: 8px; font-size: 20px; }
   .global-header .global-brand > span { font-size: 10px; }
   .global-header .global-controls { gap: 5px; margin-left: auto; }
   .global-header .language-toggle,
