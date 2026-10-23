@@ -84,6 +84,12 @@
       const context = document.body.dataset.navContext;
       header.dataset.theme = theme;
       header.dataset.lang = lang;
+      const personName = english ? 'lilian' : '周琳';
+      const brand = header.querySelector('.global-brand');
+      setText(brand, personName);
+      setAttribute(brand, 'aria-label', english ? 'lilian · Home' : '周琳 · 首页');
+      document.querySelectorAll('[data-person-name]').forEach(element => setText(element, personName));
+      document.querySelectorAll('[data-person-portrait]').forEach(element => setAttribute(element, 'alt', personName));
       setAttribute(nav, 'aria-label', english ? 'Main navigation' : '主导航');
       nav.querySelectorAll('a[data-nav]').forEach(link => {
         const key = link.dataset.nav;
