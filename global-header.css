@@ -301,6 +301,8 @@ body.portfolio-home:has(> .global-header) .cv-screen {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
+  .global-header .global-nav { background: #fafaf7; }
+  .global-header[data-theme="dark"] .global-nav { background: #191d1a; }
   .global-header.is-menu-open .global-nav {
     opacity: 1;
     visibility: visible;
