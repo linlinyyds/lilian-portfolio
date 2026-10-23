@@ -1,0 +1,317 @@
+/* About and CV panels only. Load after the original portfolio styles. */
+.portfolio-home .cv-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - 88px);
+  height: auto;
+  padding-top: clamp(36px, 4.5vw, 64px);
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  scroll-margin-top: 88px;
+}
+
+.portfolio-home .cv-about-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, .86fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(48px, 6.4vw, 88px);
+  margin-bottom: 42px;
+}
+
+.portfolio-home .cv-about-screen .cv-portrait {
+  width: min(100%, 400px);
+  aspect-ratio: 4 / 5;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #c3c4c8;
+  justify-self: start;
+}
+
+.portfolio-home .cv-about-screen .cv-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 54% 50%;
+  filter: saturate(.85);
+}
+
+.portfolio-home .cv-intro-column {
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.portfolio-home .cv-identity {
+  margin-bottom: 32px;
+}
+
+.portfolio-home .cv-identity .small-name,
+.portfolio-home .cv-page-heading .small-name {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--text-faint);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: .12em;
+}
+
+.portfolio-home .cv-identity h2 {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(40px, 4.4vw, 64px);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -.035em;
+}
+
+.portfolio-home .cv-identity h2 > span {
+  display: inline-block;
+  margin-left: 12px;
+  font-family: var(--font-body);
+  font-size: .33em;
+  font-weight: 350;
+  letter-spacing: .1em;
+  vertical-align: middle;
+}
+
+.portfolio-home .cv-about-screen .profile-copy {
+  max-width: 510px;
+  gap: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.95;
+}
+
+.portfolio-home .cv-about-screen .profile-direction {
+  gap: 6px;
+  margin: 0 0 2px;
+  font-size: clamp(21px, 1.9vw, 26px);
+  font-weight: 350;
+  line-height: 1.5;
+}
+
+.portfolio-home .cv-about-screen .profile-lead {
+  font-size: 16px;
+  line-height: 1.95;
+}
+
+.portfolio-home .cv-about-screen .cv-download {
+  margin-top: 27px;
+  margin-bottom: 0;
+  padding-bottom: 8px;
+  gap: 24px;
+  font-size: 12px;
+}
+
+.portfolio-home .cv-screen > .cv-next {
+  flex-shrink: 0;
+  min-height: 64px;
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 12px;
+}
+
+.portfolio-home .cv-resume-screen {
+  margin-top: 48px;
+}
+
+.portfolio-home .cv-page-heading {
+  margin-bottom: 36px;
+}
+
+.portfolio-home .cv-page-heading h2 {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(46px, 5vw, 68px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -.035em;
+}
+
+.portfolio-home .cv-resume-layout {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(56px, 8vw, 104px);
+  margin-bottom: 42px;
+}
+
+.portfolio-home .cv-resume-screen .capability-notes {
+  min-width: 0;
+  margin-top: 0;
+  max-width: 390px;
+}
+
+.portfolio-home .cv-resume-screen .capability-notes dl {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+  margin-top: 22px;
+}
+
+.portfolio-home .cv-resume-screen .capability-notes dt {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.portfolio-home .cv-resume-screen .capability-notes dd {
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.portfolio-home .cv-resume-screen .cv-column {
+  min-width: 0;
+  display: grid;
+  gap: 30px;
+}
+
+.portfolio-home .cv-resume-screen .cv-entry {
+  grid-template-columns: 108px minmax(0, 1fr) 16px;
+  gap: 18px;
+  padding: 18px 0;
+}
+
+.portfolio-home .cv-resume-screen .cv-language {
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .portfolio-home .cv-about-layout {
+    grid-template-columns: minmax(220px, .82fr) minmax(0, 1fr);
+    gap: 38px;
+  }
+
+  .portfolio-home .cv-identity h2 {
+    font-size: clamp(36px, 4.7vw, 43px);
+  }
+
+  .portfolio-home .cv-identity h2 > span {
+    margin-left: 8px;
+  }
+
+  .portfolio-home .cv-about-screen .profile-copy {
+    gap: 17px;
+    font-size: 13px;
+  }
+
+  .portfolio-home .cv-about-screen .profile-lead {
+    font-size: 15px;
+  }
+
+  .portfolio-home .cv-resume-layout {
+    grid-template-columns: minmax(0, .78fr) minmax(0, 1fr);
+    gap: 42px;
+  }
+
+  .portfolio-home .cv-resume-screen .cv-entry {
+    grid-template-columns: minmax(0, 1fr) 16px;
+    gap: 7px 14px;
+  }
+
+  .portfolio-home .cv-resume-screen .cv-entry > time,
+  .portfolio-home .cv-resume-screen .cv-entry > .cv-entry-copy {
+    grid-column: 1;
+  }
+
+  .portfolio-home .cv-resume-screen .cv-entry > .row-arrow {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+
+  .portfolio-home .cv-resume-screen .cv-language {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 680px) {
+  .portfolio-home .cv-screen {
+    padding-top: 34px;
+    padding-bottom: 12px;
+  }
+
+  .portfolio-home .cv-about-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 32px;
+  }
+
+  .portfolio-home .cv-about-screen .cv-portrait {
+    width: 200px;
+    max-width: 100%;
+  }
+
+  .portfolio-home .cv-identity {
+    margin-bottom: 25px;
+  }
+
+  .portfolio-home .cv-identity .small-name,
+  .portfolio-home .cv-page-heading .small-name {
+    margin-bottom: 14px;
+    font-size: 10px;
+  }
+
+  .portfolio-home .cv-identity h2 {
+    font-size: clamp(36px, 8.7vw, 46px);
+  }
+
+  .portfolio-home .cv-about-screen .profile-copy {
+    max-width: none;
+    gap: 18px;
+    font-size: 13px;
+  }
+
+  .portfolio-home .cv-about-screen .profile-direction {
+    gap: 4px;
+    font-size: 22px;
+  }
+
+  .portfolio-home .cv-about-screen .profile-lead {
+    font-size: 16px;
+  }
+
+  .portfolio-home .cv-about-screen .cv-download {
+    margin-top: 24px;
+  }
+
+  .portfolio-home .cv-resume-screen {
+    margin-top: 36px;
+  }
+
+  .portfolio-home .cv-page-heading {
+    margin-bottom: 30px;
+  }
+
+  .portfolio-home .cv-page-heading h2 {
+    font-size: 48px;
+  }
+
+  .portfolio-home .cv-resume-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 32px;
+  }
+
+  .portfolio-home .cv-resume-screen .capability-notes {
+    max-width: none;
+  }
+
+  .portfolio-home .cv-resume-screen .capability-notes dl {
+    gap: 22px;
+  }
+
+  .portfolio-home .cv-resume-screen .cv-entry {
+    padding: 20px 0;
+  }
+
+  .portfolio-home .cv-screen > .cv-next {
+    min-height: 64px;
+  }
+}

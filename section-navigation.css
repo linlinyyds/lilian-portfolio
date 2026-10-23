@@ -1,0 +1,96 @@
+/* Section navigation sits above the retained portfolio cover. */
+:root { --portfolio-nav-height: 76px; }
+html { scroll-snap-type: y proximity; }
+.portfolio-home section[data-page] { scroll-snap-align: start; scroll-snap-stop: normal; scroll-margin-top: calc(var(--portfolio-nav-height) + 24px); }
+.portfolio-home #home { scroll-margin-top: 0; }
+.portfolio-home .site-header {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) auto minmax(90px, 1fr);
+  align-items: center;
+  gap: 24px;
+  min-height: var(--portfolio-nav-height);
+  padding: 10px clamp(24px, 4.5vw, 68px);
+  background: rgba(252, 252, 251, .82);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  pointer-events: auto;
+}
+.portfolio-home .site-header.header-behavior.is-header-hidden { translate: 0 0; }
+.portfolio-home[data-theme="dark"] .site-header { background: rgba(12, 17, 28, .88); }
+.portfolio-home .site-header .cat-menu,
+.portfolio-home .site-header #quickNav { display: none; }
+.portfolio-brand {
+  justify-self: start;
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: -.045em;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+.portfolio-brand span { margin-left: 10px; font-family: var(--font-body); font-size: 10px; font-weight: 400; letter-spacing: .06em; color: var(--text-soft); }
+.top-nav { display: flex; align-items: center; gap: 5px; pointer-events: auto; }
+.top-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 7px 12px;
+  border-radius: 100px;
+  color: var(--text-soft);
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+.top-nav a:hover { background: var(--line); color: var(--text); }
+.top-nav a[aria-current="location"] { background: var(--text); color: var(--bg, #fff); }
+.portfolio-home .site-header .header-actions { grid-column: 3; gap: 4px; }
+.portfolio-home .site-header .icon-toggle { width: 36px; height: 36px; }
+.portfolio-home .site-header .language-toggle { font-size: 13px; font-weight: 400; }
+.portfolio-home .site-header .theme-icon,
+.portfolio-home .site-header .theme-icon svg { width: 19px; height: 19px; flex-basis: 19px; }
+.section-pager {
+  position: fixed;
+  z-index: 15;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 9px 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  background: rgba(252, 252, 251, .9);
+  color: var(--text-soft);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 400;
+  backdrop-filter: blur(12px);
+}
+.section-pager span { font-variant-numeric: tabular-nums; letter-spacing: .12em; }
+.section-pager a { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 50%; background: var(--text); color: var(--bg, #fff); font-size: 18px; }
+.portfolio-home[data-theme="dark"] .section-pager { background: rgba(12, 17, 28, .9); }
+.portfolio-home[data-active-section="home"] .section-pager { display: none; }
+.top-nav a:focus-visible, .portfolio-brand:focus-visible, .section-pager a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+@media (max-width: 900px) {
+  html { scroll-snap-type: none; }
+  :root { --portfolio-nav-height: 106px; }
+  .portfolio-home .site-header { grid-template-columns: 1fr auto; grid-template-rows: 44px 38px; gap: 3px 12px; padding: 9px 22px 8px; }
+  .portfolio-brand { grid-row: 1; grid-column: 1; font-size: 20px; }
+  .portfolio-home .site-header .header-actions { grid-row: 1; grid-column: 2; }
+  .top-nav { grid-row: 2; grid-column: 1 / -1; justify-content: space-between; gap: 2px; }
+  .top-nav a { min-height: 32px; padding: 6px 12px; font-size: 11px; }
+  .section-pager { right: 15px; bottom: 16px; padding-left: 12px; gap: 9px; }
+}
+@media (max-width: 380px) {
+  .portfolio-home .site-header { padding-right: 18px; padding-left: 18px; }
+  .top-nav a { padding-right: 9px; padding-left: 9px; font-size: 10px; }
+  .portfolio-brand span { margin-left: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-snap-type: none; }
+  .top-nav a { transition: none; }
+}
