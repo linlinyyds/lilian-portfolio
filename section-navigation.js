@@ -55,8 +55,9 @@
     const observer = new ResizeObserver(schedule);
     sections.forEach(section => observer.observe(section));
   }
-  const aliases = { '#work': '#project', '#gallery': '#project', '#projects': '#project', '#portfolio': '#project', '#top': '#home', '#resume': '#cv' };
+  const aliases = { '#projects': '#project', '#portfolio': '#project', '#top': '#home', '#resume': '#cv' };
   function normalizeHash() {
+    if (location.hash === '#gallery' || location.hash === '#work') { location.replace('work.html'); return; }
     const destination = aliases[location.hash];
     if (!destination) return;
     history.replaceState(null, '', destination);
