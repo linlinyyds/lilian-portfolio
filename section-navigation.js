@@ -1,6 +1,6 @@
 (() => {
   const sections = [...document.querySelectorAll('section[data-page]')];
-  const links = [...document.querySelectorAll('.top-nav a')];
+  const links = [...document.querySelectorAll('.global-header [data-nav]')];
   const pager = document.querySelector('.section-pager');
   const count = pager?.querySelector('span');
   const next = pager?.querySelector('a');
@@ -29,9 +29,9 @@
     if (scrollY + innerHeight >= document.documentElement.scrollHeight - 3) index = sections.length - 1;
     const current = sections[index];
     document.body.dataset.activeSection = current.id;
-    const group = current.id === 'cv' ? 'about' : current.id;
+    const group = current.id === 'cv' ? 'about' : current.id === 'project' ? 'work' : current.id;
     links.forEach(link => {
-      if (link.hash === '#' + group) {
+      if (link.dataset.nav === group) {
         if (link.getAttribute('aria-current') !== 'location') link.setAttribute('aria-current', 'location');
       } else link.removeAttribute('aria-current');
     });

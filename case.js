@@ -135,9 +135,9 @@
   }
   function render() {
     document.documentElement.lang=lang==='zh'?'zh-CN':'en';
-    document.querySelector('#language').textContent=lang==='zh'?'EN':'中';
+    document.querySelector('#language .lang-current').textContent=lang==='zh'?'中':'EN';
+    document.body.dataset.lang=lang;
     document.querySelector('#language').ariaLabel=lang==='zh'?'Switch to English':'切换到中文';
-    ['work','about','contact'].forEach((id,i)=>document.querySelector(`[data-ui=${id}]`).textContent=([['作品','Work'],['关于','About'],['联系 ↗','Contact ↗']][i])[lang==='zh'?0:1]);
     if(!project||!stories[slug]){main.innerHTML=`<section class="empty-case"><p>404 / PROJECT</p><h1>${esc(l('未找到项目','Project not found'))}</h1><a href="index.html#project">${esc(l('返回所有作品','Back to selected work'))} ↗</a></section>`;return;}
     const p=copy(project),story=stories[slug],map=mediaMap[slug]||{};
     let role=p.roleScope||p.role,year=p.year;

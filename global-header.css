@@ -1,0 +1,338 @@
+/* Shared portfolio navigation. Load after page-specific styles. */
+:root { --global-header-height: 88px; }
+
+.global-header {
+  --gh-text: #252722;
+  --gh-muted: #74766e;
+  --gh-line: rgba(38, 42, 33, .14);
+  --gh-surface: rgba(250, 250, 247, .89);
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  display: block;
+  width: 100%;
+  height: var(--global-header-height);
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: 0;
+  border-bottom: 1px solid var(--gh-line);
+  border-radius: 0;
+  background: var(--gh-surface);
+  color: var(--gh-text);
+  box-shadow: none;
+  translate: 0 0;
+  pointer-events: auto;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  -webkit-font-smoothing: antialiased;
+}
+
+.global-header[data-theme="dark"] {
+  --gh-text: #eeefe8;
+  --gh-muted: #b7bbb0;
+  --gh-line: rgba(235, 239, 227, .17);
+  --gh-surface: rgba(25, 29, 26, .92);
+}
+
+.global-header .global-header-inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  padding: 0 clamp(24px, 4.5vw, 68px);
+  margin: 0;
+  box-sizing: border-box;
+  gap: 36px;
+}
+
+.global-header .global-brand {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 6px 0;
+  color: var(--gh-text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -.045em;
+  text-decoration: none;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+.global-header .global-brand > span {
+  margin: 0;
+  color: var(--gh-muted);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .04em;
+}
+
+.global-header .global-nav {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: auto;
+  max-height: none;
+  padding: 0;
+  margin: 0 0 0 auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", sans-serif;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+
+.global-header .global-nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--gh-muted);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 160ms ease;
+}
+
+.global-header .global-nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: 7px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.global-header .global-nav a:hover,
+.global-header .global-nav a[aria-current="location"],
+.global-header .global-nav a[aria-current="page"],
+.global-header .global-nav a[aria-current="true"] {
+  background: transparent;
+  color: var(--gh-text);
+}
+
+.global-header .global-nav a:hover::after,
+.global-header .global-nav a[aria-current="location"]::after,
+.global-header .global-nav a[aria-current="page"]::after,
+.global-header .global-nav a[aria-current="true"]::after {
+  transform: scaleX(1);
+}
+
+.global-header .global-controls {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  margin: 0 0 0 9px;
+  pointer-events: auto;
+}
+
+.global-header .language-toggle,
+.global-header .theme-toggle,
+.global-header .global-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 40px;
+  min-width: 36px;
+  min-height: 40px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--gh-text);
+  box-shadow: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  cursor: pointer;
+  transform: none;
+  filter: none;
+  transition: opacity 160ms ease;
+  pointer-events: auto;
+}
+
+.global-header .language-toggle:hover,
+.global-header .theme-toggle:hover,
+.global-header .global-menu-toggle:hover {
+  background: transparent;
+  color: var(--gh-text);
+  opacity: .68;
+  transform: none;
+  filter: none;
+}
+
+.global-header .lang-current {
+  display: block;
+  width: auto;
+  height: auto;
+  color: inherit;
+  line-height: 1;
+  transform: none;
+}
+
+.global-header .theme-toggle svg {
+  display: block;
+  flex: 0 0 19px;
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.global-header .theme-toggle .theme-moon { display: none; }
+.global-header[data-theme="dark"] .theme-toggle .theme-sun { display: none; }
+.global-header[data-theme="dark"] .theme-toggle .theme-moon { display: block; }
+.global-header .global-menu-toggle { display: none; }
+.global-header .global-menu-toggle svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.global-header a:focus-visible,
+.global-header button:focus-visible {
+  outline: 2px solid var(--gh-text);
+  outline-offset: 5px;
+}
+
+/* Fixed-header offsets apply only to documents using this component. */
+body[data-nav-context="work"]:has(> .global-header),
+body[data-nav-context="gallery"]:has(> .global-header) { padding-top: var(--global-header-height); }
+body.portfolio-home:has(> .global-header),
+body.experience-page:has(> .global-header) { padding-top: 0; }
+html:has(body:not(.portfolio-home) > .global-header) {
+  scroll-padding-top: 0;
+  scroll-snap-type: none;
+}
+body:has(> .global-header) .case-toc {
+  top: var(--global-header-height);
+  z-index: 30;
+}
+body:not(.portfolio-home):has(> .global-header) main section[id] {
+  scroll-margin-top: calc(var(--global-header-height) + 24px);
+}
+body:not(.portfolio-home):has(> .global-header) main :is(.chapter, #question, #reflection) {
+  scroll-margin-top: calc(var(--global-header-height) + 72px);
+}
+body.portfolio-home:has(> .global-header) section[data-page] {
+  scroll-margin-top: calc(var(--global-header-height) + 24px);
+}
+body.portfolio-home:has(> .global-header) #home { scroll-margin-top: 0; }
+body.portfolio-home:has(> .global-header) .cv-screen {
+  min-height: calc(100svh - var(--global-header-height));
+}
+
+@media (max-width: 900px) and (min-width: 761px) {
+  .global-header .global-header-inner { gap: 22px; }
+  .global-header .global-nav { gap: 22px; }
+  .global-header .global-controls { gap: 7px; margin-left: 0; }
+  .global-header .global-brand { font-size: 22px; }
+}
+
+@media (max-width: 760px) {
+  :root { --global-header-height: 72px; }
+  .global-header .global-header-inner { gap: 16px; padding-right: 22px; padding-left: 22px; }
+  .global-header .global-brand { gap: 8px; font-size: 21px; }
+  .global-header .global-brand > span { font-size: 10px; }
+  .global-header .global-controls { gap: 5px; margin-left: auto; }
+  .global-header .language-toggle,
+  .global-header .theme-toggle { width: 32px; min-width: 32px; }
+  .global-header .global-menu-toggle { display: inline-flex; gap: 6px; width: auto; min-width: 44px; }
+  .global-header .global-menu-toggle [data-menu-label] { font-size: 11px; }
+  .global-header .global-nav {
+    position: absolute;
+    top: var(--global-header-height);
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: auto;
+    max-height: calc(100dvh - var(--global-header-height));
+    padding: 10px 22px 18px;
+    margin: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-bottom: 1px solid var(--gh-line);
+    background: var(--gh-surface);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .global-header.is-menu-open .global-nav {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+  .global-header .global-nav a {
+    display: flex;
+    justify-content: flex-start;
+    min-height: 48px;
+    padding: 13px 2px;
+    border-bottom: 1px solid var(--gh-line);
+    font-size: 14px;
+  }
+  .global-header .global-nav a:last-child { border-bottom: 0; }
+  .global-header .global-nav a::after { right: auto; bottom: 8px; width: 24px; }
+}
+
+@media (max-width: 380px) {
+  .global-header .global-header-inner { gap: 10px; padding-right: 18px; padding-left: 18px; }
+  .global-header .global-brand { gap: 6px; font-size: 20px; }
+  .global-header .global-brand > span { font-size: 9px; }
+  .global-header .global-controls { gap: 2px; }
+  .global-header .global-nav { padding-right: 18px; padding-left: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .global-header .global-nav,
+  .global-header .global-nav a,
+  .global-header .global-nav a::after,
+  .global-header .language-toggle,
+  .global-header .theme-toggle,
+  .global-header .global-menu-toggle { transition: none; }
+}

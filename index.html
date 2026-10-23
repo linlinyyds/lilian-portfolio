@@ -14,36 +14,29 @@
     <link rel="stylesheet" href="click-feedback.css?v=pointer-polish-20261022">
     <link rel="stylesheet" href="cv-layout.css?v=cv-pages-20261023">
     <link rel="stylesheet" href="section-navigation.css?v=cv-pages-20261023">
-  </head>
-  <body data-theme="light" class="portfolio-home" data-active-section="home">
+  <link rel="stylesheet" href="global-header.css?v=nav-unified-20261023"></head>
+  <body data-nav-context="home" data-theme="light" class="portfolio-home" data-active-section="home">
     <a class="skip-link" href="#project" data-i18n="nav.skip">跳至作品</a>
     <div class="ambient" aria-hidden="true"><span class="glow glow-a"></span><span class="glow glow-b"></span><span class="glow glow-c"></span></div>
-    <header class="site-header">
-      <a class="portfolio-brand" href="#home" data-section-link aria-label="Lilian Zhou 首页">Lilian Zhou <span>/ 周琳</span></a>
-
-      <button class="cat-menu" type="button" aria-label="导航菜单" data-i18n-aria="nav.menu" aria-expanded="false" aria-controls="quickNav"><img src="assets/logo.png?v=cat5" alt=""></button>
-      <nav class="quick-nav" id="quickNav" aria-label="Page navigation" inert>
-        <a href="#home" data-i18n="nav.home">首页</a>
-        <a href="#about" data-i18n="nav.about">关于 / CV</a>
-        <a href="#project" data-i18n="nav.project">作品</a>
-        <a href="#gallery" data-i18n="nav.gallery">探索</a>
-        <a href="#contact" data-i18n="nav.contact">联系</a>
-      </nav>
-      <nav class="top-nav" aria-label="主导航 / Main navigation">
-        <a href="#home" data-section-link data-i18n="nav.home" aria-current="location">首页</a>
-        <a href="#about" data-section-link data-i18n="nav.about">关于 / CV</a>
-        <a href="#project" data-section-link data-i18n="nav.project">作品</a>
-        <a href="#gallery" data-section-link data-i18n="nav.gallery">探索</a>
-        <a href="#contact" data-section-link data-i18n="nav.contact">联系</a>
-      </nav>
-      <div class="header-actions">
-        <button class="language-toggle icon-toggle" type="button" aria-label="Switch language" aria-pressed="false"><span class="lang-current" aria-hidden="true">中</span></button>
-        <button class="theme-toggle icon-toggle" type="button" aria-label="Switch between light and dark mode" aria-pressed="false">
-          <span class="theme-icon theme-sun" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.8v2.1M12 19.1v2.1M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M2.8 12h2.1M19.1 12h2.1M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"></path></svg></span>
-          <span class="theme-icon theme-moon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M20.1 14.5A7.9 7.9 0 0 1 9.5 3.9a8.5 8.5 0 1 0 10.6 10.6Z"></path></svg></span>
-        </button>
-      </div>
-    </header>
+    <header class="global-header">
+  <div class="global-header-inner">
+    <a class="global-brand" href="#home" data-section-link aria-label="Lilian Zhou · 首页">Lilian Zhou <span>/ 周琳</span></a>
+    <nav class="global-nav" id="global-navigation" aria-label="主导航">
+        <a href="#project" data-nav="work" data-section-link>作品</a>
+        <a href="#about" data-nav="about" data-section-link>关于 / CV</a>
+        <a href="#gallery" data-nav="gallery" data-section-link>探索</a>
+        <a href="#contact" data-nav="contact" data-section-link>联系</a>
+    </nav>
+    <div class="global-controls">
+      <button id="language" class="language-toggle" type="button" aria-label="Switch to English"><span class="lang-current" aria-hidden="true">中</span></button>
+      <button id="theme" class="theme-toggle" type="button" aria-label="切换深色模式" aria-pressed="false">
+        <svg class="theme-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.8v2.1M12 19.1v2.1M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M2.8 12h2.1M19.1 12h2.1M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"/></svg>
+        <svg class="theme-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.1 14.5A7.9 7.9 0 0 1 9.5 3.9a8.5 8.5 0 1 0 10.6 10.6Z"/></svg>
+      </button>
+      <button class="global-menu-toggle" type="button" aria-controls="global-navigation" aria-expanded="false"><span data-menu-label>菜单</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+    </div>
+  </div>
+</header>
     <main id="app">
       <section class="hero" id="home" aria-label="Lilian Portfolio" data-page>
         <div class="hero-title reveal"><h1 data-pluck-text>LILIAN</h1><p data-pluck-text>PORTFOLIO</p></div>
@@ -132,6 +125,6 @@
     <script src="ambient.js?v=pointer-polish-20261022"></script>
     <script src="header-behavior.js?v=header-20261022"></script>
     <script src="click-feedback.js?v=pointer-polish-20261022"></script>
-    <script src="section-navigation.js?v=cv-pages-20261023"></script>
-  </body>
+    <script src="section-navigation.js?v=nav-unified-20261023"></script>
+  <script src="global-header.js?v=nav-unified-20261023"></script></body>
 </html>
