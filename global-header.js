@@ -16,8 +16,8 @@
     const mobileQuery = window.matchMedia('(max-width: 760px)');
     const savedTabIndexes = new WeakMap();
     const labels = {
-      zh: { work: '作品', about: '关于 / CV', gallery: '探索', contact: '联系' },
-      en: { work: 'Work', about: 'About / CV', gallery: 'Gallery', contact: 'Contact' }
+      zh: { about: '关于 / CV', work: '作品', contact: '联系' },
+      en: { about: 'About / CV', work: 'Work', contact: 'Contact' }
     };
     let expanded = false;
     let syncFrame = 0;

@@ -47,7 +47,7 @@
   function schedule() { if (!frame) frame = requestAnimationFrame(update); }
   addEventListener('scroll', schedule, { passive: true });
   addEventListener('resize', schedule, { passive: true });
-  addEventListener('hashchange', schedule);
+  addEventListener('hashchange', () => { normalizeHash(); schedule(); });
   addEventListener('pageshow', schedule);
   addEventListener('load', schedule);
   new MutationObserver(translate).observe(document.body, { attributes: true, attributeFilter: ['data-lang'] });
@@ -55,11 +55,14 @@
     const observer = new ResizeObserver(schedule);
     sections.forEach(section => observer.observe(section));
   }
-  const aliases = { '#work': '#project', '#top': '#home', '#resume': '#cv' };
-  if (aliases[location.hash]) {
-    history.replaceState(null, '', aliases[location.hash]);
-    document.querySelector(aliases[location.hash])?.scrollIntoView({ behavior: 'auto', block: 'start' });
+  const aliases = { '#work': '#project', '#gallery': '#project', '#projects': '#project', '#portfolio': '#project', '#top': '#home', '#resume': '#cv' };
+  function normalizeHash() {
+    const destination = aliases[location.hash];
+    if (!destination) return;
+    history.replaceState(null, '', destination);
+    document.querySelector(destination)?.scrollIntoView({ behavior: 'auto', block: 'start' });
   }
+  normalizeHash();
   translate();
   update();
 })();
