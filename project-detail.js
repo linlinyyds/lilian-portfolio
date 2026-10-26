@@ -38,7 +38,7 @@ const staticTranslations = {
   },
   zh: {
     "detailNav.projects": "所有项目",
-    "nav.about": "关于",
+    "nav.about": "关于我",
     "nav.gallery": "画廊",
     "detail.loading": "正在加载项目...",
     "detail.notFoundKicker": "项目",

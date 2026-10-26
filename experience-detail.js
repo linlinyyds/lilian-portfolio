@@ -10,26 +10,26 @@ const staticTranslations = {
   en: {
     "experience.loading": "Loading experience...",
     "experience.kicker": "EXPERIENCE",
-    "experience.back": "← Back to work",
+    "experience.back": "← Back to About",
     "experience.date": "DATE / LOCATION",
     "experience.role": "ROLE",
     "experience.focus": "FOCUS",
     "experience.scope": "SCOPE",
     "experience.notFoundKicker": "EXPERIENCE",
     "experience.notFoundTitle": "Experience not found",
-    "experience.notFoundText": "This experience could not be found. Please return to the work section and choose another item."
+    "experience.notFoundText": "This experience could not be found. Return to About to browse the experience list."
   },
   zh: {
     "experience.loading": "正在加载经历...",
     "experience.kicker": "工作经历",
-    "experience.back": "← 返回工作经历",
+    "experience.back": "← 返回关于我",
     "experience.date": "时间 / 地点",
     "experience.role": "角色",
     "experience.focus": "重点",
     "experience.scope": "职责范围",
     "experience.notFoundKicker": "工作经历",
     "experience.notFoundTitle": "未找到经历",
-    "experience.notFoundText": "没有找到这段经历，请返回工作经历区域选择其他内容。"
+    "experience.notFoundText": "没有找到这段经历，请返回关于我，浏览工作经历列表。"
   }
 };
 
@@ -229,7 +229,7 @@ const experiences = [
       "insightHighlightIndex": 1,
       "insight": "Define the behaviour. Make it testable. Follow it through acceptance.",
       "previousLabel": "← NIO Experience",
-      "backLabel": "Back to Work"
+      "backLabel": "Back to About"
     },
     "zh": {
       "company": "ICERED",
@@ -350,7 +350,7 @@ const experiences = [
         "insightHighlightIndex": 1,
         "insight": "明确交互行为，形成可测试实现，跟进至验收确认。",
         "previousLabel": "← 蔚来工作经历",
-        "backLabel": "返回工作经历"
+        "backLabel": "返回关于我"
       }
     }
   },
@@ -600,8 +600,8 @@ function renderCaseStudy(copy) {
 function renderExperience(experience) {
   const copy = getExperienceCopy(experience);
   document.title = currentLanguage === "zh"
-    ? `${copy.company} · 周琳 HMI 作品集`
-    : `${copy.company} · Lilian HMI Portfolio`;
+    ? `${copy.company} · 周琳作品集`
+    : `${copy.company} · Lilian Portfolio`;
   const description = document.querySelector('meta[name="description"]');
   if (description) description.setAttribute("content", copy.summary);
 
