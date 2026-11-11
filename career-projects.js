@@ -329,12 +329,12 @@
       kind: "AI Conversation / Product Iteration",
       summary: "AI response states, chat continuity and a design-to-code workflow. Cover: interaction-flow illustration.",
       role: "AI Product Manager · interaction design and delivery support",
-      stage: "Pre-launch iteration · 2025.10–2026.07",
+      stage: "Pre-launch iteration · 2025.08–2026.08",
       zh: {
         slug: "icered", href: "work/icered/", image: "assets/case-covers/icered.svg",
         title: "ICERED", kind: "AI 对话 / 产品迭代",
         summary: "AI 响应状态、聊天连续性与设计到代码的迭代流程。封面为交互流程示意。",
-        role: "AI 产品经理 · 交互设计与交付支持", stage: "上线前迭代 · 2025.10–2026.07"
+        role: "AI 产品经理 · 交互设计与交付支持", stage: "上线前迭代 · 2025.08–2026.08"
       }
     },
     {

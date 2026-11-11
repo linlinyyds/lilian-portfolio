@@ -112,7 +112,7 @@ const experiences = [
   {
     "slug": "icered",
     "company": "ICERED",
-    "date": "2025.10 – 2026.07",
+    "date": "2025.08–2026.08",
     "location": "Shanghai, China",
     "role": "AI Product Manager",
     "summary": "AI social product for overseas users: requirements, interaction prototypes, AI-assisted frontend implementation and pre-launch testing.",
@@ -146,7 +146,7 @@ const experiences = [
         "Delivery Scope"
       ],
       "summaryCards": [
-        "2025.10 – 2026.07 · Shanghai",
+        "2025.08–2026.08 · Shanghai",
         "AI Product Manager",
         "Social · Chat · AI Assistant · Virtual Users",
         "Requirements · Prototypes · Testing · Acceptance"
@@ -233,7 +233,7 @@ const experiences = [
     },
     "zh": {
       "company": "ICERED",
-      "date": "2025.10 – 2026.07",
+      "date": "2025.08–2026.08",
       "location": "上海",
       "role": "AI 产品经理",
       "summary": "面向海外用户的 AI 社交产品，覆盖需求、交互原型、AI 辅助前端实现与上线前测试。",
@@ -267,7 +267,7 @@ const experiences = [
           "交付范围"
         ],
         "summaryCards": [
-          "2025.10 – 2026.07 · 上海",
+          "2025.08–2026.08 · 上海",
           "AI 产品经理",
           "社交 · 聊天 · AI 助手 · 虚拟用户",
           "需求 · 原型 · 测试 · 验收"
