@@ -11,21 +11,8 @@
     const translations = window.LILIAN_PROJECT_TRANSLATIONS || {};
     const featured = new Map((window.LILIAN_FEATURED_CASES || []).map(item => [item.slug, item]));
     const uniqueProjects = new Map(projects.filter(item => item && item.slug).map(item => [item.slug, item]));
-    const order = ['ea01u', 'aurora-mood', 'equiflow', 'the-world-of-kantan', 'this-conversation', 'meditate-naturally', 'moving-crowds', 'clink', 'generative-hmi', 'five-stars', 'rako-rako-ramen'];
-    const ordered = [...order.filter(slug => uniqueProjects.has(slug)), ...[...uniqueProjects.keys()].filter(slug => !order.includes(slug))];
-    const visuals = {
-      'ea01u': { src: 'assets/portfolio/ea01u/cover.png', width: 1280, height: 720 },
-      'aurora-mood': { src: 'assets/portfolio/aurora-mood/aurora-01-cover.jpg', width: 3200, height: 1800 },
-      'equiflow': { src: 'assets/editorial-home-equiflow.jpg', width: 1024, height: 576 },
-      'the-world-of-kantan': { src: 'assets/editorial-home-the-world-of-kantan.jpg', width: 1400, height: 693 },
-      'this-conversation': { src: 'assets/editorial-home-this-conversation.jpg', width: 1400, height: 795 },
-      'meditate-naturally': { src: 'assets/editorial-home-meditate-naturally.jpg', width: 968, height: 1299, contain: true, background: '#071d20' },
-      'moving-crowds': { src: 'assets/editorial-home-moving-crowds.jpg', width: 1400, height: 1260 },
-      'clink': { src: 'assets/editorial-home-clink.jpg', width: 1400, height: 914 },
-      'generative-hmi': { src: 'assets/editorial-generative-overview.svg', width: 1200, height: 800, contain: true, background: '#eeeee7' },
-      'five-stars': { src: 'assets/editorial-home-five-stars.jpg', width: 1440, height: 810 },
-      'rako-rako-ramen': { src: 'assets/editorial-home-rako-rako-ramen.jpg', width: 1400, height: 928 }
-    };
+    const coverOrder = ['ea01u', 'aurora-mood', 'equiflow', 'the-world-of-kantan', 'this-conversation', 'meditate-naturally', 'moving-crowds', 'clink', 'generative-hmi', 'five-stars', 'rako-rako-ramen'];
+    const ordered = [...coverOrder.filter(slug => uniqueProjects.has(slug)), ...[...uniqueProjects.keys()].filter(slug => !coverOrder.includes(slug))];
     const resolveAsset = src => window.LILIAN_ASSETS?.[src] || src;
     const records = [];
     const fragment = document.createDocumentFragment();
@@ -48,21 +35,28 @@
       return svg;
     }
 
-    ordered.forEach(slug => {
+    ordered.forEach((slug, index) => {
       const project = uniqueProjects.get(slug);
-      const visual = visuals[slug] || { src: project.galleryImage || project.image };
-      const card = element('a', `work-gallery-card${visual.contain ? ' is-contain' : ''}`, fragment);
+      const hasCover = coverOrder.includes(slug);
+      const card = element('a', `work-gallery-card${hasCover ? ' is-designed' : ''}`, fragment);
       card.href = `project.html?slug=${encodeURIComponent(slug)}`;
       card.dataset.project = slug;
       const imageWrap = element('div', 'work-gallery-visual', card);
-      if (visual.background) imageWrap.style.setProperty('--work-mat-color', visual.background);
       const image = element('img', '', imageWrap);
-      image.src = resolveAsset(visual.src);
-      if (visual.width) image.width = visual.width;
-      if (visual.height) image.height = visual.height;
-      image.loading = 'lazy';
+      image.loading = index < 2 ? 'eager' : 'lazy';
+      if (index === 0) image.fetchPriority = 'high';
       image.decoding = 'async';
       image.draggable = false;
+      if (hasCover) {
+        const cover = `assets/gallery/optimized/work-${slug}`;
+        image.width = 1920;
+        image.height = 1080;
+        image.sizes = '(max-width: 380px) calc(100vw - 36px), (max-width: 760px) calc(100vw - 44px), (max-width: 1576px) 45vw, 704px';
+        image.srcset = `${cover}-960.webp 960w, ${cover}-1920.webp 1920w`;
+        image.src = `${cover}-1920.webp`;
+      } else {
+        image.src = resolveAsset(project.galleryImage || project.image);
+      }
       const cta = element('span', 'work-gallery-cta', imageWrap);
       cta.setAttribute('aria-hidden', 'true');
       const ctaText = element('span', '', cta);

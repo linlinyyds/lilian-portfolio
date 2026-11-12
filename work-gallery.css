@@ -224,3 +224,20 @@
 
 body.portfolio-home.portfolio-work-page:has(> .global-header) { padding-top: var(--global-header-height); }
 .portfolio-home.portfolio-work-page .portfolio-work { margin-top: clamp(48px, 6vw, 80px); }
+
+.portfolio-home .work-gallery-card.is-designed .work-gallery-visual {
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+}
+
+.portfolio-home .work-gallery-card.is-designed .work-gallery-visual img {
+  object-fit: contain;
+  transform: none;
+}
+
+@media (max-width: 760px), (hover: none), (pointer: coarse) {
+  .portfolio-home .work-gallery-card.is-designed:not(:focus-visible):not(:hover) .work-gallery-visual::after,
+  .portfolio-home .work-gallery-card.is-designed:not(:focus-visible):not(:hover) .work-gallery-cta {
+    opacity: 0;
+  }
+}
