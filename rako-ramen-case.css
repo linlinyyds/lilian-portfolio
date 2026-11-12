@@ -1,0 +1,293 @@
+.rako-case {
+  --rako-accent: #873e2a;
+  --rako-button-bg: #883d28;
+  --rako-button-hover: #70311f;
+  --rako-button-text: #fff8ef;
+  --rako-panel: #f6edde;
+  --rako-line: #d9c9b5;
+}
+
+body[data-theme="dark"] .rako-case {
+  --rako-accent: #f0b79d;
+  --rako-button-bg: #edb195;
+  --rako-button-hover: #f5c4af;
+  --rako-button-text: #321b15;
+  --rako-panel: #302620;
+  --rako-line: #554239;
+}
+
+.rako-case .rako-cover-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.93fr) minmax(0, 1.07fr);
+  gap: clamp(24px, 5vw, 80px);
+  align-items: center;
+}
+
+.rako-case .rako-cover-grid h1 {
+  max-width: 10ch;
+  font-size: clamp(46px, 5.7vw, 88px);
+  line-height: 0.99;
+  letter-spacing: -0.048em;
+}
+
+.rako-case .rako-cover-grid .eyebrow,
+.rako-case .chapter-number {
+  color: var(--rako-accent);
+}
+
+.rako-case .rako-cover-grid .lead {
+  margin-top: 16px;
+}
+
+.rako-case :is(.rako-hero, .rako-design, .rako-roro) {
+  min-width: 0;
+}
+
+.rako-case :is(.rako-hero, .rako-design, .rako-roro) img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.rako-case .rako-hero img,
+.rako-case .rako-design img {
+  border-radius: 12px;
+}
+
+.rako-case .rako-design img {
+  border: 1px solid var(--rako-line);
+}
+
+.rako-case :is(.rako-hero, .rako-design, .rako-roro) figcaption {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.rako-case :is(.rako-button, .rako-link) {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.65em;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.rako-case .rako-button {
+  margin-top: 24px;
+  padding: 11px 19px;
+  border-radius: 999px;
+  background: var(--rako-button-bg);
+  color: var(--rako-button-text);
+}
+
+.rako-case .rako-button:hover {
+  background: var(--rako-button-hover);
+}
+
+.rako-case .rako-link {
+  color: var(--rako-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+.rako-case .rako-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+.rako-case :is(.rako-button, .rako-link):focus-visible {
+  outline-color: var(--rako-accent);
+}
+
+.rako-case .facts {
+  border-top-color: var(--rako-line);
+  margin-bottom: 0;
+}
+
+.rako-case .facts dd {
+  font-size: 13px;
+}
+
+.rako-case .case-toc a {
+  flex: 0 0 auto;
+  max-width: none;
+}
+
+.rako-case .case-toc a:hover {
+  color: var(--rako-accent);
+}
+
+.rako-case .proposition,
+.rako-case .reflection {
+  padding-block: clamp(44px, 6vw, 88px);
+}
+
+.rako-case .rako-context {
+  max-width: 58ch;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.rako-case .chapter {
+  padding-block: clamp(40px, 6vw, 88px);
+}
+
+.rako-case .chapter-header {
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+
+.rako-case .rako-brand-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 44px);
+  align-items: start;
+}
+
+.rako-case .rako-brand-aside {
+  display: grid;
+  align-content: start;
+  gap: 15px;
+  padding: clamp(18px, 2.5vw, 32px);
+  border: 1px solid var(--rako-line);
+  border-radius: 12px;
+  background: var(--rako-panel);
+}
+
+.rako-case .rako-roro img {
+  width: min(100%, 230px);
+  margin-inline: auto;
+  border-radius: 8px;
+}
+
+.rako-case .rako-roro figcaption {
+  text-align: center;
+}
+
+.rako-case .rako-brand-aside p,
+.rako-case .rako-path p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.rako-case :is(.rako-catalogue, .rako-paths) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2.3vw, 28px);
+}
+
+.rako-case :is(.rako-list, .rako-path) {
+  min-width: 0;
+  padding: clamp(18px, 3vw, 34px);
+  border: 1px solid var(--rako-line);
+  border-radius: 12px;
+}
+
+.rako-case :is(.rako-list, .rako-path) h3 {
+  margin-bottom: 13px;
+  color: var(--rako-accent);
+  font-size: clamp(17px, 1.65vw, 23px);
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.rako-case .rako-list {
+  background: var(--rako-panel);
+}
+
+.rako-case .rako-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rako-case .rako-list li {
+  display: grid;
+  gap: 3px;
+  padding-block: 10px;
+  border-top: 1px solid var(--rako-line);
+  overflow-wrap: anywhere;
+}
+
+.rako-case .rako-list li:last-child {
+  padding-bottom: 0;
+}
+
+.rako-case .rako-list li strong {
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.rako-case .rako-list li span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.rako-case .rako-path ol {
+  margin: 0 0 14px;
+  padding-inline-start: 1.5em;
+}
+
+.rako-case .rako-path li {
+  padding-inline-start: 0.3em;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.rako-case .rako-path li + li {
+  margin-top: 5px;
+}
+
+.rako-case .rako-path li::marker {
+  color: var(--rako-accent);
+  font-weight: 650;
+}
+
+.rako-case .rako-links {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 22px;
+  row-gap: 4px;
+  margin-top: 14px;
+}
+
+.rako-case .reflection .rako-link {
+  margin-top: 9px;
+}
+
+@media (max-width: 760px) {
+  .rako-case .rako-cover-grid,
+  .rako-case .rako-brand-grid,
+  .rako-case :is(.rako-catalogue, .rako-paths) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rako-case .rako-cover-grid h1 {
+    max-width: none;
+    font-size: clamp(43px, 10vw, 65px);
+  }
+
+  .rako-case .rako-brand-aside {
+    grid-template-columns: minmax(80px, 0.75fr) minmax(0, 1.25fr);
+    align-items: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .rako-case .rako-brand-aside {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rako-case .rako-roro img {
+    width: min(100%, 155px);
+  }
+}
