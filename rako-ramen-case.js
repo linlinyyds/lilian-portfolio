@@ -29,30 +29,12 @@ const copy = {
       aside: '用 Roro-chan 和日文细节延续品牌语气。产品类型、食用方式和操作按钮用清晰的英文呈现，方便英国市场用户扫读。'
     },
     catalogue: {
-      title: '单碗看口味，组合装看份量',
-      intro: '单碗卡片把商品图、口味名、辣度和价格放在固定位置，方便横向比较。组合装的标题直接写出碗数，让想尝鲜的人和计划囤货的人从同一目录找到合适选项。甜点另设分区。',
-      lists: [
-        ['单碗 · 口味与辣度', [
-          ['经典豚骨', 'Classic Tonkotsu · Mild'],
-          ['辛辣豚骨', 'Spicy Tonkotsu · Spicy'],
-          ['黑蒜豚骨', 'Black Garlic Tonkotsu · Mild']
-        ]],
-        ['组合装 · 份量与用途', [
-          ['4 碗尝鲜装', 'Ramen Sampler Box · 试吃不同口味'],
-          ['6 碗囤货装', 'Freezer Stock Box · 家庭备餐'],
-          ['8 碗工作日晚餐装', 'Weeknight Rescue Box · 多餐储备']
-        ]]
-      ],
-      caption: '目录信息结构 · 以官网当前商品为例',
+      intro: '单碗和组合装放在同一个拉面分区，甜点另设分区。用户先确定要买哪种、买几碗，再决定是否需要进入详情。',
       open: '查看官网商品目录'
     },
     purchase: {
-      title: '让简单商品快速加购，复杂商品先完成选配',
-      intro: '把 Quick View 和 Add to Cart 放在商品卡上。对已知道要买什么的人，卡片直接提供下一步。对仍在比较的人，快速查看和商品详情提供继续了解的入口。',
-      paths: [
-        ['单碗 · 选口味后确认数量', ['比较口味与辣度', '查看商品信息或选择数量', '加入购物车'], '把配料、营养及加热方式放在详情页，帮助用户按需核对。'],
-        ['组合装 · 先选搭配，再加购', ['选定组合装份量', '以 4 碗装为例，选择口味组合与赠品', '确认数量后加入购物车'], '在商品详情提供冷冻保存提示，配送说明集中在独立服务页。']
-      ],
+      intro: '确认一碗拉面与选配一箱拉面，需要回答不同的问题。详情页共用商品图、价格和购买区的布局，选项随商品类型变化。',
+      single: '查看单碗商品详情',
       box: '查看 4 碗装的实际选配',
       delivery: '查看配送说明'
     },
@@ -88,36 +70,123 @@ const copy = {
       aside: 'Roro-chan and Japanese details carry the brand voice. Plain English keeps the product, preparation and actions easy to scan for UK shoppers.'
     },
     catalogue: {
-      title: 'Compare single bowls by flavour and boxes by size',
-      intro: 'Single-bowl cards give photography, flavour name, heat level and price a consistent position. Box titles lead with bowl count, so people can choose a sampler or stock up. Desserts have their own section.',
-      lists: [
-        ['Single bowls · Flavour and heat', [
-          ['Classic Tonkotsu', 'Mild'],
-          ['Spicy Tonkotsu', 'Spicy'],
-          ['Black Garlic Tonkotsu', 'Mild']
-        ]],
-        ['Boxes · Pack size and use', [
-          ['Ramen Sampler Box · 4 bowls', 'Try different flavours'],
-          ['Freezer Stock Box · 6 bowls', 'Stock the freezer'],
-          ['Weeknight Rescue Box · 8 bowls', 'Plan several dinners']
-        ]]
-      ],
-      caption: 'Catalogue information structure · Examples from the current shop',
+      intro: 'Single bowls and boxes share the ramen section. Desserts have their own section. Shoppers can narrow their choice by flavour and pack size before opening a product page.',
       open: 'Explore the live catalogue'
     },
     purchase: {
-      title: 'Match the cart path to the choices a product requires',
-      intro: 'Quick View and Add to Cart sit on the product cards. Shoppers who have decided can act from the catalogue. Shoppers who need more information can open a preview or a product page.',
-      paths: [
-        ['Single bowl · Choose a flavour and quantity', ['Compare flavour and heat', 'Review details or select a quantity', 'Add to cart'], 'Ingredients, nutrition and preparation are available on the product page.'],
-        ['Box · Choose the contents before adding', ['Choose a pack size', 'For the 4-bowl box, select a flavour combination and gift', 'Confirm quantity and add to cart'], 'Storage instructions sit with the product. Delivery terms have a dedicated service page.']
-      ],
+      intro: 'The detail pages share a layout for photography, price and purchase. The fields change with the product, since ordering one bowl and configuring a box require different decisions.',
+      single: 'See the single-bowl product page',
       box: 'See the live 4-bowl configuration',
       delivery: 'See delivery information'
     },
     outcomeTitle: 'Carry the brand through product choice and into the cart',
     outcome: 'The design covered the homepage, product cards, Quick View, product pages and delivery FAQs. I contributed to desktop and mobile layouts and reviewed brand consistency so the same flavour, pack size and configuration information remains easy to find.',
     next: 'Next project'
+  }
+};
+
+const shots = {
+  catalogue: ['catalogue', 1760, 2178],
+  quick: ['quick-view', 1600, 1078],
+  classic: ['classic-detail', 1760, 1080],
+  sampler: ['sampler-detail', 1760, 1213],
+  preparation: ['preparation', 1760, 1796]
+};
+
+const design = {
+  zh: {
+    source: '官网实装界面',
+    zoom: '放大查看',
+    fullSize: '打开高清图',
+    close: '关闭图片',
+    journey: [
+      ['理解商品', '先知道是冷冻拉面，以及如何在家吃。'],
+      ['比较选项', '再按口味、辣度和碗数缩小范围。'],
+      ['完成选购', '核对必选项、保存和配送信息后加购。']
+    ],
+    brand: [
+      ['先展示一碗成品', '用拉面成品摄影和一句产品定位回答「卖的是什么」。把慢熬、速冻和加热时间收成短句，放在首屏下一层。'],
+      ['把购买入口放在理解之后', 'Shop All 紧邻主介绍，About 留给想了解品牌的人。日文和角色插画延续识别，操作按钮用英文。']
+    ],
+    catalogue: {
+      title: '目录把口味、份量和下一步放在同一屏',
+      notes: [
+        ['标签用于扫读', '辣度放在单碗商品图上角，名字和价格集中在图下，让用户在不同口味之间来回比较时，视线可以停在同一位置。'],
+        ['组合装按购买任务区分', '4、6、8 碗放在组合名和主图里，赠品数量也能快速识别。用户可以先按尝鲜、囤货或备餐选份量，再到详情看具体内容。'],
+        ['快速查看留在目录内', '保留背景目录位置，在浮层里展示主图、价格、数量和加购。配料和烹饪等长信息通过 View More Details 进入详情。']
+      ]
+    },
+    configuration: {
+      title: '两类商品沿用同一详情布局，购买表单按需变化',
+      notes: [
+        ['单碗只确认数量', '口味已经由所选商品决定，所以购买区只保留数量。产品说明、配料和营养信息放在购买操作下方，按需查看。'],
+        ['四碗装先确认内容', '组合装在数量上方增加口味组合和赠品两个必选字段。把选择顺序和加购动作放在同一区域，减少用户往返查找。']
+      ]
+    },
+    preparation: {
+      nav: '保存与食用',
+      title: '让购买前的疑问，在商品页内有答案',
+      intro: '冷冻食品的体验延续到收货和食用。商品详情先提示冷冻保存，再通过「开盒、加热、开吃」概览和两套图解说明，把关键步骤讲清楚。配送范围和发货安排放在独立页面。',
+      notes: [
+        ['快速判断', '三步概览让第一次购买的人先判断是否方便，角色插画贯穿步骤。'],
+        ['按设备查看做法', '锅煮和微波炉各有一份操作图，用户可以按自己的设备查看。']
+      ],
+      detail: '查看官网食用指导'
+    },
+    images: {
+      catalogue: ['六张核心商品卡', '单碗用 Mild / Spicy 提示辣度，组合装用碗数和赠品区分规格。'],
+      quick: ['Quick View 商品浮层', '直接调整数量并加购，或通过 View More Details 继续查看详情。'],
+      classic: ['经典豚骨 · 单碗购买区', '数量与加购在上方，产品说明、配料和营养信息分区呈现。'],
+      sampler: ['四碗尝鲜装 · 组合选配', '口味组合与赠品在数量之前，用户顺着表单确认箱内内容。'],
+      preparation: ['从开盒到食用', '三步概览配合锅煮和微波炉图解，让购买前就能了解食用方式。']
+    }
+  },
+  en: {
+    source: 'Live storefront',
+    zoom: 'Enlarge',
+    fullSize: 'Open full-resolution image',
+    close: 'Close image',
+    journey: [
+      ['Understand', 'Find out what frozen ramen is and how to prepare it.'],
+      ['Compare', 'Shortlist by flavour, heat and number of bowls.'],
+      ['Configure', 'Review options, storage and delivery before adding to cart.']
+    ],
+    brand: [
+      ['Lead with the finished bowl', 'Food photography and one product line explain what is for sale. Short points about broth, freezing and preparation sit just below the main message.'],
+      ['Give the introduction a next step', 'Shop All sits next to the product introduction. About serves visitors exploring the brand. Japanese details and the character carry the identity while actions are written in English.']
+    ],
+    catalogue: {
+      title: 'Make flavour, pack size and the next action easy to compare',
+      notes: [
+        ['Labels support scanning', 'Heat level appears on the single-bowl image, with name and price underneath. Consistent positions make it easier to scan across flavours.'],
+        ['Group boxes by shopping intent', 'Four, six and eight bowls are visible in the box names and imagery, alongside gifts. Shoppers can shortlist by how much they need before checking the exact contents.'],
+        ['Keep Quick View in context', 'The overlay leaves the catalogue behind it and surfaces the photo, price, quantity and add-to-cart action. View More Details leads to longer product information.']
+      ]
+    },
+    configuration: {
+      title: 'Use a consistent detail layout and adapt the purchase form',
+      notes: [
+        ['Single bowl: confirm quantity', 'The chosen product already determines the flavour. The purchase area asks for quantity, with product, ingredient and nutrition information below.'],
+        ['Four-bowl box: confirm contents first', 'The box adds two required fields above quantity for the flavour combination and gift. The fields and cart action sit together in the order shoppers need them.']
+      ]
+    },
+    preparation: {
+      nav: 'Storage and preparation',
+      title: 'Answer practical questions before checkout',
+      intro: 'Frozen food needs guidance through delivery and preparation. The detail page gives storage information first, then a three-step overview and illustrated instructions. Delivery coverage and dispatch information have their own page.',
+      notes: [
+        ['A quick overview', 'Unbox, cook and enjoy gives first-time shoppers a quick sense of effort. The character illustrates each step.'],
+        ['Instructions by equipment', 'Separate stovetop and microwave guides help shoppers find the preparation method they use.']
+      ],
+      detail: 'See preparation on the product page'
+    },
+    images: {
+      catalogue: ['The six core ramen cards', 'Single bowls show heat labels. Box cards show bowl counts and gifts.'],
+      quick: ['Quick View overlay', 'Choose quantity and add to cart or open the full product page via View More Details.'],
+      classic: ['Classic Tonkotsu · Single bowl', 'Quantity and purchase actions sit above the product, ingredients and nutrition sections.'],
+      sampler: ['Ramen Sampler Box · Configuration', 'Flavour combination and gift come before quantity and the add-to-cart action.'],
+      preparation: ['From unboxing to eating', 'A three-step overview and illustrated stovetop and microwave guides explain preparation.']
+    }
   }
 };
 
@@ -130,7 +199,7 @@ let currentTheme = localStorage.getItem('lilian-theme') === 'dark' ? 'dark' : 'l
 
 const css = document.createElement('link');
 css.rel = 'stylesheet';
-css.href = 'rako-ramen-case.css?v=20261112';
+css.href = 'rako-ramen-case.css?v=20261112-visuals';
 document.head.append(css);
 main.classList.add('rako-case');
 
@@ -143,6 +212,25 @@ const chapterHeader = (chapter, number) => `
     <h2>${chapter.title}</h2><p class="chapter-intro">${chapter.intro}</p>
   </div>`;
 
+function gallery(evidence, keys) {
+  const single = keys.length === 1 ? ' rako-ui-gallery--single' : '';
+  return `<div class="rako-ui-gallery${single}">${keys.map(key => {
+    const [asset, width, height] = shots[key];
+    const [title, detail] = evidence.images[key];
+    return `<figure class="rako-ui-shot">
+      <button class="rako-ui-image" type="button" data-rako-shot="${key}" aria-label="${evidence.zoom} ${title}" aria-haspopup="dialog">
+        <img src="${media}/rako-ui-${asset}.webp" width="${width}" height="${height}" alt="${title}" loading="lazy" decoding="async">
+        <span class="rako-ui-zoom" aria-hidden="true">↗</span>
+      </button>
+      <figcaption><strong>${title}</strong><small>${evidence.source}</small><p>${detail}</p></figcaption>
+    </figure>`;
+  }).join('')}</div>`;
+}
+
+function designNotes(items) {
+  return `<dl class="rako-design-notes">${items.map(([title, detail]) => `<div><dt>${title}</dt><dd>${detail}</dd></div>`).join('')}</dl>`;
+}
+
 function applyTheme() {
   document.documentElement.dataset.theme = currentTheme;
   document.body.dataset.theme = currentTheme;
@@ -151,7 +239,11 @@ function applyTheme() {
 
 function render() {
   const t = copy[lang];
-  const anchors = ['question', 'chapter-1', 'chapter-2', 'chapter-3', 'reflection'];
+  const e = design[lang];
+  const chapters = [
+    ['question', t.toc[0]], ['chapter-1', t.toc[1]], ['chapter-2', t.toc[2]],
+    ['chapter-3', t.toc[3]], ['chapter-4', e.preparation.nav], ['reflection', t.toc[4]]
+  ];
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
   document.body.dataset.lang = lang;
   document.title = 'Rako Rako Ramen · Lilian Zhou';
@@ -177,12 +269,12 @@ function render() {
     </section>
 
     <nav class="case-toc" aria-label="${t.contents}">
-      ${t.toc.map((label, index) => `<a href="#${anchors[index]}">${label}</a>`).join('')}
+      ${chapters.map(([id, label]) => `<a href="#${id}">${label}</a>`).join('')}
     </nav>
 
     <section class="proposition" id="question">
       <span class="small-label">${t.toc[0]}</span>
-      <div><h2>${t.question}</h2><p class="rako-context">${t.context}</p></div>
+      <div><h2>${t.question}</h2><p class="rako-context">${t.context}</p>${designNotes(e.journey)}</div>
     </section>
 
     <section class="chapter" id="chapter-1">
@@ -202,32 +294,40 @@ function render() {
           <p>${t.brand.aside}</p>
         </aside>
       </div>
+      <div class="chapter-content">${designNotes(e.brand)}</div>
     </section>
 
     <section class="chapter" id="chapter-2">
-      ${chapterHeader(t.catalogue, 2)}
+      ${chapterHeader({ title: e.catalogue.title, intro: t.catalogue.intro }, 2)}
       <div class="chapter-content">
-        <figure>
-          <div class="rako-catalogue">${t.catalogue.lists.map(([title, products]) => `
-            <article class="rako-list">
-              <h3>${title}</h3><ul>${products.map(([name, note]) => `<li><strong>${name}</strong><span>${note}</span></li>`).join('')}</ul>
-            </article>`).join('')}</div>
-          <figcaption>${t.catalogue.caption}</figcaption>
-        </figure>
+        ${gallery(e, ['catalogue', 'quick'])}
+        ${designNotes(e.catalogue.notes)}
         <div class="rako-links">${external(site + '/our-ramen', t.catalogue.open)}</div>
       </div>
     </section>
 
     <section class="chapter" id="chapter-3">
-      ${chapterHeader(t.purchase, 3)}
+      ${chapterHeader({ title: e.configuration.title, intro: t.purchase.intro }, 3)}
       <div class="chapter-content">
-        <div class="rako-paths">${t.purchase.paths.map(([title, steps, note]) => `
-          <article class="rako-path">
-            <h3>${title}</h3><ol>${steps.map(step => `<li>${step}</li>`).join('')}</ol><p>${note}</p>
-          </article>`).join('')}</div>
+        ${gallery(e, ['classic', 'sampler'])}
+        ${designNotes(e.configuration.notes)}
         <div class="rako-links">
+          ${external(site + '/product-page/japanese-classic-tonkotsu-ramen', t.purchase.single)}
           ${external(site + '/product-page/ramen-box-4-bowl', t.purchase.box)}
-          ${external(site + '/delivery-shipping', t.purchase.delivery)}
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="chapter-4">
+      ${chapterHeader(e.preparation, 4)}
+      <div class="chapter-content rako-preparation">
+        ${gallery(e, ['preparation'])}
+        <div>
+          ${designNotes(e.preparation.notes)}
+          <div class="rako-links">
+            ${external(site + '/product-page/japanese-classic-tonkotsu-ramen#comp-mp23ro6d', e.preparation.detail)}
+            ${external(site + '/delivery-shipping', t.purchase.delivery)}
+          </div>
         </div>
       </div>
     </section>
@@ -242,6 +342,29 @@ function render() {
       <span class="next-arrow" aria-hidden="true">↗</span>
     </a>`;
 }
+
+const lightbox = document.querySelector('#lightbox');
+main.addEventListener('click', event => {
+  const button = event.target.closest('[data-rako-shot]');
+  if (!button) return;
+  const key = button.dataset.rakoShot;
+  const e = design[lang];
+  const [title] = e.images[key];
+  const preview = button.querySelector('img');
+  const image = document.createElement('img');
+  image.src = preview.src;
+  image.alt = title;
+  lightbox.querySelector('.lightbox-media').replaceChildren(image);
+  lightbox.setAttribute('aria-label', title);
+  lightbox.querySelector('.lightbox-close').setAttribute('aria-label', e.close);
+  const link = document.createElement('a');
+  link.href = preview.src;
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.textContent = e.fullSize + ' ↗';
+  lightbox.querySelector('p').replaceChildren(title + ' · ', link);
+  lightbox.showModal();
+});
 
 language.addEventListener('click', () => {
   const y = window.scrollY;
