@@ -12,6 +12,7 @@
     const featured = new Map((window.LILIAN_FEATURED_CASES || []).map(item => [item.slug, item]));
     const uniqueProjects = new Map(projects.filter(item => item && item.slug).map(item => [item.slug, item]));
     const coverOrder = ['ea01u', 'aurora-mood', 'equiflow', 'the-world-of-kantan', 'this-conversation', 'meditate-naturally', 'moving-crowds', 'clink', 'generative-hmi', 'five-stars', 'rako-rako-ramen'];
+    const revisedCovers = new Set(['equiflow', 'rako-rako-ramen', 'five-stars', 'clink']);
     const ordered = [...coverOrder.filter(slug => uniqueProjects.has(slug)), ...[...uniqueProjects.keys()].filter(slug => !coverOrder.includes(slug))];
     const resolveAsset = src => window.LILIAN_ASSETS?.[src] || src;
     const records = [];
@@ -52,8 +53,11 @@
         image.width = 1920;
         image.height = 1080;
         image.sizes = '(max-width: 380px) calc(100vw - 36px), (max-width: 760px) calc(100vw - 44px), (max-width: 1576px) 45vw, 704px';
-        image.srcset = `${cover}-960.webp 960w, ${cover}-1920.webp 1920w`;
-        image.src = `${cover}-1920.webp`;
+        const version = revisedCovers.has(slug) ? '?v=20261113' : '';
+        const smallCover = `${cover}-960.webp${version}`;
+        const largeCover = `${cover}-1920.webp${version}`;
+        image.srcset = `${smallCover} 960w, ${largeCover} 1920w`;
+        image.src = largeCover;
       } else {
         image.src = resolveAsset(project.galleryImage || project.image);
       }
